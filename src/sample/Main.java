@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         GridPane root = new GridPane();
-
+        //Hejsan
         Label welcome = new Label("Welcome! Please, log in:");
         root.add(welcome, 0, 0);
         primaryStage.setTitle("Hello World");
