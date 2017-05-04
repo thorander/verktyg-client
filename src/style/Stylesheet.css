@@ -1,0 +1,10 @@
+.header{
+
+    -fx-border-color: #2e8b57;
+    -fx-padding: 50px;
+}
+
+.label{
+    -fx-font-family: fantasy;
+    -fx-font-size: 25px;
+}
