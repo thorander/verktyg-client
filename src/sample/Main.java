@@ -1,5 +1,6 @@
 package sample;
 
+import Network.Connection;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,6 +18,9 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+
+        Connection c = new Connection("localhost", 4436);
+        c.start();
     }
 
 
