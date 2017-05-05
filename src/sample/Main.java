@@ -23,7 +23,7 @@ public class Main extends Application {
     private GridPane grid;
     private Scene scene;
     private Button sendMessage;
-    private ImageView test;
+    private ImageView image;
 
 
     @Override
@@ -38,8 +38,8 @@ public class Main extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(5, 5, 5, 5));
-        test =new ImageView("images/2.png");
-        sendMessage = new Button("", test);
+        image =new ImageView("images/2.png");
+        sendMessage = new Button("", image);
         sendMessage.setContentDisplay(ContentDisplay.BOTTOM);
         sendMessage.setStyle("-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;");
 
@@ -59,11 +59,11 @@ public class Main extends Application {
     private void searchActions(){
         sendMessage.hoverProperty().addListener((ov, oldValue, newValue) -> {
             if (newValue) {
-                test.setStyle("-fx-opacity: 0.5;-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;");
+                image.setStyle("-fx-opacity: 0.5;-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;");
                 sendMessage.setText("Mejl");
                 sendMessage.setContentDisplay(ContentDisplay.CENTER);
             } else {
-                test.setStyle("-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;");
+                image.setStyle("-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;");
                 sendMessage.setText("");
             }
         });
