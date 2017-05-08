@@ -1,10 +1,27 @@
 
+#navLabel{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-padding: 5px;
+}
+#navLabel:hover{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: darkorange;
+    -fx-opacity: 1;
+    -fx-padding: 5px;
+}
+
+
+/*#navImg:hover{
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-opacity: 0.5;
+}
+
 #navImg{
-    -fx-opacity: 0.5;
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
 }
-#navImg:hover{
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-opacity: 0.5;
-}
+*/
 
