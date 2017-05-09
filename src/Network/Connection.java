@@ -30,12 +30,20 @@ public class Connection extends Thread{
         } catch (IOException e){
             System.out.println(e);
         }
-        Scanner scin = new Scanner(System.in);
 
         while(true){
-            if(scin.hasNextLine()){
-                out.println(scin.nextLine());
+            try {
+                System.out.println(in.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
+
+    public void write(String message){
+        out.println(message);
+    }
+
+
+
 }

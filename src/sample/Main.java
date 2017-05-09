@@ -1,5 +1,6 @@
 package sample;
 
+import Network.Connection;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
@@ -20,9 +21,12 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
+import style.GUI.Login;
 
 
 import java.awt.*;
+
+//Brilliant Budding Blossoms
 
 public class Main extends Application {
     private GridPane grid;
@@ -30,10 +34,21 @@ public class Main extends Application {
     HBox header;
     HBox backgroundImage;
     HBox headline;
+    private Connection c;
 
     @Override
     public void start(Stage primaryStage){
-        createGrid(primaryStage);
+/*        createGrid(primaryStage);*/
+        c = new Connection("localhost", 4436);
+        c.start();
+        Login l = new Login(c);
+        Scene scene = new Scene(l.getRoot(), 900, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> {
+            c.write("end");
+            System.exit(0);
+        });
 
     }
 
