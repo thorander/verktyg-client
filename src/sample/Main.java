@@ -57,7 +57,6 @@ public class Main extends Application {
         register=createLabel("registrera");
 
 
-
         HBox header = new HBox();
         header.getChildren().addAll(edit,create,statistics,gradeTest,register);
 
