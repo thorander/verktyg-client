@@ -8,10 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -37,29 +34,25 @@ public class CreateTest extends Application {
 
     // Combobox
     private ComboBox answerChoice = new ComboBox();
-    private ComboBox timeCounter = new ComboBox();
+
+    // Spinner
+    final Spinner<Integer> timeCounter = new Spinner<Integer>();
 
 
+    // MAIN
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
+
         root.setVgap(10);
         root.setHgap(10);
         root.setPadding(new Insets(5, 5, 5, 5));
 
         // Answer combobox
         answerChoice.getItems().addAll(
-                "Option 1",
-                "Option 2",
-                "Option 3",
-                "Option 4"
-        );
-
-        //Time combobox
-        timeCounter.getItems().addAll(
                 "Option 1",
                 "Option 2",
                 "Option 3",
@@ -79,8 +72,10 @@ public class CreateTest extends Application {
         root.setConstraints(description, 0, 2);
         root.getChildren().add(description);
 
-        // Time combobox
-        timeCounter.setPromptText("Minutes");
+        // Time spinner
+        SpinnerValueFactory<Integer> valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 120);
+        timeCounter.setValueFactory(valueFactory);
         timeCounter.setEditable(true);
         GridPane.setConstraints(timeCounter, 0, 3);
         root.getChildren().add(timeCounter);
@@ -135,21 +130,7 @@ public class CreateTest extends Application {
         scene.getStylesheets().add("style/Stylesheet.css");
         primaryStage.show();
 
-        //Time Combobox action
-        timeCounter.valueProperty().addListener(new ChangeListener<String>() {
-            @Override public void changed(ObservableValue ov, String t, String t1) {
-                System.out.println(ov);
-                System.out.println(t);
-                System.out.println(t1);
-
-                try {
-                    //Do something
-                    System.out.println(timeCounter.getItems());
-                } catch(Exception e) {
-                    System.out.println("Something went wrong: "+e);
-                }
-            }
-        });
+        // Time spinner action
 
         //Answer Combobox action
         answerChoice.valueProperty().addListener(new ChangeListener<String>() {
@@ -174,16 +155,13 @@ public class CreateTest extends Application {
         //Savebutton action
         save.setOnAction((ActionEvent event) -> {
             try {
-                title.getText();
-                description.getText();
-                timeCounter.getCellFactory();
-                question.getText();
-                //answer.getText();
 
-           /* title.clear();
-            description.clear();
-            question.clear();
-            answer.clear();
+                //Do something
+                System.out.println(timeCounter.getValue());
+                System.out.println(answerChoice.getValue());
+
+           /* When saved -
+           clear!
             */
 
             } catch(Exception e) {
