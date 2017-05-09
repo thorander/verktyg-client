@@ -22,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import style.GUI.Login;
+import style.GUI.register;
 
 
 import java.awt.*;
@@ -55,7 +56,8 @@ public class Main extends Application {
     }
 
     private void createGrid(Stage primaryStage){
-
+       /* register reg = new register();
+        reg.setUp();*/
         grid = new GridPane();
 
 
@@ -78,6 +80,9 @@ public class Main extends Application {
 
         grid.getChildren().addAll( backgroundImage, header);
         scene = new Scene(grid, 900,600);
+        grid.getChildren().addAll( header);
+        //scene = reg.getScene();
+        scene = new Scene(grid, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
