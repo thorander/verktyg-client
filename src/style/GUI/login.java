@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class login extends Application {
 
-
+    GridPane grid;
     Label welcome;
     Label userName;
     Label password;
@@ -29,7 +29,7 @@ public class login extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        GridPane grid = new GridPane();
+        grid = new GridPane();
 
         welcome = new Label("Welcome");
         userName = new Label("Username");
