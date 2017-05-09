@@ -22,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import style.GUI.Login;
+import style.GUI.register;
 
 
 import java.awt.*;
@@ -31,20 +32,15 @@ import java.awt.*;
 public class Main extends Application {
     private GridPane grid;
     private Scene scene;
-    private Label edit;
-    private Label create;
-    private Label statistics;
-    private Label gradeTest;
-    private Label register;
-
+    HBox header;
+    HBox backgroundImage;
+    HBox headline;
     private Connection c;
-
-
 
     @Override
     public void start(Stage primaryStage){
 /*        createGrid(primaryStage);*/
-        c = new Connection("localhost", 4436);
+        /*c = new Connection("localhost", 4436);
         c.start();
         Login l = new Login(c);
         Scene scene = new Scene(l.getRoot(), 900, 600);
@@ -53,45 +49,46 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             c.write("end");
             System.exit(0);
-        });
+
+        });*/
+    createGrid(primaryStage);
 
     }
 
     private void createGrid(Stage primaryStage){
-
+       /* register reg = new register();
+        reg.setUp();*/
         grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(5, 5, 5, 5));
-
-        edit =createLabel("Redigera");
-        create=createLabel("Skapa test");
-        statistics=createLabel("Statistik");
-        gradeTest=createLabel("Rätta prov");
-        register=createLabel("registrera");
 
 
-        HBox header = new HBox();
-        header.getChildren().addAll(edit,create,statistics,gradeTest,register);
 
-        GridPane.setConstraints( header, 20, 0);
+      backgroundImage = NavigationBar.navBackgroundImage();
+        GridPane.setConstraints( backgroundImage, 0, 1);
+        GridPane.isFillWidth(backgroundImage);
+
+        headline = NavigationBar.headline();
+        GridPane.setConstraints( backgroundImage, 0, 2);
 
 
-        grid.getChildren().addAll( header);
+        header = NavigationBar.navAdmin();
+        header.setPadding(new Insets(5, 5, 5, 5));
+       GridPane.setConstraints( header, 0, 0);
+
+
+
+
+
+        grid.getChildren().addAll( backgroundImage, header);
         scene = new Scene(grid, 900,600);
+        grid.getChildren().addAll( header);
+        //scene = reg.getScene();
+        scene = new Scene(grid, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
-
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
         primaryStage.show();
 
 
-    }
-    //Gives the label an id and title
-        private Label createLabel(String title){
-        Label label = new Label(title);
-        label.setId("navLabel");
-        return label;
     }
 
     //Method change xxx of label when hovered
@@ -109,6 +106,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }
