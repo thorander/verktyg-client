@@ -1,15 +1,28 @@
 package sample;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import style.GUI.Login;
+import style.GUI.Register;
 
 /**
  * Created by Sofia on 2017-05-09.
  */
 public class NavigationBar {
+
+    public static Label role;
+    private static Label  edit;
+    private static Label create;
+    private static Label statistics;
+    private static Label gradeTest;
+    private static Label register;
+    private static Label login;
+
 
 public static HBox navBackgroundImage(){
     Image image = new Image("Images/headerImage.jpg");
@@ -33,20 +46,39 @@ public static HBox headline(){
 
 
     public static HBox navAdmin() {
-
-       Label  edit =createLabel("Redigera");
-       Label create=createLabel("Skapa test");
-       Label statistics=createLabel("Statistik");
-       Label gradeTest=createLabel("Rätta prov");
-       Label register=createLabel("registrera");
+        setupNavbarLabels();
 
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll( edit,create,statistics,gradeTest,register);
+        header.getChildren().addAll(role,edit,create,statistics,gradeTest,register, login);
 
         return header;
 
+    }
+
+    private static void setupNavbarLabels(){
+        edit =createLabel("Redigera");
+        create=createLabel("Skapa test");
+        statistics=createLabel("Statistik");
+        gradeTest=createLabel("Rätta prov");
+        register=createLabel("Registrera");
+        login=createLabel("Logga in");
+        role = createLabel("");
+
+        login.setOnMouseClicked(e -> {
+            Stage loginStage = new Stage();
+            Login l = new Login(Main.getConnection());
+            loginStage.setScene(new Scene(l.getRoot()));
+            loginStage.show();
+        });
+
+        register.setOnMouseClicked(e -> {
+            Stage registerStage = new Stage();
+            Register r = new Register(Main.getConnection());
+            registerStage.setScene(r.getScene());
+            registerStage.show();
+        });
     }
     //Gives the label an id and title
     private static Label createLabel(String title){

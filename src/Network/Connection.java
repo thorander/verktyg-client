@@ -1,5 +1,10 @@
 package Network;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import sample.Main;
+import sample.NavigationBar;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -33,10 +38,30 @@ public class Connection extends Thread{
 
         while(true){
             try {
-                System.out.println(in.readLine());
+                handleInput(in.readLine());
             } catch (IOException e) {
-                e.printStackTrace();
+                System.exit(0);
             }
+        }
+    }
+
+    private void handleInput(String input){
+        String[] split = input.split("#");
+        switch(split[0]){
+            case "LOGIN":
+                Main.loggedInPerson = split[1];
+                Main.loggedInRole = split[2];
+                Main.loggedInId = split[3];
+                Platform.runLater(()->{NavigationBar.role.setText(Main.loggedInRole);});
+
+                break;
+            case "ERROR":
+                Platform.runLater( () -> {
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setContentText(split[1]);
+                    error.show();
+                });
+                break;
         }
     }
 

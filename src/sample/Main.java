@@ -16,10 +16,14 @@ import style.GUI.Register;
 public class Main extends Application {
     private GridPane grid;
     private Scene scene;
-    HBox header;
-    HBox backgroundImage;
-    HBox headline;
-    private Connection c;
+    private HBox header;
+    private HBox backgroundImage;
+    private HBox headline;
+    private static Connection c;
+
+    public static String loggedInPerson = "";
+    public static String loggedInRole = "admin";
+    public static String loggedInId = "";
 
     @Override
     public void start(Stage primaryStage){
@@ -27,12 +31,16 @@ public class Main extends Application {
         c = new Connection("localhost", 4436);
         c.start();
 
+        primaryStage.setOnCloseRequest(e -> {
+           System.exit(0);
+        });
+
         //Kommentera bort den del du vill testa
-        //testMainScreen(primaryStage);
+        testMainScreen(primaryStage);
 
-        //testLoginScreen(primaryStage);
+/*        testLoginScreen(primaryStage);*/
 
-        testRegisterScreen(primaryStage);
+        /*testRegisterScreen(primaryStage);*/
 
 
     }
@@ -112,4 +120,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static Connection getConnection(){
+        return c;
+    }
+
 }
