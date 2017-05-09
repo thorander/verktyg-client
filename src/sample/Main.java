@@ -2,30 +2,14 @@ package sample;
 
 import Network.Connection;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
-import javafx.scene.image.Image;
 import style.GUI.Login;
-import style.GUI.register;
-
-
-import java.awt.*;
+import style.GUI.Register;
 
 //Brilliant Budding Blossoms
 
@@ -39,9 +23,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-/*        createGrid(primaryStage);*/
-        /*c = new Connection("localhost", 4436);
+
+        c = new Connection("localhost", 4436);
         c.start();
+
+        //Kommentera bort den del du vill testa
+        //testMainScreen(primaryStage);
+
+        //testLoginScreen(primaryStage);
+
+        testRegisterScreen(primaryStage);
+
+
+    }
+
+    public void testMainScreen(Stage primaryStage){
+        createGrid(primaryStage);
+    }
+
+    public void testLoginScreen(Stage primaryStage){
+
         Login l = new Login(c);
         Scene scene = new Scene(l.getRoot(), 900, 600);
         primaryStage.setScene(scene);
@@ -50,13 +51,20 @@ public class Main extends Application {
             c.write("end");
             System.exit(0);
 
-        });*/
-    createGrid(primaryStage);
+        });
+
+    }
+
+    public void testRegisterScreen(Stage primaryStage){
+        Register r = new Register(c);
+        Scene scene = r.getScene();
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
 
     private void createGrid(Stage primaryStage){
-       /* register reg = new register();
+       /* Register reg = new Register();
         reg.setUp();*/
         grid = new GridPane();
 
@@ -80,9 +88,7 @@ public class Main extends Application {
 
         grid.getChildren().addAll( backgroundImage, header, headline);
         scene = new Scene(grid, 900,600);
-        grid.getChildren().addAll( header);
         //scene = reg.getScene();
-        scene = new Scene(grid, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");

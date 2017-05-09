@@ -1,5 +1,6 @@
 package style.GUI;
 
+import Network.Connection;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
  */
 
 
-public class register {
+public class Register {
     BorderPane border;
     Scene scene;
     Label name;
@@ -25,6 +26,12 @@ public class register {
     TextField userName;
     TextField password;
     Button register;
+    Connection c;
+
+    public Register(Connection c){
+        this.c = c;
+        setUp();
+    }
 
     public void setUp() {
 
@@ -48,6 +55,10 @@ public class register {
 
         // Buttons
         register = new Button("Sign up");
+
+        register.setOnAction(e -> {
+            c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText());
+        });
 
         // Layout
         VBox labels = new VBox();
