@@ -39,7 +39,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
 /*        createGrid(primaryStage);*/
-        c = new Connection("localhost", 4436);
+        /*c = new Connection("localhost", 4436);
         c.start();
         Login l = new Login(c);
         Scene scene = new Scene(l.getRoot(), 900, 600);
@@ -48,7 +48,9 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             c.write("end");
             System.exit(0);
-        });
+
+        });*/
+    createGrid(primaryStage);
 
     }
 
