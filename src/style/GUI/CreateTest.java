@@ -123,7 +123,7 @@ public class CreateTest extends Application {
         primaryStage.setScene(scene);
 
         // Add CSS
-        scene.getStylesheets().add("Style/Style.css");
+        scene.getStylesheets().add("style/Stylesheet.css");
         primaryStage.show();
 
         //Day Combobox action
