@@ -35,40 +35,7 @@ public class Main extends Application {
            System.exit(0);
         });
 
-        //Kommentera bort den del du vill testa
-        testMainScreen(primaryStage);
-
-/*        testLoginScreen(primaryStage);*/
-
-        /*testRegisterScreen(primaryStage);*/
-
-
-    }
-
-    public void testMainScreen(Stage primaryStage){
         createGrid(primaryStage);
-    }
-
-    public void testLoginScreen(Stage primaryStage){
-
-        Login l = new Login(c);
-        Scene scene = new Scene(l.getRoot(), 900, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        primaryStage.setOnCloseRequest(e -> {
-            c.write("end");
-            System.exit(0);
-
-        });
-
-    }
-
-    public void testRegisterScreen(Stage primaryStage){
-        Register r = new Register(c);
-        Scene scene = r.getScene();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
     }
 
     private void createGrid(Stage primaryStage){

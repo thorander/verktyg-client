@@ -16,7 +16,7 @@ import style.GUI.Register;
 public class NavigationBar {
 
     public static Label role;
-    private static Label  edit;
+    private static Label edit;
     private static Label create;
     private static Label statistics;
     private static Label gradeTest;
@@ -54,7 +54,6 @@ public static HBox headline(){
         header.getChildren().addAll(role,edit,create,statistics,gradeTest,register, login);
 
         return header;
-
     }
 
     private static void setupNavbarLabels(){
@@ -80,6 +79,7 @@ public static HBox headline(){
             registerStage.show();
         });
     }
+
     //Gives the label an id and title
     private static Label createLabel(String title){
         Label label = new Label(title);
