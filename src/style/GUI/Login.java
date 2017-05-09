@@ -1,5 +1,6 @@
 package style.GUI;
 
+import Network.Connection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,21 +15,24 @@ import javafx.stage.Stage;
 /**
  * Created by phili on 2017-05-09.
  */
-public class login extends Application {
+public class Login {
 
-    GridPane grid;
-    Label welcome;
-    Label userName;
-    Label password;
-    TextField user;
-    TextField pass;
-    Button login;
+    private GridPane grid;
+    private Label welcome;
+    private Label userName;
+    private Label password;
+    private TextField user;
+    private TextField pass;
+    private Button login;
 
+    private Connection connection;
 
+    public Login(Connection connection){
+        this.connection = connection;
+        setup();
+    }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public void setup(){
         grid = new GridPane();
 
         welcome = new Label("Welcome");
@@ -40,6 +44,12 @@ public class login extends Application {
         pass.setPromptText("Password");
         login = new Button("Login");
 
+        login.setOnAction(e -> {
+           String uName = user.getText();
+           String uPass = pass.getText();
+           connection.write("LOGIN#" + uName + "#" + uPass);
+        });
+
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -50,16 +60,9 @@ public class login extends Application {
         grid.add(password,0,4);
         grid.add(pass,1,4);
         grid.add(login,1,6);
+    }
 
-        Scene scene = new Scene(grid, 350, 300);
-        primaryStage.setScene(scene);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-}
-
-    public static void main(String[] args) {
-        launch(args);
+    public GridPane getRoot(){
+        return grid;
     }
 }
