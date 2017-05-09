@@ -2,11 +2,11 @@ package style.GUI;/**
  * Created by Matilda on 2017-05-09.
  */
 
-import com.sun.org.apache.xerces.internal.impl.XMLEntityManager;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,7 +22,11 @@ public class CreateTest extends Application {
 
     // Textfield
     private TextField title = new TextField();
-    private TextField answer = new TextField();
+    private TextField answer1 = new TextField();
+    private TextField answer2 = new TextField();
+    private TextField answer3 = new TextField();
+    private TextField answer4 = new TextField();
+    private TextField answer5 = new TextField();
 
     // Textarea
     private TextArea question = new TextArea();
@@ -39,13 +43,13 @@ public class CreateTest extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) {
-        root.setVgap(5);
-        root.setHgap(5);
+        root.setVgap(10);
+        root.setHgap(10);
+        root.setPadding(new Insets(5, 5, 5, 5));
 
         // Answer combobox
         answerChoice.getItems().addAll(
@@ -108,18 +112,38 @@ public class CreateTest extends Application {
         GridPane.setConstraints(answerChoice, 0, 5);
         root.getChildren().add(answerChoice);
 
-        // Answer field
-        answer.setPrefColumnCount(15);
-        answer.setPromptText("Answer");
-        GridPane.setConstraints(answer, 0, 6);
-        //grid.getChildren().add();
+        // Answer fields
+        answer1.setPrefColumnCount(10);
+        answer1.setPromptText("Answer one");
+        GridPane.setConstraints(answer1, 0, 6);
+        //root.getChildren().add(answer1);
+
+        answer2.setPrefColumnCount(10);
+        answer2.setPromptText("Answer two");
+        GridPane.setConstraints(answer2, 0, 7);
+        //root.getChildren().add(answer2);
+
+        answer3.setPrefColumnCount(10);
+        answer3.setPromptText("Answer three");
+        GridPane.setConstraints(answer3, 0, 8);
+        //root.getChildren().add(answer3);
+
+        answer4.setPrefColumnCount(10);
+        answer4.setPromptText("Answer four");
+        GridPane.setConstraints(answer4, 0, 9);
+        //root.getChildren().add(answer4);
+
+        answer5.setPrefColumnCount(10);
+        answer5.setPromptText("Answer five");
+        GridPane.setConstraints(answer5, 0, 10);
+        //root.getChildren().add(answer5);
 
         // Save button
-        GridPane.setConstraints(save, 0, 7);
+        GridPane.setConstraints(save, 0, 11);
         root.getChildren().add(save);
 
         primaryStage.setTitle("Quiz Creator");
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 900, 800);
         primaryStage.setScene(scene);
 
         // Add CSS
@@ -132,6 +156,12 @@ public class CreateTest extends Application {
                 System.out.println(ov);
                 System.out.println(t);
                 System.out.println(t1);
+
+                try {
+                    //Do something
+                } catch(Exception e) {
+                    System.out.println("Something went wrong: "+e);
+                }
             }
         });
 
@@ -141,6 +171,12 @@ public class CreateTest extends Application {
                 System.out.println(ov);
                 System.out.println(t);
                 System.out.println(t1);
+
+                try {
+                    //Do something
+                } catch(Exception e) {
+                    System.out.println("Something went wrong: "+e);
+                }
             }
         });
 
@@ -150,6 +186,17 @@ public class CreateTest extends Application {
                 System.out.println(ov);
                 System.out.println(t);
                 System.out.println(t1);
+
+                try {
+                    if(t1.equals("Option 1")) {
+                        root.getChildren().addAll(answer1, answer2);
+                    } else if(t1.equals("Option 2")) {
+                        root.getChildren().addAll(answer3, answer4, answer5);
+                    }
+
+                } catch(Exception e) {
+                    System.out.println("Something went wrong: "+e);
+                }
             }
         });
 
@@ -158,18 +205,22 @@ public class CreateTest extends Application {
             try {
                 title.getText();
                 description.getText();
+                dayCounter.getCellFactory();
+                timeCounter.getCellFactory();
                 question.getText();
-                answer.getText();
+                //answer.getText();
 
            /* title.clear();
             description.clear();
             question.clear();
             answer.clear();
             */
+
             } catch(Exception e) {
-                e.printStackTrace();
+                System.out.println("Something went wrong: "+e);
             }
         });
 
     }
+
 }
