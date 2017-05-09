@@ -29,15 +29,14 @@ public class CreateTest extends Application {
     private TextField answer5 = new TextField();
 
     // Textarea
-    private TextArea question = new TextArea();
     private TextArea description = new TextArea();
+    private TextArea question = new TextArea();
 
     // Buttons
     private Button save = new Button("Save Quiz");
 
     // Combobox
     private ComboBox answerChoice = new ComboBox();
-    private ComboBox dayCounter = new ComboBox();
     private ComboBox timeCounter = new ComboBox();
 
 
@@ -53,14 +52,6 @@ public class CreateTest extends Application {
 
         // Answer combobox
         answerChoice.getItems().addAll(
-                "Option 1",
-                "Option 2",
-                "Option 3",
-                "Option 4"
-        );
-
-        // Day combobox
-        dayCounter.getItems().addAll(
                 "Option 1",
                 "Option 2",
                 "Option 3",
@@ -88,16 +79,10 @@ public class CreateTest extends Application {
         root.setConstraints(description, 0, 2);
         root.getChildren().add(description);
 
-        // Day combobox
-        dayCounter.setPromptText("Days");
-        dayCounter.setEditable(true);
-        GridPane.setConstraints(dayCounter, 0, 3);
-        root.getChildren().add(dayCounter);
-
         // Time combobox
         timeCounter.setPromptText("Minutes");
         timeCounter.setEditable(true);
-        GridPane.setConstraints(timeCounter, 1, 3);
+        GridPane.setConstraints(timeCounter, 0, 3);
         root.getChildren().add(timeCounter);
 
         // Question field
@@ -150,21 +135,6 @@ public class CreateTest extends Application {
         scene.getStylesheets().add("style/Stylesheet.css");
         primaryStage.show();
 
-        //Day Combobox action
-        dayCounter.valueProperty().addListener(new ChangeListener<String>() {
-            @Override public void changed(ObservableValue ov, String t, String t1) {
-                System.out.println(ov);
-                System.out.println(t);
-                System.out.println(t1);
-
-                try {
-                    //Do something
-                } catch(Exception e) {
-                    System.out.println("Something went wrong: "+e);
-                }
-            }
-        });
-
         //Time Combobox action
         timeCounter.valueProperty().addListener(new ChangeListener<String>() {
             @Override public void changed(ObservableValue ov, String t, String t1) {
@@ -174,6 +144,7 @@ public class CreateTest extends Application {
 
                 try {
                     //Do something
+                    System.out.println(timeCounter.getItems());
                 } catch(Exception e) {
                     System.out.println("Something went wrong: "+e);
                 }
@@ -205,7 +176,6 @@ public class CreateTest extends Application {
             try {
                 title.getText();
                 description.getText();
-                dayCounter.getCellFactory();
                 timeCounter.getCellFactory();
                 question.getText();
                 //answer.getText();
