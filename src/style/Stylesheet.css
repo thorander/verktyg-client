@@ -1,13 +1,9 @@
+
 #navHeader{
     -fx-background-color: gray;
 
 }
-#navImage{
-    -fx-opacity: 0.2;
-}
-
 #navLabel{
-
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
@@ -17,14 +13,14 @@
 #navLabel:hover{
     -fx-text-fill: darkorange;
 }
-/*#navHeadline{
+#navHeadline{
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
     -fx-padding: 5px;
 
-}*/
+}
 
 
 /*#navImg:hover{

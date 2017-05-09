@@ -15,10 +15,9 @@ public static HBox navBackgroundImage(){
     Image image = new Image("Images/headerImage.jpg");
     ImageView headerBackground = new ImageView();
     headerBackground.setImage(image);
-
+    headerBackground.setStyle("-fx-opacity: 0.2");
 
     HBox headerImg = new HBox();
-    headerImg.setId("navHeader");
     headerImg.getChildren().addAll( headerBackground);
     return headerImg;
 }
