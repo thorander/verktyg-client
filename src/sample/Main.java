@@ -61,11 +61,11 @@ public class Main extends Application {
 
 
       backgroundImage = NavigationBar.navBackgroundImage();
-        GridPane.setConstraints( backgroundImage, 0, 1);
+        GridPane.setConstraints( backgroundImage, 0, 2);
         GridPane.isFillWidth(backgroundImage);
 
-        headline = NavigationBar.headline();
-        GridPane.setConstraints( backgroundImage, 0, 2);
+       headline = NavigationBar.headline();
+        GridPane.setConstraints( headline, 0, 1);
 
 
         header = NavigationBar.navAdmin();
@@ -76,7 +76,7 @@ public class Main extends Application {
 
 
 
-        grid.getChildren().addAll( backgroundImage, header);
+        grid.getChildren().addAll( backgroundImage, header, headline);
         scene = new Scene(grid, 900,600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
