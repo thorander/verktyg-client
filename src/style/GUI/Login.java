@@ -54,12 +54,12 @@ public class Login {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.add(welcome,0,0);
         grid.add(userName,0,2);
         grid.add(user,1,2);
         grid.add(password,0,4);
         grid.add(pass,1,4);
         grid.add(login,1,6);
+        grid.setId("loginStyle");
         return grid;
     }
 

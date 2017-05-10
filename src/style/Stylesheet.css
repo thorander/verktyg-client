@@ -22,6 +22,11 @@
 
 }
 
+/*#loginStyle{
+  -fx-padding: 5px;
+    -fx-background-color: white;
+}*/
+
 
 /*#navImg:hover{
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
