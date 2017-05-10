@@ -10,8 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.Main;
 
 public class Login {
 
@@ -23,29 +26,23 @@ public class Login {
     private static PasswordField pass;
     private static Button login;
 
-    private static Connection connection;
-
-    public Login(Connection connection){
-        this.connection = connection;
-        setup();
-    }
-
     public static GridPane setup(){
         grid = new GridPane();
         welcome = createLabel("Welcome");
         userName = createLabel("Username");
         password= createLabel("Password");
-        user = new TextField();
+        user = createText();
         user.setPromptText("Username");
         pass = new PasswordField();
+        pass.setId("input");
         pass.setPromptText("Password");
         login = new Button("Login");
-        login.setId("buttontest");
+        login.setId("button");
 
         login.setOnAction(e -> {
            String uName = user.getText();
            String uPass = pass.getText();
-           connection.write("LOGIN#" + uName + "#" + uPass);
+            Main.getConnection().write("LOGIN#" + uName + "#" + uPass);
         });
 
         grid.setHgap(10);
@@ -59,7 +56,8 @@ public class Login {
         grid.setId("loginStyle");
         grid.setMaxWidth(300);
         grid.setMaxHeight(300);
-
+        DropShadow drop = new DropShadow(50, Color.GRAY);
+        grid.setEffect(drop);
         return grid;
     }
     //Gives the label an id and title
@@ -70,9 +68,9 @@ public class Login {
     }
 
     //Gives the label an id and title
-    private static TextField createText(String title){
-        TextField textField = new TextField(title);
-        textField.setId("textField");
+    private static TextField createText(){
+        TextField textField = new TextField();
+        textField.setId("input");
         return textField;
     }
 

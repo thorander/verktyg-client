@@ -35,8 +35,8 @@ import java.awt.*;
 //Brilliant Budding Blossoms
 //BBB
 public class Main extends Application {
-    private BorderPane borderPaneBase;
     private BorderPane borderPane;
+   // private BorderPane borderPane;
     private Scene scene;
     private HBox header;
     private HBox backgroundImage;
@@ -44,7 +44,7 @@ public class Main extends Application {
     private static Connection c;
 
     private StackPane userView;
-    private GridPane test;
+    private GridPane mainContent;
 
     public static String loggedInPerson = "";
     public static String loggedInRole = "admin";
@@ -64,37 +64,13 @@ public class Main extends Application {
     }
 
     private void createGrid(Stage primaryStage){
-       /* Register reg = new Register();
+
+      /*  Register reg = new Register();
         reg.setUp();*/
-        borderPaneBase = new BorderPane();
-        borderPane = new BorderPane();
-        userView = new StackPane();
 
-        test = Login.setup();
-      test.setAlignment(Pos.CENTER);
-      borderPane.setCenter(test);
-      borderPane.setMargin(test, new Insets(0, 0, 200, 0));
+       borderPane = GUI.admin();
 
-       headline = NavigationBar.headline();
-       borderPane.setTop(headline);
-
-        header = NavigationBar.navAdmin();
-       headline = NavigationBar.headline();
-       borderPaneBase.setTop(header);
-
-
-
-
-        header.setPadding(new Insets(5, 5, 5, 5));
-        borderPaneBase.setTop(header);
-
-
-        backgroundImage = NavigationBar.navBackgroundImage();
-        userView.getChildren().addAll( backgroundImage,borderPane);
-        borderPane.toFront();
-        borderPaneBase.setCenter(userView);
-
-        scene = new Scene(borderPaneBase, 900,600);
+        scene = new Scene(borderPane, 900,600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
