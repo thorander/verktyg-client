@@ -3,49 +3,40 @@ package style.GUI;/**
  */
 
 import Network.Connection;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 
-public class CreateTest extends Application {
 
-    private GridPane root;
-    // Textfield
-    private TextField title;
-    private TextField answer1;
-    private TextField answer2;
-    private TextField answer3;
-    private TextField answer4;
-    private TextField answer5;
-    // Textarea
-    private TextArea description;
-    private TextArea question;
-    // Buttons
-    private Button save;
-    // Combobox
-    private ComboBox answerChoice;
-    // Spinner
-    private Spinner<Integer> timeCounter;
-    // Label
-    private Label timeLabel;
-    // Connection
-    private static Connection connection;
+public class CreateTest {
 
+    private static GridPane root;
+    private static TextField title; // Textfield
+    private static TextField answer1;
+    private static TextField answer2;
+    private static TextField answer3;
+    private static  TextField answer4;
+    private static TextField answer5;
+    private static TextArea description; // Textarea
+    private static TextArea question;
+    private static Button save; // Buttons
+    private static ComboBox answerChoice; // Combobox
+    private static Spinner<Integer> timeCounter; // Spinner
+    private static Label timeLabel; // Label
+    private static Connection connection; // Connection
 
 
     public CreateTest(Connection connection){
         this.connection = connection;
-        //setup();
+        Quiz();
     }
 
-    @Override
-    public void start(Stage primaryStage) {
+
+    public static GridPane Quiz() {
 
         root = new GridPane();
         title = new TextField();
@@ -142,15 +133,9 @@ public class CreateTest extends Application {
         GridPane.setConstraints(save, 0, 11);
         root.getChildren().add(save);
 
-        primaryStage.setTitle("Quiz Creator");
-        Scene scene = new Scene(root, 900, 800);
-        primaryStage.setScene(scene);
 
-        // Add CSS
-        scene.getStylesheets().add("style/Stylesheet.css");
-        primaryStage.show();
+        //Scene scene = new Scene(root, 900, 800);
 
-        // Time spinner action
 
         //Answer Combobox action
         answerChoice.valueProperty().addListener(new ChangeListener<String>() {
@@ -174,7 +159,7 @@ public class CreateTest extends Application {
         });
 
         // Save button action
-        save.setOnAction(e -> {
+        save.setOnAction((ActionEvent event) -> {
             try {
                 String uTitle = title.getText();
                 String uDescription = description.getText();
@@ -184,11 +169,16 @@ public class CreateTest extends Application {
                 System.out.println(answer1.getText());
 
                 connection.write("CREATEQUIZ#" + uTitle + "#" + uDescription);
-            } catch(Exception event) {
+            } catch(Exception e) {
                 System.out.println("Something went wrong: "+e);
             }
         });
 
+        return root;
+    }
+
+    public GridPane getRoot(){
+        return root;
     }
 
 }
