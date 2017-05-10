@@ -48,7 +48,6 @@ public class Login {
            connection.write("LOGIN#" + uName + "#" + uPass);
         });
 
-        grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(5, 10, 5, 10));
@@ -58,8 +57,9 @@ public class Login {
         grid.add(pass,0,5);
         grid.add(login,0,6);
         grid.setId("loginStyle");
-        grid.setMaxWidth(500);
+        grid.setMaxWidth(300);
         grid.setMaxHeight(300);
+
         return grid;
     }
     //Gives the label an id and title
