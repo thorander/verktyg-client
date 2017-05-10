@@ -63,6 +63,7 @@ public class Main extends Application {
     private void createGrid(Stage primaryStage){
        /* Register reg = new Register();
         reg.setUp();*/
+
         grid = new GridPane();
         userView = new StackPane();
 
@@ -84,17 +85,10 @@ public class Main extends Application {
         header.setPadding(new Insets(5, 5, 5, 5));
        GridPane.setConstraints( header, 0, 0);
 
-       test = Login.setup();
-       GridPane.setConstraints( test, 0, 3);
 
 
-
-
-        grid.getChildren().addAll( backgroundImage, header, headline);
+        grid.getChildren().addAll( userView, header, headline);
         scene = new Scene(grid, 900,600);
-        grid.getChildren().addAll( header);
-        //scene = reg.getScene();
-        scene = new Scene(grid, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
