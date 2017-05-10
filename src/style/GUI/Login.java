@@ -34,10 +34,9 @@ public class Login {
 
     public static GridPane setup(){
         grid = new GridPane();
-
-        welcome = new Label("Welcome");
-        userName = new Label("Username");
-        password = new Label("Password");
+        welcome = createLabel("Welcome");
+        userName = createLabel("Username");
+        password= createLabel("Password");
         user = new TextField();
         user.setPromptText("Username");
         pass = new TextField();
@@ -53,16 +52,29 @@ public class Login {
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setPadding(new Insets(5, 10, 5, 10));
         grid.add(userName,0,2);
-        grid.add(user,1,2);
+        grid.add(user,0,3);
         grid.add(password,0,4);
-        grid.add(pass,1,4);
-        grid.add(login,1,6);
+        grid.add(pass,0,5);
+        grid.add(login,0,6);
         grid.setId("loginStyle");
-        grid.setMaxWidth(400);
-        grid.setMaxHeight(200);
+        grid.setMaxWidth(500);
+        grid.setMaxHeight(300);
         return grid;
+    }
+    //Gives the label an id and title
+    private static Label createLabel(String title){
+        Label label = new Label(title);
+        label.setId("label");
+        return label;
+    }
+
+    //Gives the label an id and title
+    private static TextField createText(String title){
+        TextField textField = new TextField(title);
+        textField.setId("label");
+        return textField;
     }
 
     public GridPane getRoot(){

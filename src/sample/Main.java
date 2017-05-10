@@ -70,17 +70,11 @@ public class Main extends Application {
         userView = new StackPane();
 
         test = Login.setup();
-
-      backgroundImage = NavigationBar.navBackgroundImage();
-
-      userView.getChildren().addAll(backgroundImage, borderPane);
-      backgroundImage.toBack();
-      borderPane.toFront();
       test.setAlignment(Pos.CENTER);
       borderPane.setCenter(test);
 
-      borderPaneBase.setCenter(userView);
-
+       headline = NavigationBar.headline();
+       borderPane.setTop(headline);
 
         header = NavigationBar.navAdmin();
        headline = NavigationBar.headline();
@@ -90,7 +84,13 @@ public class Main extends Application {
 
 
         header.setPadding(new Insets(5, 5, 5, 5));
-        borderPane.setTop(headline);
+        borderPaneBase.setTop(header);
+
+
+        backgroundImage = NavigationBar.navBackgroundImage();
+        userView.getChildren().addAll( backgroundImage,borderPane);
+        borderPane.toFront();
+        borderPaneBase.setCenter(userView);
 
         scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
