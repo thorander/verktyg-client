@@ -35,12 +35,13 @@ public class Login {
         welcome = createLabel("Welcome");
         userName = createLabel("Username");
         password= createLabel("Password");
-        user = new TextField();
+        user = createText();
         user.setPromptText("Username");
         pass = new PasswordField();
+        pass.setId("input");
         pass.setPromptText("Password");
         login = new Button("Login");
-        login.setId("buttontest");
+        login.setId("button");
 
         login.setOnAction(e -> {
            String uName = user.getText();
@@ -70,9 +71,9 @@ public class Login {
     }
 
     //Gives the label an id and title
-    private static TextField createText(String title){
-        TextField textField = new TextField(title);
-        textField.setId("textField");
+    private static TextField createText(){
+        TextField textField = new TextField();
+        textField.setId("input");
         return textField;
     }
 

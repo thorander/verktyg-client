@@ -23,6 +23,7 @@
 }
 
 #loginStyle{
+    -fx-opacity: 0.92;
     -fx-background-color: white;
     -fx-background-radius: 5;
 }
@@ -33,7 +34,7 @@
     -fx-opacity: 1;
 
 }
-#buttontest{
+#button{
     -fx-background-color: darkorange;
     -fx-border: none;
     -fx-color: white;
@@ -43,20 +44,15 @@
     -fx-display: inline-block;
     -fx-font-size: 12px;
 }
+#input{
+    -fx-focus-color: darkorange;
+    -fx-faint-focus-color: #d3524422;
 
-/*#loginStyle{
-  -fx-padding: 5px;
-    -fx-background-color: white;
-}*/
+    -fx-highlight-fill: -fx-accent;
+    -fx-highlight-text-fill: white;
 
-
-/*#navImg:hover{
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-opacity: 0.5;
+    -fx-background-insets: -0.2, 1, -1.4, 3;
+    -fx-background-radius: 3, 2, 4, 0;
+    -fx-prompt-text-fill: transparent;
 }
-
-#navImg{
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-}
-*/
 
