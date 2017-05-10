@@ -51,19 +51,19 @@ public class Main extends Application {
     public static String loggedInId = "";
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
 
         c = new Connection("localhost", 4436);
         c.start();
 
         primaryStage.setOnCloseRequest(e -> {
-           System.exit(0);
+            System.exit(0);
         });
 
         createGrid(primaryStage);
     }
 
-    private void createGrid(Stage primaryStage){
+    private void createGrid(Stage primaryStage) {
        /* Register reg = new Register();
         reg.setUp();*/
         borderPaneBase = new BorderPane();
@@ -71,18 +71,16 @@ public class Main extends Application {
         userView = new StackPane();
 
         test = Login.setup();
-      test.setAlignment(Pos.CENTER);
-      borderPane.setCenter(test);
-      borderPane.setMargin(test, new Insets(0, 0, 200, 0));
+        test.setAlignment(Pos.CENTER);
+        borderPane.setCenter(test);
+        borderPane.setMargin(test, new Insets(0, 0, 200, 0));
 
-       headline = NavigationBar.headline();
-       borderPane.setTop(headline);
+        headline = NavigationBar.headline();
+        borderPane.setTop(headline);
 
         header = NavigationBar.navAdmin();
-       headline = NavigationBar.headline();
-       borderPaneBase.setTop(header);
-
-
+        headline = NavigationBar.headline();
+        borderPaneBase.setTop(header);
 
 
         header.setPadding(new Insets(5, 5, 5, 5));
@@ -90,11 +88,11 @@ public class Main extends Application {
 
 
         backgroundImage = NavigationBar.navBackgroundImage();
-        userView.getChildren().addAll( backgroundImage,borderPane);
+        userView.getChildren().addAll(backgroundImage, borderPane);
         borderPane.toFront();
         borderPaneBase.setCenter(userView);
 
-        scene = new Scene(borderPaneBase, 900,600);
+        scene = new Scene(borderPaneBase, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
@@ -104,8 +102,8 @@ public class Main extends Application {
     }
 
     //Method change xxx of label when hovered
-    private void searchActions(Label label){
-            label.hoverProperty().addListener((ov, oldValue, newValue) -> {
+    private void searchActions(Label label) {
+        label.hoverProperty().addListener((ov, oldValue, newValue) -> {
             if (newValue) {
 
             } else {
@@ -119,7 +117,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         return c;
     }
 
