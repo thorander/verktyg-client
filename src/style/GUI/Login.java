@@ -20,7 +20,7 @@ public class Login {
     private static Label userName;
     private static Label password;
     private static TextField user;
-    private static TextField pass;
+    private static PasswordField pass;
     private static Button login;
 
     private static Connection connection;
