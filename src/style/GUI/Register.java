@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 
 public class Register {
+
     private BorderPane border;
     private Scene scene;
     private Label name;
@@ -43,13 +44,14 @@ public class Register {
         uPass = createLabel("Password");
 
         // Textfields
-        firstName = createText("Firstname");
+        firstName = createText();
         firstName.setPromptText("Firstname");
-        lastName = createText("Lastname");
+        lastName = createText();
         lastName.setPromptText("Lastname");
-        userName = createText("Username");
+        userName = createText();
         userName.setPromptText("Username");
         password = new PasswordField();
+        password.setId("passwordField");
 
         password.setPromptText("Password");
 
@@ -81,8 +83,8 @@ public class Register {
     }
 
     //Gives the label an id and title
-    private static TextField createText(String title){
-        TextField textField = new TextField(title);
+    private static TextField createText(){
+        TextField textField = new TextField();
         textField.setId("textField");
         return textField;
     }
