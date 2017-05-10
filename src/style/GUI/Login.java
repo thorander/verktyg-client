@@ -17,22 +17,22 @@ import javafx.stage.Stage;
  */
 public class Login {
 
-    private GridPane grid;
-    private Label welcome;
-    private Label userName;
-    private Label password;
-    private TextField user;
-    private TextField pass;
-    private Button login;
+    private static  GridPane grid;
+    private static Label welcome;
+    private static Label userName;
+    private static Label password;
+    private static TextField user;
+    private static TextField pass;
+    private static Button login;
 
-    private Connection connection;
+    private static Connection connection;
 
     public Login(Connection connection){
         this.connection = connection;
         setup();
     }
 
-    public void setup(){
+    public static GridPane setup(){
         grid = new GridPane();
 
         welcome = new Label("Welcome");
@@ -60,6 +60,7 @@ public class Login {
         grid.add(password,0,4);
         grid.add(pass,1,4);
         grid.add(login,1,6);
+        return grid;
     }
 
     public GridPane getRoot(){

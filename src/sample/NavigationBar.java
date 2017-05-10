@@ -29,7 +29,6 @@ public static HBox navBackgroundImage(){
     ImageView headerBackground = new ImageView();
     headerBackground.setImage(image);
     headerBackground.setStyle("-fx-opacity: 0.2");
-
     HBox headerImg = new HBox();
     headerImg.getChildren().addAll( headerBackground);
     return headerImg;
@@ -38,8 +37,9 @@ public static HBox navBackgroundImage(){
 public static HBox headline(){
     Label headline = new Label("Testverktyg");
     HBox headlineBox = new HBox();
-    headlineBox.setId("navHeadline");
+    headline.setId("navHeadline");
     headlineBox.getChildren().addAll(headline );
+    headlineBox.setAlignment(Pos.TOP_CENTER);
     return headlineBox;
 
 }
@@ -47,7 +47,6 @@ public static HBox headline(){
 
     public static HBox navAdmin() {
         setupNavbarLabels();
-
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
