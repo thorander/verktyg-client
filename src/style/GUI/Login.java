@@ -7,17 +7,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/**
- * Created by phili on 2017-05-09.
- */
 public class Login {
 
-    private static  GridPane grid;
+    private static GridPane grid;
     private static Label welcome;
     private static Label userName;
     private static Label password;
@@ -40,7 +38,7 @@ public class Login {
         password = new Label("Password");
         user = new TextField();
         user.setPromptText("Username");
-        pass = new TextField();
+        pass = new PasswordField();
         pass.setPromptText("Password");
         login = new Button("Login");
 

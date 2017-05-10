@@ -5,28 +5,27 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by phili on 2017-05-09.
- */
+
 
 
 public class Register {
-    BorderPane border;
-    Scene scene;
-    Label name;
-    Label surname;
-    Label uName;
-    Label uPass;
-    TextField firstName;
-    TextField lastName;
-    TextField userName;
-    TextField password;
-    Button register;
-    Connection c;
+    private BorderPane border;
+    private Scene scene;
+    private Label name;
+    private Label surname;
+    private Label uName;
+    private Label uPass;
+    private TextField firstName;
+    private TextField lastName;
+    private TextField userName;
+    private PasswordField password;
+    private Button register;
+    private Connection c;
 
     public Register(Connection c){
         this.c = c;
@@ -50,7 +49,8 @@ public class Register {
         lastName.setPromptText("Lastname");
         userName = new TextField();
         userName.setPromptText("Username");
-        password = new TextField();
+        password = new PasswordField();
+
         password.setPromptText("Password");
 
         // Buttons
@@ -73,6 +73,7 @@ public class Register {
 
 
     }
+
 
     public Scene getScene() {
         return scene;
