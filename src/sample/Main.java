@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
-import style.GUI.GUI;
 import style.GUI.Login;
 import style.GUI.Register;
 
@@ -48,7 +47,7 @@ public class Main extends Application {
     private GridPane mainContent;
 
     public static String loggedInPerson = "";
-    public static String loggedInRole = "";
+    public static String loggedInRole = "admin";
     public static String loggedInId = "";
 
     @Override

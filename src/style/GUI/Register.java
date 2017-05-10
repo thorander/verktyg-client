@@ -3,10 +3,7 @@ package style.GUI;
 import Network.Connection;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -14,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 
 public class Register {
+
     private BorderPane border;
     private Scene scene;
     private Label name;
@@ -23,6 +21,7 @@ public class Register {
     private TextField firstName;
     private TextField lastName;
     private TextField userName;
+    private ComboBox role;
     private PasswordField password;
     private Button register;
     private Connection c;
@@ -43,27 +42,38 @@ public class Register {
         uPass = createLabel("Password");
 
         // Textfields
-        firstName = createText("Firstname");
+        firstName = createText();
         firstName.setPromptText("Firstname");
-        lastName = createText("Lastname");
+        lastName = createText();
         lastName.setPromptText("Lastname");
-        userName = createText("Username");
+        userName = createText();
         userName.setPromptText("Username");
         password = new PasswordField();
+        password.setId("passwordField");
 
         password.setPromptText("Password");
+
+        // Combobox
+        role = new ComboBox();
+
+        role.getItems().addAll(
+                "admin",
+                "teacher",
+                "student"
+        );
+        role.setPromptText("Role");
 
         // Buttons
         register = new Button("Sign up");
         register.setId("sign");
 
         register.setOnAction(e -> {
-            c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText());
+            c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
         });
 
         // Layout
         VBox labels = new VBox();
-        labels.getChildren().addAll(name, firstName, surname, lastName, uName, userName, uPass, password, register);
+        labels.getChildren().addAll(name, firstName, surname, lastName, uName, userName, uPass, password, role, register);
         labels.setPadding(new Insets(15, 15, 15, 15));
 
        /* VBox text = new VBox();
@@ -81,8 +91,8 @@ public class Register {
     }
 
     //Gives the label an id and title
-    private static TextField createText(String title){
-        TextField textField = new TextField(title);
+    private static TextField createText(){
+        TextField textField = new TextField();
         textField.setId("textField");
         return textField;
     }

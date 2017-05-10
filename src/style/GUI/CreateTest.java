@@ -2,10 +2,10 @@ package style.GUI;/**
  * Created by Matilda on 2017-05-09.
  */
 
+import Network.Connection;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,41 +15,51 @@ import javafx.stage.Stage;
 
 public class CreateTest extends Application {
 
-    private GridPane root = new GridPane();
-
+    private GridPane root;
     // Textfield
-    private TextField title = new TextField();
-    private TextField answer1 = new TextField();
-    private TextField answer2 = new TextField();
-    private TextField answer3 = new TextField();
-    private TextField answer4 = new TextField();
-    private TextField answer5 = new TextField();
-
+    private TextField title;
+    private TextField answer1;
+    private TextField answer2;
+    private TextField answer3;
+    private TextField answer4;
+    private TextField answer5;
     // Textarea
-    private TextArea description = new TextArea();
-    private TextArea question = new TextArea();
-
+    private TextArea description;
+    private TextArea question;
     // Buttons
-    private Button save = new Button("Save Quiz");
-
+    private Button save;
     // Combobox
-    private ComboBox answerChoice = new ComboBox();
-
+    private ComboBox answerChoice;
     // Spinner
-    private Spinner<Integer> timeCounter = new Spinner<Integer>();
-
+    private Spinner<Integer> timeCounter;
     // Label
-    private Label timeLabel = new Label();
+    private Label timeLabel;
+    // Connection
+    private static Connection connection;
 
 
 
-    // MAIN
-    public static void main(String[] args) {
-        launch(args);
+    public CreateTest(Connection connection){
+        this.connection = connection;
+        //setup();
     }
 
     @Override
     public void start(Stage primaryStage) {
+
+        root = new GridPane();
+        title = new TextField();
+        answer1 = new TextField();
+        answer2 = new TextField();
+        answer3 = new TextField();
+        answer4 = new TextField();
+        answer5 = new TextField();
+        description = new TextArea();
+        question = new TextArea();
+        save = new Button("Save Quiz");
+        answerChoice = new ComboBox();
+        timeCounter = new Spinner<Integer>();
+        timeLabel = new Label();
 
         root.setVgap(10);
         root.setHgap(10);
@@ -163,19 +173,18 @@ public class CreateTest extends Application {
             }
         });
 
-        //Savebutton action
-        save.setOnAction((ActionEvent event) -> {
+        // Save button action
+        save.setOnAction(e -> {
             try {
-
-                //Do something
+                String uTitle = title.getText();
+                String uDescription = description.getText();
+                System.out.println(question.getText());
                 System.out.println(timeCounter.getValue());
                 System.out.println(answerChoice.getValue());
+                System.out.println(answer1.getText());
 
-           /* When saved -
-           clear!
-            */
-
-            } catch(Exception e) {
+                connection.write("CREATEQUIZ#" + uTitle + "#" + uDescription);
+            } catch(Exception event) {
                 System.out.println("Something went wrong: "+e);
             }
         });
