@@ -2,14 +2,33 @@ package sample;
 
 import Network.Connection;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
 import style.GUI.Login;
 import style.GUI.Register;
+
+import sun.rmi.runtime.Log;
+
+
+import java.awt.*;
 
 //Brilliant Budding Blossoms
 
@@ -20,6 +39,9 @@ public class Main extends Application {
     private HBox backgroundImage;
     private HBox headline;
     private static Connection c;
+
+    private StackPane userView;
+    private GridPane test;
 
     public static String loggedInPerson = "";
     public static String loggedInRole = "admin";
@@ -42,12 +64,17 @@ public class Main extends Application {
        /* Register reg = new Register();
         reg.setUp();*/
         grid = new GridPane();
+        userView = new StackPane();
 
-
-
+        test = Login.setup();
       backgroundImage = NavigationBar.navBackgroundImage();
-        GridPane.setConstraints( backgroundImage, 0, 2);
-        GridPane.isFillWidth(backgroundImage);
+      userView.getChildren().addAll(backgroundImage, test);
+      test.toFront();
+        GridPane.setConstraints( userView, 0, 1);
+        GridPane.isFillWidth(userView);
+
+
+
 
        headline = NavigationBar.headline();
         GridPane.setConstraints( headline, 0, 1);
@@ -57,13 +84,17 @@ public class Main extends Application {
         header.setPadding(new Insets(5, 5, 5, 5));
        GridPane.setConstraints( header, 0, 0);
 
+       test = Login.setup();
+       GridPane.setConstraints( test, 0, 3);
 
 
 
 
         grid.getChildren().addAll( backgroundImage, header, headline);
         scene = new Scene(grid, 900,600);
+        grid.getChildren().addAll( header);
         //scene = reg.getScene();
+        scene = new Scene(grid, 900, 600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");

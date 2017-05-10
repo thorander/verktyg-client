@@ -38,8 +38,9 @@ public static HBox navBackgroundImage(){
 public static HBox headline(){
     Label headline = new Label("Testverktyg");
     HBox headlineBox = new HBox();
-    headlineBox.setId("navHeadline");
+    headline.setId("navHeadline");
     headlineBox.getChildren().addAll(headline );
+    headlineBox.setAlignment(Pos.TOP_CENTER);
     return headlineBox;
 
 }
