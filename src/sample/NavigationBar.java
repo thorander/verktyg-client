@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import style.GUI.CreateTest;
 import style.GUI.Login;
 import style.GUI.Register;
 
@@ -77,6 +78,15 @@ public class NavigationBar {
             registerStage.setScene(r.getScene());
             registerStage.show();
         });
+
+        create.setOnMouseClicked(e -> {
+            Stage createStage = new Stage();
+            CreateTest cT = new CreateTest(Main.getConnection());
+            createStage.setScene(new Scene(cT.getRoot()));
+            createStage.show();
+        });
+
+
     }
 
     //Gives the label an id and title
