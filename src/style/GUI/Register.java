@@ -5,28 +5,28 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by phili on 2017-05-09.
- */
+
 
 
 public class Register {
-    BorderPane border;
-    Scene scene;
-    Label name;
-    Label surname;
-    Label uName;
-    Label uPass;
-    TextField firstName;
-    TextField lastName;
-    TextField userName;
-    TextField password;
-    Button register;
-    Connection c;
+
+    private BorderPane border;
+    private Scene scene;
+    private Label name;
+    private Label surname;
+    private Label uName;
+    private Label uPass;
+    private TextField firstName;
+    private TextField lastName;
+    private TextField userName;
+    private PasswordField password;
+    private Button register;
+    private Connection c;
 
     public Register(Connection c){
         this.c = c;
@@ -38,23 +38,26 @@ public class Register {
         border = new BorderPane();
 
         // Labels
-        name = new Label("Firstname");
-        surname = new Label("Lastname");
-        uName = new Label("Username");
-        uPass = new Label("Password");
+        name = createLabel("Firstname");
+        surname = createLabel("Lastname");
+        uName = createLabel("Username");
+        uPass = createLabel("Password");
 
         // Textfields
-        firstName = new TextField();
+        firstName = createText();
         firstName.setPromptText("Firstname");
-        lastName = new TextField();
+        lastName = createText();
         lastName.setPromptText("Lastname");
-        userName = new TextField();
+        userName = createText();
         userName.setPromptText("Username");
-        password = new TextField();
+        password = new PasswordField();
+        password.setId("passwordField");
+
         password.setPromptText("Password");
 
         // Buttons
         register = new Button("Sign up");
+        register.setId("sign");
 
         register.setOnAction(e -> {
             c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText());
@@ -72,6 +75,18 @@ public class Register {
         border.setCenter(labels);
 
 
+    }
+    private static Label createLabel(String title){
+        Label label = new Label(title);
+        label.setId("label");
+        return label;
+    }
+
+    //Gives the label an id and title
+    private static TextField createText(){
+        TextField textField = new TextField();
+        textField.setId("textField");
+        return textField;
     }
 
     public Scene getScene() {

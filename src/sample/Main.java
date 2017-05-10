@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.*;
@@ -33,7 +35,8 @@ import java.awt.*;
 //Brilliant Budding Blossoms
 //BBB
 public class Main extends Application {
-    private GridPane grid;
+    private BorderPane borderPaneBase;
+    private BorderPane borderPane;
     private Scene scene;
     private HBox header;
     private HBox backgroundImage;
@@ -63,32 +66,35 @@ public class Main extends Application {
     private void createGrid(Stage primaryStage){
        /* Register reg = new Register();
         reg.setUp();*/
-
-        grid = new GridPane();
+        borderPaneBase = new BorderPane();
+        borderPane = new BorderPane();
         userView = new StackPane();
 
         test = Login.setup();
-      backgroundImage = NavigationBar.navBackgroundImage();
-      userView.getChildren().addAll(backgroundImage, test);
-      test.toFront();
-        GridPane.setConstraints( userView, 0, 1);
-        GridPane.isFillWidth(userView);
-
-
-
+      test.setAlignment(Pos.CENTER);
+      borderPane.setCenter(test);
+      borderPane.setMargin(test, new Insets(0, 0, 200, 0));
 
        headline = NavigationBar.headline();
-        GridPane.setConstraints( headline, 0, 1);
-
+       borderPane.setTop(headline);
 
         header = NavigationBar.navAdmin();
+       headline = NavigationBar.headline();
+       borderPaneBase.setTop(header);
+
+
+
+
         header.setPadding(new Insets(5, 5, 5, 5));
-       GridPane.setConstraints( header, 0, 0);
+        borderPaneBase.setTop(header);
 
 
+        backgroundImage = NavigationBar.navBackgroundImage();
+        userView.getChildren().addAll( backgroundImage,borderPane);
+        borderPane.toFront();
+        borderPaneBase.setCenter(userView);
 
-        grid.getChildren().addAll( userView, header, headline);
-        scene = new Scene(grid, 900,600);
+        scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
