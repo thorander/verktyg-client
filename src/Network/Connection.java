@@ -65,6 +65,7 @@ public class Connection extends Thread{
         }
     }
 
+
     public void write(String message){
         out.println(message);
     }
