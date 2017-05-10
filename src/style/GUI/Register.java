@@ -37,17 +37,17 @@ public class Register {
         border = new BorderPane();
 
         // Labels
-        name = new Label("Firstname");
-        surname = new Label("Lastname");
-        uName = new Label("Username");
-        uPass = new Label("Password");
+        name = createLabel("Firstname");
+        surname = createLabel("Lastname");
+        uName = createLabel("Username");
+        uPass = createLabel("Password");
 
         // Textfields
-        firstName = new TextField();
+        firstName = createText("Firstname");
         firstName.setPromptText("Firstname");
-        lastName = new TextField();
+        lastName = createText("Lastname");
         lastName.setPromptText("Lastname");
-        userName = new TextField();
+        userName = createText("Username");
         userName.setPromptText("Username");
         password = new PasswordField();
 
@@ -55,6 +55,7 @@ public class Register {
 
         // Buttons
         register = new Button("Sign up");
+        register.setId("sign");
 
         register.setOnAction(e -> {
             c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText());
@@ -73,7 +74,18 @@ public class Register {
 
 
     }
+    private static Label createLabel(String title){
+        Label label = new Label(title);
+        label.setId("label");
+        return label;
+    }
 
+    //Gives the label an id and title
+    private static TextField createText(String title){
+        TextField textField = new TextField(title);
+        textField.setId("textField");
+        return textField;
+    }
 
     public Scene getScene() {
         return scene;
