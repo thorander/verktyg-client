@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
+import style.GUI.GUI;
 import style.GUI.Login;
 import style.GUI.Register;
 

@@ -163,10 +163,10 @@ public class CreateTest {
             try {
                 String uTitle = title.getText();
                 String uDescription = description.getText();
-                System.out.println(question.getText());
-                System.out.println(timeCounter.getValue());
-                System.out.println(answerChoice.getValue());
-                System.out.println(answer1.getText());
+                //System.out.println(question.getText());
+                //System.out.println(timeCounter.getValue());
+                //System.out.println(answerChoice.getValue());
+                //System.out.println(answer1.getText());
 
                 connection.write("CREATEQUIZ#" + uTitle + "#" + uDescription);
             } catch(Exception e) {
