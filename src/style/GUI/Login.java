@@ -40,6 +40,7 @@ public class Login {
         pass = new PasswordField();
         pass.setPromptText("Password");
         login = new Button("Login");
+        login.setId("buttontest");
 
         login.setOnAction(e -> {
            String uName = user.getText();
@@ -71,7 +72,7 @@ public class Login {
     //Gives the label an id and title
     private static TextField createText(String title){
         TextField textField = new TextField(title);
-        textField.setId("label");
+        textField.setId("textField");
         return textField;
     }
 
