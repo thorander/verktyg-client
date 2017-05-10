@@ -36,7 +36,11 @@ public class CreateTest extends Application {
     private ComboBox answerChoice = new ComboBox();
 
     // Spinner
-    final Spinner<Integer> timeCounter = new Spinner<Integer>();
+    private Spinner<Integer> timeCounter = new Spinner<Integer>();
+
+    // Label
+    private Label timeLabel = new Label();
+
 
 
     // MAIN
@@ -72,12 +76,18 @@ public class CreateTest extends Application {
         root.setConstraints(description, 0, 2);
         root.getChildren().add(description);
 
+        // Time label
+        timeLabel.setText("Minuter: ");
+        GridPane.setConstraints(timeLabel, 0, 3);
+        root.getChildren().add(timeLabel);
+
         // Time spinner
         SpinnerValueFactory<Integer> valueFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 120);
         timeCounter.setValueFactory(valueFactory);
         timeCounter.setEditable(true);
-        GridPane.setConstraints(timeCounter, 0, 3);
+        timeCounter.setMaxWidth(80);
+        GridPane.setConstraints(timeCounter, 1, 3);
         root.getChildren().add(timeCounter);
 
         // Question field
@@ -141,6 +151,7 @@ public class CreateTest extends Application {
 
                 try {
                     if(t1.equals("Option 1")) {
+                        root.getRowConstraints().clear();
                         root.getChildren().addAll(answer1, answer2);
                     } else if(t1.equals("Option 2")) {
                         root.getChildren().addAll(answer3, answer4, answer5);
