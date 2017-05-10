@@ -22,6 +22,10 @@
 
 }
 
+#loginStyle{
+    -fx-background-color: white;
+}
+
 /*#loginStyle{
   -fx-padding: 5px;
     -fx-background-color: white;

@@ -73,25 +73,24 @@ public class Main extends Application {
 
       backgroundImage = NavigationBar.navBackgroundImage();
 
-      userView.getChildren().addAll(backgroundImage, test);
+      userView.getChildren().addAll(backgroundImage, borderPane);
       backgroundImage.toBack();
-      test.toFront();
+      borderPane.toFront();
       test.setAlignment(Pos.CENTER);
+      borderPane.setCenter(test);
 
-      borderPane.setCenter(userView);
-
-
-       headline = NavigationBar.headline();
-       borderPane.setTop(headline);
-
-
+      borderPaneBase.setCenter(userView);
 
 
         header = NavigationBar.navAdmin();
-        header.setPadding(new Insets(5, 5, 5, 5));
-        borderPane.setTop(header);
+       headline = NavigationBar.headline();
+       borderPaneBase.setTop(header);
 
-        borderPaneBase.setCenter(borderPane);
+
+
+
+        header.setPadding(new Insets(5, 5, 5, 5));
+        borderPane.setTop(headline);
 
         scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());

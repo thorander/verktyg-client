@@ -60,6 +60,8 @@ public class Login {
         grid.add(pass,1,4);
         grid.add(login,1,6);
         grid.setId("loginStyle");
+        grid.setMaxWidth(400);
+        grid.setMaxHeight(200);
         return grid;
     }
 
