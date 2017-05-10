@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import style.GUI.Login;
@@ -66,8 +67,7 @@ public class NavigationBar {
 
         login.setOnMouseClicked(e -> {
             Stage loginStage = new Stage();
-            Login l = new Login(Main.getConnection());
-            loginStage.setScene(new Scene(l.getRoot()));
+            loginStage.setScene(new Scene(Login.setup()));
             loginStage.show();
         });
 
