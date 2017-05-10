@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
+import style.GUI.GUI;
 import style.GUI.Login;
 import style.GUI.Register;
 
@@ -34,50 +35,13 @@ import java.awt.*;
 
 //Brilliant Budding Blossoms
 //BBB
-public class Main extends Application {
-    private BorderPane borderPane;
-   // private BorderPane borderPane;
-    private Scene scene;
-    private HBox header;
-    private HBox backgroundImage;
-    private HBox headline;
-    private static Connection c;
-
-    private StackPane userView;
-    private GridPane mainContent;
+public class Main {
 
     public static String loggedInPerson = "";
     public static String loggedInRole = "admin";
     public static String loggedInId = "";
 
-    @Override
-    public void start(Stage primaryStage){
-
-        c = new Connection("localhost", 4436);
-        c.start();
-
-        primaryStage.setOnCloseRequest(e -> {
-           System.exit(0);
-        });
-
-        createGrid(primaryStage);
-    }
-
-    private void createGrid(Stage primaryStage){
-
-      /*  Register reg = new Register();
-        reg.setUp();*/
-
-       borderPane = GUI.admin();
-
-        scene = new Scene(borderPane, 900,600);
-        scene.getStylesheets().add(getClass().getResource("../style/Stylesheet.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("BBB");
-        primaryStage.show();
-
-
-    }
+    public static Connection c;
 
     //Method change xxx of label when hovered
     private void searchActions(Label label){
@@ -90,10 +54,13 @@ public class Main extends Application {
         });
     }
 
+    public static void main(String[] args){
+        c = new Connection("localhost", 4436);
+        c.start();
 
-    public static void main(String[] args) {
-        launch(args);
+        GUI mainWindow = new GUI(args);
     }
+
 
     public static Connection getConnection(){
         return c;
