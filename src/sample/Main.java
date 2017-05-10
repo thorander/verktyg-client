@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -72,6 +73,7 @@ public class Main extends Application {
         test = Login.setup();
       test.setAlignment(Pos.CENTER);
       borderPane.setCenter(test);
+      borderPane.setMargin(test, new Insets(0, 0, 200, 0));
 
        headline = NavigationBar.headline();
        borderPane.setTop(headline);
