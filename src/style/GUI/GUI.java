@@ -69,11 +69,12 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    public static void loginScreen(){
+    public static void loginScreen() {
         mainContent = Login.setup();
         mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
+    }
 
     public static void registerScreen(){
         BorderPane p = Register.setUp();
