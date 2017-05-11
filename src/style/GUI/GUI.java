@@ -13,8 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.NavigationBar;
 
-import static javafx.geometry.Pos.CENTER;
-
 /**
  * Created by Sofia on 2017-05-10.
  */
@@ -73,10 +71,9 @@ public class GUI extends Application {
 
     public static void loginScreen(){
         mainContent = Login.setup();
-        mainContent.setAlignment(CENTER);
+        mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
-    }
 
     public static void registerScreen(){
         BorderPane p = Register.setUp();
