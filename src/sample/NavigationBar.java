@@ -17,14 +17,7 @@ import style.GUI.Register;
  */
 public class NavigationBar {
 
-    public static Label role;
-    private static Label edit;
-    private static Label create;
-    private static Label statistics;
-    private static Label gradeTest;
-    private static Label register;
-    private static Label login;
-
+    private static Label role,takeTest,edit, create, statistics,gradeTest, register, login, result, copyTest,createPDF, group, shareTest;
 
     public static HBox navBackgroundImage() {
         Image image = new Image("Images/headerImage.jpg");
@@ -52,18 +45,42 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(role, edit, create, statistics, gradeTest, register, login);
+        header.getChildren().addAll(role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF);
+
+        return header;
+    }
+    public static HBox navStudent() {
+        setupNavbarLabels();
+        HBox header = new HBox();
+        header.setId("navHeader");
+        header.setAlignment(Pos.CENTER);
+        header.getChildren().addAll(takeTest,result);
+
+        return header;
+    }
+    public static HBox navTeacher() {
+        setupNavbarLabels();
+        HBox header = new HBox();
+        header.setId("navHeader");
+        header.setAlignment(Pos.CENTER);
+        header.getChildren().addAll(edit,create,statistics,gradeTest,copyTest);
 
         return header;
     }
 
     private static void setupNavbarLabels() {
-        edit = createLabel("Redigera");
-        create = createLabel("Skapa test");
-        statistics = createLabel("Statistik");
-        gradeTest = createLabel("Rätta prov");
-        register = createLabel("Registrera");
-        login = createLabel("Logga in");
+        edit = createLabel("Edit");
+        create = createLabel("Create test");
+        statistics = createLabel("statistics");
+        gradeTest = createLabel("Grade test");
+        register = createLabel("Rregister");
+        login = createLabel("Log in");
+        takeTest= createLabel("Take test");
+        result = createLabel("Result");
+        copyTest= createLabel("Copy test");
+        createPDF = createLabel("CreatePDF");
+        group = createLabel("Group");
+        shareTest = createLabel("Share Test");
         role = createLabel("");
 
         login.setOnMouseClicked(e -> {

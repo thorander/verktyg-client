@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 
@@ -12,28 +13,27 @@ import javafx.scene.layout.VBox;
 
 public class Register {
 
-    private BorderPane border;
-    private Scene scene;
-    private Label name;
-    private Label surname;
-    private Label uName;
-    private Label uPass;
-    private TextField firstName;
-    private TextField lastName;
-    private TextField userName;
-    private ComboBox role;
-    private PasswordField password;
-    private Button register;
-    private Connection c;
+    private static GridPane grid;
+    private static Scene scene;
+    private static Label name;
+    private static Label surname;
+    private static Label uName;
+    private static Label uPass;
+    private static TextField firstName;
+    private static TextField lastName;
+    private static TextField userName;
+    private static ComboBox role;
+    private static PasswordField password;
+    private static Button register;
+    private static Connection c;
 
     public Register(Connection c){
         this.c = c;
-        setUp();
     }
 
-    public void setUp() {
+    public static GridPane setUp() {
 
-        border = new BorderPane();
+        grid = new GridPane();
 
         // Labels
         name = createLabel("Firstname");
@@ -49,8 +49,7 @@ public class Register {
         userName = createText();
         userName.setPromptText("Username");
         password = new PasswordField();
-        password.setId("passwordField");
-
+        password.setId("input");
         password.setPromptText("Password");
 
         // Combobox
@@ -65,7 +64,7 @@ public class Register {
 
         // Buttons
         register = new Button("Sign up");
-        register.setId("sign");
+        register.setId("button");
 
         register.setOnAction(e -> {
             c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
@@ -75,12 +74,12 @@ public class Register {
         VBox labels = new VBox();
         labels.getChildren().addAll(name, firstName, surname, lastName, uName, userName, uPass, password, role, register);
         labels.setPadding(new Insets(15, 15, 15, 15));
+        grid.add(firstName,1,0);
+       grid.add(name,1,1);
+        grid.add(lastName,1,2);
+        grid.add(surname,1,1);
 
-       /* VBox text = new VBox();
-        text.getChildren().addAll( surname, uName, uPass);*/
-
-        scene = new Scene(border, 350, 300);
-        border.setCenter(labels);
+        return grid;
 
 
     }
@@ -93,7 +92,7 @@ public class Register {
     //Gives the label an id and title
     private static TextField createText(){
         TextField textField = new TextField();
-        textField.setId("textField");
+        textField.setId("input");
         return textField;
     }
 

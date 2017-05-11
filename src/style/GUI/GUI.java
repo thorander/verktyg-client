@@ -60,7 +60,7 @@ public class GUI extends Application {
         borderPane.setTop(headline);
 
         loginAdmin();
-        loginScreen();
+        registerUser();
 
         scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -71,6 +71,13 @@ public class GUI extends Application {
 
     public static void loginScreen(){
         mainContent = Login.setup();
+        mainContent.setAlignment(Pos.CENTER);
+        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);
+
+    }
+    public static void registerUser(){
+        mainContent = Register.setUp();
         mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
