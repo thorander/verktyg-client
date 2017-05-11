@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import style.GUI.CreateTest;
+import style.GUI.GUI;
 import style.GUI.Login;
 import style.GUI.Register;
 
@@ -67,16 +68,11 @@ public class NavigationBar {
         role = createLabel("");
 
         login.setOnMouseClicked(e -> {
-            Stage loginStage = new Stage();
-            loginStage.setScene(new Scene(Login.setup()));
-            loginStage.show();
+            GUI.loginScreen();
         });
 
         register.setOnMouseClicked(e -> {
-            Stage registerStage = new Stage();
-            Register r = new Register(Main.getConnection());
-            registerStage.setScene(r.getScene());
-            registerStage.show();
+            GUI.registerScreen();
         });
 
         create.setOnMouseClicked(e -> {
