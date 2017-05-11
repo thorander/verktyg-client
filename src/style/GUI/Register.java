@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 public class Register {
 
     private static BorderPane border;
-    private static Scene scene;
     private static Label registerLabel;
     private static Label name;
     private static Label surname;

@@ -93,10 +93,7 @@ public class NavigationBar {
         });
 
         create.setOnMouseClicked(e -> {
-            Stage createStage = new Stage();
-            CreateTest cT = new CreateTest(Main.getConnection());
-            createStage.setScene(new Scene(cT.getRoot()));
-            createStage.show();
+            GUI.createTestScreen();
         });
 
 

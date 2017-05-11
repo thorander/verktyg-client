@@ -22,6 +22,22 @@
 
 }
 
+#headline {
+    -fx-font-size: 18pt;
+    -fx-text-fill: darkorange;
+    -fx-padding: 5px;
+}
+
+#scrollpane {
+    -fx-background-color: transparent;
+    -fx-focus-color: transparent;
+}
+
+#questionBox {
+    -fx-border-color: darkorange;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
 #loginStyle{
     -fx-opacity: 0.92;
     -fx-background-color: white;
@@ -54,5 +70,14 @@
     -fx-background-insets: -0.2, 1, -1.4, 3;
     -fx-background-radius: 3, 2, 4, 0;
     -fx-prompt-text-fill: transparent;
+}
+
+#icon{
+    -fx-text-fill: black;
+    -fx-font-size: 38px;
+}
+
+#icon:hover{
+    -fx-text-fill: darkorange;
 }
 

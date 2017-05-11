@@ -52,7 +52,6 @@ public class Connection extends Thread{
                 Main.loggedInPerson = split[1];
                 Main.loggedInRole = split[2];
                 Main.loggedInId = split[3];
-                Platform.runLater(()->{NavigationBar.role.setText(Main.loggedInRole);});
 
                 break;
             case "ERROR":

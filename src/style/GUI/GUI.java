@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.NavigationBar;
+import style.GUI.test.create.CTest;
 
 /**
  * Created by Sofia on 2017-05-10.
@@ -81,6 +82,13 @@ public class GUI extends Application {
         mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
+    }
+
+    public static void createTestScreen(){
+        Node g = CTest.getCreateTest();
+        mainContent.setAlignment(Pos.CENTER);
+        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
+        setMainContent(g);
     }
 
     public static void loginAdmin(){
