@@ -163,12 +163,12 @@ public class CreateTest {
             try {
                 String uTitle = title.getText();
                 String uDescription = description.getText();
-                System.out.println(question.getText());
-                System.out.println(timeCounter.getValue());
-                System.out.println(answerChoice.getValue());
-                System.out.println(answer1.getText());
+                String uQuestion = question.getText();
+                Integer uTime = timeCounter.getValue();
+                String uAnswerChoice = answerChoice.getValue().toString();
+                String uAnswer1 = answer1.getText();
 
-                connection.write("CREATEQUIZ#" + uTitle + "#" + uDescription);
+                connection.write("CREATEQUIZ#" + uTitle + "#" + uDescription + "#" + uQuestion + "#" + uTime + "#" + uAnswerChoice + "#" + uAnswer1);
             } catch(Exception e) {
                 System.out.println("Something went wrong: "+e);
             }
