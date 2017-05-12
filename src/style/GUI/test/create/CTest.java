@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import sample.Main;
 import style.GUI.components.EditableLabel;
 
 /**
@@ -57,9 +58,19 @@ public class CTest {
         root.setPadding(new Insets(50, 25, 50, 25));
 
         addQuestion.setOnAction(e -> {
-            CQuestion q = new CQuestion();
-            qBox.getChildren().add(q.getQuestion());
+            qBox.getChildren().add(new CQuestion());
             sp.setVvalue(qBox.getHeight());
+        });
+
+        createButton.setOnAction(e -> {
+            String command = "CREATETEST#" + testTitle.getText();
+            Main.getConnection().write(command);
+            qBox.getChildren().forEach(q -> {
+               if(q instanceof CQuestion){
+                   Main.getConnection().write(((CQuestion)q).getRepresentation());
+               }
+            });
+            Main.getConnection().write("PERSISTTEST#");
         });
         return root;
     }

@@ -11,13 +11,12 @@ import javafx.scene.layout.HBox;
 /**
  * Created by Markus on 2017-05-11.
  */
-public class CAnswer {
+public class CAnswer extends HBox {
 
     public TextField answer;
     private CheckBox correct;
     private ImageView delete;
     private Label deleteLabel;
-    private HBox answerBox;
 
     private CQuestion question;
 
@@ -32,7 +31,7 @@ public class CAnswer {
         delete.setFitWidth(25);
         this.question = question;
         deleteLabel.setOnMouseClicked(e -> {
-            question.removeAnswer(answerBox);
+            question.removeAnswer(this);
         });
         deleteLabel.setOnMouseEntered(e -> {
             delete.setImage(new Image("/Images/removeOrange.png"));
@@ -41,13 +40,10 @@ public class CAnswer {
             delete.setImage(new Image("/Images/remove.png"));
         });
 
+        getChildren().addAll(answer, correct, deleteLabel);
     }
 
-    public HBox getAnswerRepresentation(){
-        answerBox = new HBox();
-
-        answerBox.getChildren().addAll(answer, correct, deleteLabel);
-
-        return answerBox;
+    public String toString(){
+        return "#ANSWER#" + answer.getText() + "#" + correct.isSelected();
     }
 }

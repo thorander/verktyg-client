@@ -53,10 +53,7 @@ public class EditableLabel extends VBox {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
-                if (newPropertyValue)
-                {
-                    System.out.println("Textfield on focus");
-                }
+                if (newPropertyValue){}
                 else
                 {
                     string = textField.getText();
@@ -73,6 +70,10 @@ public class EditableLabel extends VBox {
         label.setMinWidth(width);
         textField.setMaxWidth(width);
         textField.setMinWidth(width);
+    }
+
+    public void setWrapText(boolean bool){
+        label.setWrapText(bool);
     }
 
     public String getText(){

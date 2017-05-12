@@ -2,6 +2,7 @@ package style.GUI.test.create;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -9,18 +10,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import style.GUI.Icons.RemoveIcon;
+import style.GUI.components.EditableLabel;
+
+import java.util.ArrayList;
 
 /**
  * Created by Markus on 2017-05-11.
  */
-public class CQuestion {
+public class CQuestion extends HBox {
 
     private GridPane question;
     private VBox answerList;
     private HBox questionBox;
     private HBox shortQuestion;
+    EditableLabel titleLabel;
+    ComboBox chooseType;
 
-    public HBox getQuestion(){
+    public CQuestion(){
         question = new GridPane();
         questionBox = new HBox();
         shortQuestion = new HBox();
@@ -29,7 +35,7 @@ public class CQuestion {
         addAnswer.setId("icon");
         Label shorten = new Label("-");
         Label expand = new Label("+");
-        Label titleLabel = new Label("Enter your question-title here...");
+        titleLabel = new EditableLabel("Enter your question-title here...");
         RemoveIcon remove = new RemoveIcon();
         question.setMargin(remove, new Insets(0, 5, 0, 5));
         titleLabel.setMaxWidth(350);
@@ -39,7 +45,7 @@ public class CQuestion {
         shortQuestion.setAlignment(Pos.BOTTOM_CENTER);
         TextField titleField = new TextField();
         titleField.setMinWidth(350);
-        ComboBox chooseType = new ComboBox();
+        chooseType = new ComboBox();
         shortQuestion.setMargin(expand, new Insets(0, 0, 0, 50));
         question.setMargin(shorten, new Insets(0, 0, 0, 5));
         titleLabel.setId("headline");
@@ -48,6 +54,7 @@ public class CQuestion {
         expand.setId("icon");
         expand.setMaxSize(50, 50);
         chooseType.getItems().addAll("One choice", "Multiple choice", "Order", "Open question");
+        chooseType.setPromptText("(Choose question type)");
 
         answerList = new VBox();
 
@@ -62,21 +69,8 @@ public class CQuestion {
 
         shortQuestion.getChildren().addAll(shortQTitle, expand);
 
-        titleLabel.setOnMouseClicked(e -> {
-            question.getChildren().remove(titleLabel);
-            question.add(titleField, 0, 0);
-            titleField.requestFocus();
-        });
-        titleField.setOnKeyReleased(e -> {
-            if(e.getCode() == KeyCode.ENTER){
-                titleLabel.setText(titleField.getText());
-                question.getChildren().remove(titleField);
-                question.add(titleLabel, 0, 0);
-            }
-        });
         addAnswer.setOnMouseClicked(e -> {
-            CAnswer c = new CAnswer(this);
-            answerList.getChildren().add(c.getAnswerRepresentation());
+            answerList.getChildren().add(new CAnswer(this));
             answerList.requestLayout();
         });
         shorten.setOnMouseClicked(e->{
@@ -90,14 +84,22 @@ public class CQuestion {
         });
 
         remove.setOnMouseClicked(e->{
-            CTest.removeQuestion(questionBox);
+            CTest.removeQuestion(this);
         });
         questionBox.getChildren().add(question);
-        return questionBox;
+        this.getChildren().add(questionBox);
     }
 
     public void removeAnswer(HBox answer){
         answerList.getChildren().remove(answer);
+    }
+
+    public String getRepresentation(){
+        String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue();
+        for(Node n : answerList.getChildren()){
+            s += ((CAnswer)n).toString();
+        }
+        return(s);
     }
 
 }
