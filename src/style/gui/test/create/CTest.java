@@ -1,5 +1,6 @@
-package style.GUI.test.create;
+package style.gui.test.create;
 
+import core.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -9,8 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import sample.Main;
-import style.GUI.components.EditableLabel;
+import style.gui.components.EditableLabel;
 
 /**
  * Created by Markus on 2017-05-11.

@@ -1,4 +1,4 @@
-package style.GUI.test.create;
+package style.gui.test.create;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

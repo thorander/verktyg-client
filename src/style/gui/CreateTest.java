@@ -1,8 +1,8 @@
-package style.GUI;/**
+package style.gui;/**
  * Created by Matilda on 2017-05-09.
  */
 
-import Network.Connection;
+import network.Connection;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;

@@ -1,4 +1,4 @@
-package style.GUI.test.create;
+package style.gui.test.create;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,8 +9,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import style.GUI.Icons.RemoveIcon;
-import style.GUI.components.EditableLabel;
+import style.gui.icons.RemoveIcon;
+import style.gui.components.EditableLabel;
 
 import java.util.ArrayList;
 

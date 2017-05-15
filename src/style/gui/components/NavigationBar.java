@@ -1,17 +1,11 @@
-package sample;
+package style.gui.components;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import style.GUI.CreateTest;
-import style.GUI.GUI;
-import style.GUI.Login;
-import style.GUI.Register;
+import style.gui.GUI;
 
 /**
  * Created by Sofia on 2017-05-09.
@@ -21,7 +15,7 @@ public class NavigationBar {
     private static Label role,takeTest,edit, create, statistics,gradeTest, register, login, result, copyTest,createPDF, group, shareTest;
 
     public static HBox navBackgroundImage() {
-        Image image = new Image("Images/headerImage.jpg");
+        Image image = new Image("images/headerImage.jpg");
         ImageView headerBackground = new ImageView();
         headerBackground.setImage(image);
         headerBackground.setStyle("-fx-opacity: 0.2");

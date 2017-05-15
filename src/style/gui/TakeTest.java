@@ -1,11 +1,10 @@
-package style.GUI;
+package style.gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 /**

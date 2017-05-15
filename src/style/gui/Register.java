@@ -1,6 +1,6 @@
-package style.GUI;
+package style.gui;
 
-import Network.Connection;
+import network.Connection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

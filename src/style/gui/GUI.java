@@ -1,6 +1,6 @@
-package style.GUI;
+package style.gui;
 
-import Network.Connection;
+import network.Connection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,8 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import sample.NavigationBar;
-import style.GUI.test.create.CTest;
+import style.gui.components.NavigationBar;
+import style.gui.test.create.CTest;
 
 /**
  * Created by Sofia on 2017-05-10.

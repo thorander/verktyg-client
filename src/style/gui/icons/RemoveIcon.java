@@ -1,4 +1,4 @@
-package style.GUI.Icons;
+package style.gui.icons;
 
 
 import javafx.beans.value.WritableValue;

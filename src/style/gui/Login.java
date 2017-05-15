@@ -1,10 +1,6 @@
-package style.GUI;
+package style.gui;
 
-import Network.Connection;
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,8 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import sample.Main;
+import core.Main;
 
 public class Login {
 

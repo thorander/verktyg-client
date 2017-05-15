@@ -1,0 +1,9 @@
+GUI
+    - Designa klart "Skapa prov"-sidan (Fält för när testet öppnar/stänger, om det är på tid, i så fall hur lång tid, beskrivning)
+
+    - Se till att när man trycker på en knapp, typ "logga in" eller "registrera", så försvinner den rutan.
+    Antingen får en "ladda"-ruta dyka upp, eller så byter man direkt, eller så försvinner förra rutan. Något måste hända.
+
+    - Göra någonting mer med knapparna när man kör hover eller kanske när man klickar. Just nu är de väldigt statiska.
+
+    - Fixa navbars till teacher och student.

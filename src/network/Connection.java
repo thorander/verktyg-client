@@ -1,14 +1,12 @@
-package Network;
+package network;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import sample.Main;
-import sample.NavigationBar;
+import core.Main;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 public class Connection extends Thread{
 
