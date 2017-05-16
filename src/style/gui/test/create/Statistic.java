@@ -18,7 +18,7 @@ public abstract class Statistic extends Application{
     private static Label headline, testName,completedTests, passingTests, averagePoint;
     private static String inputTest;
     private  static int completedTestsInt, passingTestsInt, averagePointInt;
-
+//test
 
     public Statistic (){
 
