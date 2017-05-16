@@ -3,6 +3,7 @@ package network;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import core.Main;
+import style.gui.GUI;
 
 import java.io.*;
 import java.net.Socket;
@@ -50,6 +51,19 @@ public class Connection extends Thread{
                 Main.loggedInPerson = split[1];
                 Main.loggedInRole = split[2];
                 Main.loggedInId = split[3];
+
+                if(split[2].equalsIgnoreCase("Admin")){
+                    GUI.loginAdmin();
+                }
+                else if(split[2].equalsIgnoreCase(("Student"))){
+                    GUI.loginStudent();
+                }
+                else if(split[2].equalsIgnoreCase("Teacher")){
+                    GUI.loginTeacher();
+                }
+                else{
+
+                }
 
                 break;
             case "ERROR":

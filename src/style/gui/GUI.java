@@ -62,7 +62,6 @@ public class GUI extends Application {
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
 
-        loginAdmin();
         stastisticContent();
 
         scene = new Scene(borderPaneBase, 900,600);
@@ -102,6 +101,12 @@ public class GUI extends Application {
 
     public static void loginAdmin(){
         setNavbar(NavigationBar.navAdmin());
+    }
+    public static void loginStudent(){
+        setNavbar(NavigationBar.navStudent());
+    }
+    public static void loginTeacher(){
+        setNavbar(NavigationBar.navTeacher());
     }
 
     public static void setNavbar(HBox navbar){

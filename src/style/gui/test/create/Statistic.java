@@ -13,21 +13,25 @@ import javafx.scene.Group;
  * Created by Sofia on 2017-05-11.
  */
 public abstract class Statistic extends Application{
-    private  GridPane grid;
-    private  ComboBox test,group;
-    private  Label headline, testName;
-    String inputTest;
+    private static GridPane grid;
+    private static ComboBox test,group;
+    private static Label headline, testName;
+    private static String inputTest;
 
 
     public Statistic (){
 
+        setup();
+    }
+
+    private static void setup(){
         grid= new GridPane();
 
         test = new ComboBox();
         test.setPromptText("Select test");
 
         group = new ComboBox();
-        test.setPromptText("Select group");
+        group.setPromptText("Select group");
 
         headline = new Label("Test:");
         testName = new Label(inputTest);
@@ -43,14 +47,15 @@ public abstract class Statistic extends Application{
 
 
         grid.add(test, 0,0);
-        grid.add(test, 0,1);
+        grid.add(group, 0,1);
         grid.add(headline, 0,2);
         grid.add(testName, 1,2);
         grid.add(chart,0,3);
     }
 
-    public GridPane getGrid(){
-        return this.grid;
+    public static GridPane getGrid(){
+        setup();
+        return grid;
     }
 }
 
