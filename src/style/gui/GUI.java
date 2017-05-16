@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
+import style.gui.test.create.Statistic;
 
 /**
  * Created by Sofia on 2017-05-10.
@@ -26,6 +27,7 @@ public class GUI extends Application {
     private static HBox backgroundImage;
     private static HBox headline;
     private static Connection c;
+    private static Statistic statistic;
 
     private static StackPane userView;
     private static GridPane mainContent;
@@ -61,7 +63,7 @@ public class GUI extends Application {
         borderPane.setTop(headline);
 
         loginAdmin();
-        loginScreen();
+        stastisticContent();
 
         scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -76,6 +78,13 @@ public class GUI extends Application {
         borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
     }
+    public static void stastisticContent(){
+        mainContent = statistic.getGrid();
+        mainContent.setAlignment(Pos.CENTER);
+        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);}
+
+
 
     public static void registerScreen(){
         BorderPane p = Register.setUp();
