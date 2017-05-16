@@ -104,6 +104,14 @@ public class GUI extends Application {
         setNavbar(NavigationBar.navAdmin());
     }
 
+    public static void loginTeacher(){
+        setNavbar(NavigationBar.navTeacher());
+    }
+
+    public static void loginStudent(){
+        setNavbar(NavigationBar.navStudent());
+    }
+
     public static void setNavbar(HBox navbar){
         navbar.setPadding(new Insets(5, 5, 5, 5));
         borderPaneBase.setTop(navbar);
