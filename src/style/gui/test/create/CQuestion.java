@@ -70,8 +70,29 @@ public class CQuestion extends HBox {
 
         shortQuestion.getChildren().addAll(shortQTitle, expand);
 
+        chooseType.setOnAction(e -> {
+            if(chooseType.getValue().equals("Open question")){
+                addAnswer.setVisible(false);
+                answerList.getChildren().clear();
+                answerList.getChildren().add(new COpenAnswer(this));
+            } else {
+                addAnswer.setVisible(true);
+                answerList.getChildren().clear();
+            }
+        });
+
         addAnswer.setOnMouseClicked(e -> {
-            answerList.getChildren().add(new CAnswer(this));
+            switch((String)chooseType.getValue()){
+                case "One choice":
+                    answerList.getChildren().add(new COneChoiceAnswer(this));
+                    break;
+                case "Multiple choice":
+                    answerList.getChildren().add(new CMultipleChoiceAnswer(this));
+                    break;
+                case "Order":
+                    answerList.getChildren().add(new COrderAnswer(this));
+                    break;
+            }
             answerList.requestLayout();
         });
         shorten.setOnMouseClicked(e->{
