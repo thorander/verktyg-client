@@ -1,5 +1,6 @@
 package style.gui;
 
+import core.Main;
 import network.Connection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -71,7 +72,7 @@ public class Register {
         register.setId("button");
 
         register.setOnAction(e -> {
-            c.write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
+            Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
         });
 
         // Layout

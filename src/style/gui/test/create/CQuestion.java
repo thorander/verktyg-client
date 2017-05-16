@@ -48,7 +48,7 @@ public class CQuestion extends HBox {
         chooseType = new ComboBox();
         shortQuestion.setMargin(expand, new Insets(0, 0, 0, 50));
         question.setMargin(shorten, new Insets(0, 0, 0, 5));
-        question.setMargin(chooseType, new Insets(10, 0, 10, 0));
+        question.setMargin(chooseType, new Insets(0, 0, 15, 0));
         titleLabel.setId("headline");
         shorten.setId("icon");
         shorten.setMaxSize(50, 50);

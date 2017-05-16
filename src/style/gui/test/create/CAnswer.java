@@ -1,9 +1,7 @@
 package style.gui.test.create;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -22,10 +20,16 @@ public class CAnswer extends HBox {
 
     public CAnswer(CQuestion question){
         answer = new TextField();
-        answer.setPromptText("Type the answer here...");
+        answer.setPromptText("Answer...");
         correct = new CheckBox();
         delete = new ImageView("/Images/remove.png");
         deleteLabel = new Label("", delete);
+
+        correct.setPadding(new Insets(0, 0, 0, 5));
+
+        Tooltip correctTip = new Tooltip("Whether this answer is correct or not. \n Checked means it is true.");
+        Tooltip.install(correct, correctTip);
+        this.setPadding(new Insets(5, 0, 0, 0));
 
         delete.setFitHeight(25);
         delete.setFitWidth(25);

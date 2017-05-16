@@ -32,9 +32,12 @@ public class CTest {
         createButton.setId("button");
         addQuestion.setId("button");
 
+        HBox testHeader = new HBox();
         EditableLabel testTitle = new EditableLabel("New test");
         testTitle.setId("navHeadline");
-        root.setTop(testTitle);
+        testHeader.getChildren().add(testTitle);
+        testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
+        root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
         buttonBox = new HBox();
         buttonBox.getChildren().addAll(addQuestion, createButton);
