@@ -1,5 +1,6 @@
 package style.gui;
 
+import javafx.application.Platform;
 import network.Connection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -62,7 +63,8 @@ public class GUI extends Application {
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
 
-        stastisticContent();
+/*        stastisticContent();*/
+        loginScreen();
 
         scene = new Scene(borderPaneBase, 900,600);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -109,17 +111,11 @@ public class GUI extends Application {
         setNavbar(NavigationBar.navTeacher());
     }
 
-    public static void loginTeacher(){
-        setNavbar(NavigationBar.navTeacher());
-    }
-
-    public static void loginStudent(){
-        setNavbar(NavigationBar.navStudent());
-    }
-
     public static void setNavbar(HBox navbar){
         navbar.setPadding(new Insets(5, 5, 5, 5));
-        borderPaneBase.setTop(navbar);
+        Platform.runLater(() -> {
+            borderPaneBase.setTop(navbar);
+        });
     }
 
     public static void setMainContent(Node content){
