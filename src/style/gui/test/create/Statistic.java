@@ -15,8 +15,9 @@ import javafx.scene.Group;
 public abstract class Statistic extends Application{
     private static GridPane grid;
     private static ComboBox test,group;
-    private static Label headline, testName;
+    private static Label headline, testName,completedTests, passingTests, averagePoint;
     private static String inputTest;
+    private  static int completedTestsInt, passingTestsInt, averagePointInt;
 
 
     public Statistic (){
@@ -33,8 +34,11 @@ public abstract class Statistic extends Application{
         group = new ComboBox();
         group.setPromptText("Select group");
 
-        headline = new Label("Test:");
-        testName = new Label(inputTest);
+        headline = createLabel("Test:");
+        testName = createLabel(inputTest);
+        completedTests =createLabel("Completed tests: " + completedTestsInt);
+        passingTests = createLabel("Passing tests: " + passingTestsInt);
+        averagePoint = createLabel("Avreage points" + averagePointInt);
 
         ObservableList<PieChart.Data> gradeChart =
                 FXCollections.observableArrayList(
@@ -48,10 +52,19 @@ public abstract class Statistic extends Application{
 
         grid.add(test, 0,0);
         grid.add(group, 0,1);
-        grid.add(headline, 0,2);
-        grid.add(testName, 1,2);
         grid.add(chart,0,3);
+        GridPane.setColumnSpan(chart,3);
+        grid.add(completedTests,0,4);
+        grid.add(passingTests,1,4);
+        grid.add(averagePoint,2,4);
     }
+    //Gives the label an id and title
+    private static Label createLabel(String title){
+        Label label = new Label(title);
+        label.setId("label");
+        return label;
+    }
+
 
     public static GridPane getGrid(){
         setup();
