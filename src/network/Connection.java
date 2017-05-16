@@ -52,19 +52,13 @@ public class Connection extends Thread{
                 Main.loggedInRole = split[2];
                 Main.loggedInId = split[3];
 
-                if(split[2].equalsIgnoreCase("Admin")){
+                if(split[2].equalsIgnoreCase("admin")){
                     GUI.loginAdmin();
-                }
-                else if(split[2].equalsIgnoreCase(("Student"))){
+                } else if (split[2].equalsIgnoreCase("teacher")){
+                    GUI.loginTeacher();
+                } else if (split[2].equalsIgnoreCase("student")){
                     GUI.loginStudent();
                 }
-                else if(split[2].equalsIgnoreCase("Teacher")){
-                    GUI.loginTeacher();
-                }
-                else{
-
-                }
-
                 break;
             case "ERROR":
                 Platform.runLater( () -> {
