@@ -60,6 +60,11 @@
     -fx-display: inline-block;
     -fx-font-size: 12px;
 }
+
+#button:hover{
+    -fx-background-color: E37200;
+}
+
 #input{
     -fx-focus-color: darkorange;
     -fx-faint-focus-color: #d3524422;
