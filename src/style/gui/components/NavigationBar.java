@@ -75,7 +75,7 @@ public class NavigationBar {
         result = createLabel("Result");
         copyTest= createLabel("Copy test");
         createPDF = createLabel("CreatePDF");
-        group = createLabel("Group");
+        group = createLabel("StudentGroup");
         shareTest = createLabel("Share Test");
         role = createLabel("");
 

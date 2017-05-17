@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
+import style.gui.test.create.StudentGroup;
 
 /**
  * Created by Sofia on 2017-05-10.
@@ -64,7 +65,6 @@ public class GUI extends Application {
         borderPane.setTop(headline);
 
 /*        stastisticContent();*/
-        loginAdmin();
         loginScreen();
 
         scene = new Scene(borderPaneBase, 1000,700);
@@ -100,10 +100,10 @@ public class GUI extends Application {
         Platform.runLater(() -> {setMainContent(mainContent);});
     }
     public static void groupScreen(){
-        Node g = CTest.getCreateTest();
+        mainContent = StudentGroup.createGroupGrid();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
-        setMainContent(g);
+        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);
     }
 
     public static void createTestScreen(){

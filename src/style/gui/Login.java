@@ -69,7 +69,7 @@ public class Login {
         return label;
     }
 
-    //Gives the label an id and title
+    //Gives the TextField an id and title
     private static TextField createText(){
         TextField textField = new TextField();
         textField.setId("input");
