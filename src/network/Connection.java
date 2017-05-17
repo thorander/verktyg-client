@@ -78,10 +78,11 @@ public class Connection extends Thread{
                 break;
             case "AVAILABLETESTS":
                 Platform.runLater(() -> {
+                    TTestSelect.clearOptions();
                     for(int i = 1; i < split.length; i++){
                         TTestSelect.addOption(split[i]);
                     }
-
+                    TTestSelect.selectFirst();
                 });
                 break;
         }

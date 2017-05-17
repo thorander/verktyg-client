@@ -36,6 +36,10 @@ public class TTestSelect {
         tests.getItems().add(test);
     }
 
+    public static void clearOptions(){
+        tests.getItems().clear();
+    }
+
     public static void selectFirst(){
         tests.getSelectionModel().selectFirst();
     }
