@@ -6,6 +6,8 @@ import core.Main;
 import style.gui.GUI;
 import style.gui.FrontPage;
 import style.gui.GUI;
+import style.gui.test.take.TTest;
+import style.gui.test.take.TTestSelect;
 
 import java.io.*;
 import java.net.Socket;
@@ -65,11 +67,21 @@ public class Connection extends Thread{
                 }
                 break;
             case "REGSUCCESS":
+                GUI.showPopupMessage("Registration successful", "success");
                 GUI.loginScreen();
+                break;
 
             case "ERROR":
                 Platform.runLater( () -> {
                     GUI.showPopupMessage(split[1], "error");
+                });
+                break;
+            case "AVAILABLETESTS":
+                Platform.runLater(() -> {
+                    for(int i = 1; i < split.length; i++){
+                        TTestSelect.addOption(split[i]);
+                    }
+
                 });
                 break;
         }

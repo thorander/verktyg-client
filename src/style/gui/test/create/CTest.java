@@ -23,7 +23,7 @@ public class CTest {
     private static Button createButton;
     private static HBox buttonBox;
     private static VBox qBox;
-    private static final int HEIGHT = 500, WIDTH = 500;
+    private static final int HEIGHT = 500, WIDTH = 800;
 
     public static BorderPane getCreateTest(){
         root = new BorderPane();
@@ -49,7 +49,6 @@ public class CTest {
 
         qBox = new VBox();
         ScrollPane sp = new ScrollPane();
-/*        sp.setId("scrollpane");*/
         sp.setContent(qBox);
         root.setCenter(sp);
         root.setMaxWidth(WIDTH);
@@ -60,7 +59,7 @@ public class CTest {
         sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         DropShadow drop = new DropShadow(50, Color.GRAY);
         root.setEffect(drop);
-        root.setPadding(new Insets(50, 25, 50, 25));
+        root.setPadding(new Insets(50, 50, 50, 50));
 
         addQuestion.setOnAction(e -> {
             qBox.getChildren().add(new CQuestion());

@@ -15,6 +15,7 @@ public abstract class CAnswer extends HBox {
 
     public CAnswer(){
         answer = new TextField();
+        answer.setMinWidth(300);
         answer.setPromptText("Answer...");
         this.setAlignment(Pos.TOP_LEFT);
         delete = new RemoveIcon();

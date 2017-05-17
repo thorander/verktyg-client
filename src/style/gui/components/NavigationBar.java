@@ -43,7 +43,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF);
+        header.getChildren().addAll(role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF, takeTest);
 
         return header;
     }
@@ -99,6 +99,10 @@ public class NavigationBar {
 
         statistics.setOnMouseClicked(e->{
             GUI.stastisticContent();
+        });
+
+        takeTest.setOnMouseClicked(e -> {
+           GUI.takeTest();
         });
 
 
