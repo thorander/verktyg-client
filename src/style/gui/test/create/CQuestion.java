@@ -157,7 +157,7 @@ public class CQuestion extends HBox {
     public String getRepresentation(){
         String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue();
         for(Node n : answerList.getChildren()){
-            s += ((CAnswer)n).toString();
+            s += n.toString();
         }
         return(s);
     }

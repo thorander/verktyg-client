@@ -40,8 +40,8 @@ public class FrontPage {
         hatLabel = new Label("", hat);
 
 
-        welcome = createLabel("Welcome "+Main.loggedInPerson+" to your digital test tool");
-        info = createLabel("Here you can take tests that your teacher has created\nfor you to test your skills in different subjects\n");
+        welcome = createLabel("Welcome "+Main.loggedInPerson+" to your digital test tool.");
+        info = createLabel("Here you can take tests that your teacher has created\nfor you to test your skills in different subjects.\nChoose an option from the navbar!");
 
         grid.add(welcome, 0, 2,4,1);
         grid.add(info,0,3, 4, 1);
