@@ -5,21 +5,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by Markus on 2017-05-11.
- */
 public class EditableLabel extends VBox {
 
     private Label label;
     private TextField textField;
     private String string;
+    private CustomToolTip labelTip;
 
     public EditableLabel(){
         super();
         label = new Label();
+        labelTip = new CustomToolTip("Click this label to edit its contents");
+        Tooltip.install(label, labelTip);
         textField = new TextField();
         string = "";
         setup();

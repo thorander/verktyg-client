@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import style.gui.components.CustomToolTip;
 import style.gui.icons.RemoveIcon;
 import style.gui.components.EditableLabel;
 
@@ -25,6 +26,7 @@ public class CQuestion extends HBox {
     private HBox shortQuestion;
     EditableLabel titleLabel;
     ComboBox chooseType;
+    private COrderAnswer dragging, target;
 
     public CQuestion(){
         question = new GridPane();
@@ -33,6 +35,8 @@ public class CQuestion extends HBox {
         shortQuestion.setId("questionBox");
         Label addAnswer = new Label("+");
         addAnswer.setId("icon");
+        CustomToolTip addAnswerTip = new CustomToolTip("Click here to add a new answer");
+        Tooltip.install(addAnswer, addAnswerTip);
         Label shorten = new Label("-");
         Label expand = new Label("+");
         titleLabel = new EditableLabel("Enter your question-title here...");
@@ -52,10 +56,14 @@ public class CQuestion extends HBox {
         titleLabel.setId("headline");
         shorten.setId("icon");
         shorten.setMaxSize(50, 50);
+        CustomToolTip shortenTip = new CustomToolTip("Minimize this question");
+        Tooltip.install(shorten, shortenTip);
         expand.setId("icon");
         expand.setMaxSize(50, 50);
+        CustomToolTip expandTip = new CustomToolTip("Expand this question");
+        Tooltip.install(expand, expandTip);
         chooseType.getItems().addAll("One choice", "Multiple choice", "Order", "Open question");
-        chooseType.setPromptText("(Choose question type)");
+        chooseType.getSelectionModel().selectFirst();
 
         answerList = new VBox();
 
@@ -82,15 +90,23 @@ public class CQuestion extends HBox {
         });
 
         addAnswer.setOnMouseClicked(e -> {
+            CAnswer answer;
             switch((String)chooseType.getValue()){
                 case "One choice":
-                    answerList.getChildren().add(new COneChoiceAnswer(this));
+                    answer = new COneChoiceAnswer(this);
+                    answerList.getChildren().add(answer);
+                    answerList.setMargin(answer, new Insets(0, 0, 5, 0));
                     break;
                 case "Multiple choice":
-                    answerList.getChildren().add(new CMultipleChoiceAnswer(this));
+                    answer = new CMultipleChoiceAnswer(this);
+                    answerList.getChildren().add(answer);
+                    answerList.setMargin(answer, new Insets(0, 0, 5, 0));
                     break;
                 case "Order":
-                    answerList.getChildren().add(new COrderAnswer(this));
+                    answer = new COrderAnswer(this);
+                    setDraggable((COrderAnswer)answer);
+                    answerList.getChildren().add(answer);
+                    answerList.setMargin(answer, new Insets(0, 0, 5, 0));
                     break;
             }
             answerList.requestLayout();
@@ -110,6 +126,28 @@ public class CQuestion extends HBox {
         });
         questionBox.getChildren().add(question);
         this.getChildren().add(questionBox);
+    }
+
+    private void setDraggable(COrderAnswer answer){
+        Label handler = answer.getMoveLabel();
+        handler.setOnDragDetected(e -> {answer.startFullDrag();
+            dragging = answer;});
+        System.out.println("Setting draggable");
+
+        answer.setOnMouseDragEntered(e -> {target = answer; answer.setStyle("-fx-border-width: 1px; -fx-border-color: darkorange; -fx-background-color: #ffc56b;");});
+        answer.setOnMouseDragExited(e -> {target = null; answer.setStyle("");});
+
+        answer.setOnMouseDragReleased(e -> {
+            if(target != null){
+                int answerId = answerList.getChildren().indexOf(dragging);
+                int targetId = answerList.getChildren().indexOf(target);
+                String targetText = ((CAnswer)answerList.getChildren().get(targetId)).getText();
+                String draggedText = ((CAnswer)answerList.getChildren().get(answerId)).getText();
+                ((CAnswer)answerList.getChildren().get(answerId)).setText(targetText);
+                ((CAnswer)answerList.getChildren().get(targetId)).setText(draggedText);
+            }
+            System.out.println("Dropped");
+        });
     }
 
     public void removeAnswer(HBox answer){

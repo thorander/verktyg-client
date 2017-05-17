@@ -64,6 +64,7 @@ public class GUI extends Application {
         borderPane.setTop(headline);
 
 /*        stastisticContent();*/
+        loginAdmin();
         loginScreen();
 
         scene = new Scene(borderPaneBase, 1000,700);
