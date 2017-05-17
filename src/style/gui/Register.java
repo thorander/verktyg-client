@@ -73,11 +73,14 @@ public class Register {
         // Buttons
         register = new Button("Sign up");
         register.setId("button");
+        register.setMinWidth(200);
 
-        HBox hbox = new HBox(90);
-
+        HBox hbox = new HBox();
+        role.setMinWidth(100);
+        hbox.setMargin(role, new Insets(0, 75, 0, 0));
         hbox.getChildren().addAll(role,register);
         hbox.setPadding(new Insets(15,0,15,0));
+        register.setAlignment(Pos.BOTTOM_LEFT);
 
         register.setOnAction(e -> {
 
