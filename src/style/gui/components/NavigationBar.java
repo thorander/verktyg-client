@@ -17,8 +17,10 @@ public class NavigationBar {
     public static HBox navBackgroundImage() {
         Image image = new Image("images/headerImage.jpg");
         ImageView headerBackground = new ImageView();
+        headerBackground.setFitWidth(1000);
+        headerBackground.setFitHeight(700);
         headerBackground.setImage(image);
-        headerBackground.setStyle("-fx-opacity: 0.2");
+        headerBackground.setStyle("-fx-opacity: 0.2;");
 
         HBox headerImg = new HBox();
         headerImg.getChildren().addAll(headerBackground);

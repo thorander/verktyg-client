@@ -119,3 +119,39 @@
     -fx-text-fill: darkorange;
 }
 
+/* The increment and decrement button CSS class of scrollbar */
+.increment-button, .decrement-button, .increment-arrow, .decrement-arrow {
+    visibility: hidden;
+}
+
+.scroll-bar, .scroll-bar .track, .scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: darkorange;
+    -fx-background-radius: 5em;
+}
+
+.popup {
+    -fx-font-size: 16px;
+    -fx-background-color: darkorange;
+    -fx-text-alignment: center;
+    -fx-background-radius: 5px;
+}
+
+.error {
+    -fx-background-color: lightcoral;
+}
+
+.info {
+    -fx-background-color: lightblue;
+}
+
+.success {
+    -fx-background-color: lightgreen;
+}
+
+.popup .label {
+    -fx-padding: 20;
+}

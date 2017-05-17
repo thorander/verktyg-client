@@ -49,14 +49,14 @@ public class CTest {
 
         qBox = new VBox();
         ScrollPane sp = new ScrollPane();
-        sp.setId("scrollpane");
+/*        sp.setId("scrollpane");*/
         sp.setContent(qBox);
         root.setCenter(sp);
         root.setMaxWidth(WIDTH);
         root.setMinWidth(WIDTH);
         root.setMinHeight(HEIGHT);
         root.setMaxHeight(HEIGHT);
-        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         DropShadow drop = new DropShadow(50, Color.GRAY);
         root.setEffect(drop);

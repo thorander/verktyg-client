@@ -1,6 +1,11 @@
 package style.gui;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Popup;
+import javafx.stage.WindowEvent;
 import network.Connection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -21,6 +26,8 @@ import style.gui.test.create.StudentGroup;
  * Created by Sofia on 2017-05-10.
  */
 public class GUI extends Application {
+
+    private static Stage stage;
 
     private static BorderPane borderPaneBase;
     private static BorderPane borderPane;
@@ -49,6 +56,7 @@ public class GUI extends Application {
             System.exit(0);
         });
         createGrid(primaryStage);
+        stage = primaryStage;
     }
 
     private void createGrid(Stage primaryStage){
@@ -134,6 +142,58 @@ public class GUI extends Application {
         Platform.runLater(() -> {
             borderPane.setCenter(content);
         });
+    }
+
+    public static void showErrorMessage(String message){
+
+    }
+
+    public static void showSuccessMessage(String message){
+
+    }
+
+    public static void showInfoMessage(String message){
+
+    }
+
+    public static Popup createPopup(final String message) {
+        final Popup popup = new Popup();
+        popup.setAutoFix(true);
+        popup.setAutoHide(true);
+        popup.setHideOnEscape(true);
+        Label label = new Label(message);
+        label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                popup.hide();
+            }
+        });
+        label.getStyleClass().add("popup");
+        popup.getContent().add(label);
+        return popup;
+    }
+
+    public static void showPopupMessage(final String message, String type) {
+        final Popup popup = createPopup(message);
+        switch(type){
+            case "error":
+                popup.getContent().get(0).getStyleClass().add("error");
+                break;
+            case "info":
+                popup.getContent().get(0).getStyleClass().add("info");
+                break;
+            case "success":
+                popup.getContent().get(0).getStyleClass().add("success");
+                break;
+        }
+        popup.setOnShown(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                popup.setX(stage.getX() + stage.getWidth()/2 - popup.getWidth()/2);
+                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - 25);
+            }
+        });
+        popup.show(stage);
     }
 
 }
