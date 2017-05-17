@@ -57,6 +57,14 @@
     -fx-opacity: 1;
 
 }
+#frontPage{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+    -fx-opacity: 2;
+
+}
+
 #button{
     -fx-background-color: darkorange;
     -fx-border: none;
@@ -99,6 +107,12 @@
 #icon{
     -fx-text-fill: black;
     -fx-font-size: 38px;
+}
+#frontIcon{
+    -fx-alignment: top-left;
+}
+#frontHat{
+    -fx-alignment: top-left;
 }
 
 #icon:hover{

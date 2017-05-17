@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import style.gui.components.DateTimePicker;
 import style.gui.components.EditableLabel;
 
 /**
@@ -32,10 +33,11 @@ public class CTest {
         createButton.setId("button");
         addQuestion.setId("button");
 
-        HBox testHeader = new HBox();
+        VBox testHeader = new VBox();
         EditableLabel testTitle = new EditableLabel("New test");
         testTitle.setId("navHeadline");
-        testHeader.getChildren().add(testTitle);
+        DateTimePicker openDate = new DateTimePicker();
+        testHeader.getChildren().addAll(testTitle, openDate);
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
         root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);

@@ -72,7 +72,10 @@ public class Register {
         register.setId("button");
 
         register.setOnAction(e -> {
-            Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
+
+                Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
+                GUI.loginScreen();
+
         });
 
         // Layout
@@ -92,7 +95,8 @@ public class Register {
 
         return border;
     }
-    private static Label createLabel(String title){
+
+    private static Label createLabel(String title) {
         Label label = new Label(title);
         label.setId("label");
         label.setPadding(new Insets(10, 5, 2, 5));
@@ -100,7 +104,7 @@ public class Register {
     }
 
     //Gives the label an id and title
-    private static TextField createText(){
+    private static TextField createText() {
         TextField textField = new TextField();
         textField.setId("input");
         return textField;

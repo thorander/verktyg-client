@@ -28,6 +28,7 @@ public class CreateTest {
     private static Spinner<Integer> timeCounter; // Spinner
     private static Label timeLabel; // Label
     private static Connection connection; // Connection
+    private static DatePicker datePicker; //
 
 
     public CreateTest(Connection connection){

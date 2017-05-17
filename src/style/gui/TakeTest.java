@@ -35,6 +35,7 @@ public class TakeTest {
         grid.add(correct,0,3);
         scene = new Scene(grid,450,400);
 
+
         return grid;
 
     }

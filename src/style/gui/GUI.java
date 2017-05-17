@@ -65,7 +65,7 @@ public class GUI extends Application {
         borderPane.setTop(headline);
 
 /*        stastisticContent();*/
-        loginAdmin();
+        loginScreen();
 
         scene = new Scene(borderPaneBase, 1000,700);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -93,6 +93,11 @@ public class GUI extends Application {
         mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
+    }
+    public static void FrontPageScreen(){
+        mainContent = FrontPage.setup();
+        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        Platform.runLater(() -> {setMainContent(mainContent);});
     }
     public static void groupScreen(){
         mainContent = StudentGroup.createGroupGrid();
@@ -126,7 +131,9 @@ public class GUI extends Application {
     }
 
     public static void setMainContent(Node content){
-        borderPane.setCenter(content);
+        Platform.runLater(() -> {
+            borderPane.setCenter(content);
+        });
     }
 
 }
