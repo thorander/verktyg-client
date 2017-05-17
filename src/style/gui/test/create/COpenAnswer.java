@@ -18,6 +18,6 @@ public class COpenAnswer extends CAnswer {
 
     @Override
     public String toString() {
-        return "#ANSWER#" + "OPENQUESTION";
+        return "#ANSWER#" + "OPENQUESTION#true";
     }
 }

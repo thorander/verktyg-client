@@ -82,7 +82,6 @@ public class Register {
         register.setOnAction(e -> {
 
                 Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
-                GUI.loginScreen();
 
         });
 

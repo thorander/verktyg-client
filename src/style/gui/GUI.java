@@ -1,11 +1,13 @@
 package style.gui;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import network.Connection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -21,6 +23,8 @@ import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
+import style.gui.test.take.TTest;
+import style.gui.test.take.TTestSelect;
 
 /**
  * Created by Sofia on 2017-05-10.
@@ -121,6 +125,13 @@ public class GUI extends Application {
         setMainContent(g);
     }
 
+    public static void takeTest(){
+        Node g = TTestSelect.getTestChooser();
+        mainContent.setAlignment(Pos.CENTER);
+        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
+        setMainContent(g);
+    }
+
     public static void loginAdmin(){
         setNavbar(NavigationBar.navAdmin());
     }
@@ -162,6 +173,7 @@ public class GUI extends Application {
         popup.setAutoHide(true);
         popup.setHideOnEscape(true);
         Label label = new Label(message);
+        label.setVisible(false);
         label.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -186,6 +198,13 @@ public class GUI extends Application {
                 popup.getContent().get(0).getStyleClass().add("success");
                 break;
         }
+
+        FadeTransition popupFade = new FadeTransition(Duration.millis(500));
+        popupFade.setNode(popup.getContent().get(0));
+        popupFade.setFromValue(0.0);
+        popupFade.setToValue(1.0);
+        popupFade.setCycleCount(1);
+        popupFade.setAutoReverse(true);
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
@@ -193,7 +212,11 @@ public class GUI extends Application {
                 popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - 25);
             }
         });
-        popup.show(stage);
+        Platform.runLater(() -> {
+            popup.show(stage);
+        });
+        popup.getContent().get(0).setVisible(true);
+        popupFade.playFromStart();
     }
 
 }

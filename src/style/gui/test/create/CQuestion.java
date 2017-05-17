@@ -42,13 +42,14 @@ public class CQuestion extends HBox {
         titleLabel = new EditableLabel("Enter your question-title here...");
         RemoveIcon remove = new RemoveIcon();
         question.setMargin(remove, new Insets(0, 5, 0, 5));
-        titleLabel.setMaxWidth(350);
+        titleLabel.setMaxWidth(600);
+        titleLabel.setMinWidth(600);
         titleLabel.setWrapText(true);
         Label shortQTitle = new Label(titleLabel.getText());
-        shortQTitle.setMaxWidth(350);
+        shortQTitle.setMaxWidth(600);
         shortQuestion.setAlignment(Pos.BOTTOM_CENTER);
         TextField titleField = new TextField();
-        titleField.setMinWidth(350);
+        titleField.setMinWidth(600);
         chooseType = new ComboBox();
         shortQuestion.setMargin(expand, new Insets(0, 0, 0, 50));
         question.setMargin(shorten, new Insets(0, 0, 0, 5));
