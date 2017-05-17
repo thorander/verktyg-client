@@ -10,6 +10,13 @@
     -fx-opacity: 1;
     -fx-padding: 5px;
 }
+#labelType2{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Arial";
+    -fx-text-fill: darkorange;
+    -fx-opacity: 1;
+    -fx-padding: 5px;
+}
 #navLabel:hover{
     -fx-text-fill: darkorange;
 }
@@ -50,7 +57,8 @@
     -fx-opacity: 1;
 
 }
-#button{
+
+#button, #combobox{
     -fx-background-color: darkorange;
     -fx-border: none;
     -fx-color: white;
@@ -59,6 +67,18 @@
     -fx-text-decoration: none;
     -fx-display: inline-block;
     -fx-font-size: 12px;
+}
+#combobox{
+    -fx-border-color: darkorange;
+    -fx-background-color: white;
+    -fx-color: white;
+    -fx-padding: 5px 70px;
+    -fx-text-align: center;
+    -fx-text-fill: darkorange;
+    -fx-display: inline-block;
+    -fx-font-size: 12px;
+
+
 }
 #input{
     -fx-focus-color: darkorange;

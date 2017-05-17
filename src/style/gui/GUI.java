@@ -64,7 +64,7 @@ public class GUI extends Application {
 
         stastisticContent();
 
-        scene = new Scene(borderPaneBase, 900,600);
+        scene = new Scene(borderPaneBase, 1000,700);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BBB");
@@ -91,6 +91,12 @@ public class GUI extends Application {
         borderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
     }
+    public static void groupScreen(){
+        Node g = CTest.getCreateTest();
+        mainContent.setAlignment(Pos.CENTER);
+        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
+        setMainContent(g);
+    }
 
     public static void createTestScreen(){
         Node g = CTest.getCreateTest();
@@ -107,14 +113,6 @@ public class GUI extends Application {
     }
     public static void loginTeacher(){
         setNavbar(NavigationBar.navTeacher());
-    }
-
-    public static void loginTeacher(){
-        setNavbar(NavigationBar.navTeacher());
-    }
-
-    public static void loginStudent(){
-        setNavbar(NavigationBar.navStudent());
     }
 
     public static void setNavbar(HBox navbar){

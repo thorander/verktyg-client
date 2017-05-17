@@ -19,6 +19,7 @@ public class NavigationBar {
         ImageView headerBackground = new ImageView();
         headerBackground.setImage(image);
         headerBackground.setStyle("-fx-opacity: 0.2");
+
         HBox headerImg = new HBox();
         headerImg.getChildren().addAll(headerBackground);
         return headerImg;
