@@ -19,8 +19,7 @@ import style.gui.components.EditableLabel;
 public class CTest {
 
     private static BorderPane root;
-    private static Button addQuestion;
-    private static Button createButton;
+    private static Button addQuestion,createButton;
     private static HBox buttonBox;
     private static VBox qBox;
     private static final int HEIGHT = 500, WIDTH = 800;
@@ -35,8 +34,9 @@ public class CTest {
 
         VBox testHeader = new VBox();
         EditableLabel testTitle = new EditableLabel("New test");
-        testTitle.setId("navHeadline");
+        testTitle.setId("headline");
         DateTimePicker openDate = new DateTimePicker();
+
         testHeader.getChildren().addAll(testTitle, openDate);
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
         root.setTop(testHeader);

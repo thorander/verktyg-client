@@ -26,4 +26,9 @@ public class CreateNodes {
         button.setId("button");
         return button;
     }
+    public static Label createHeader(String title) {
+        Label label = new Label(title);
+        label.setId("headline");
+        return label;
+    }
 }

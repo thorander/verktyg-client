@@ -19,7 +19,7 @@ import javafx.util.Callback;
 public  class StudentGroup {
     private static GridPane grid;
     private static ObservableList names,data;
-    private static Label groupNameLabel;
+    private static Label groupNameLabel, headline;
     private static TextField groupname;
     private static Button createGroup;
 
@@ -33,6 +33,7 @@ public  class StudentGroup {
         groupNameLabel = CreateNodes.createLabel("Group name:");
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
+        headline = CreateNodes.createHeader("Create Group");
 
 
         names = FXCollections.observableArrayList();
@@ -54,13 +55,13 @@ public  class StudentGroup {
 
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
-
-        grid.add(groupNameLabel, 0,0);
-        grid.add(groupname,1,0);
-        grid.add(listView,0,1);
-        grid.add(createGroup,0,2);
-        GridPane.setColumnSpan(listView,3);
-        GridPane.setColumnSpan(createGroup,2);
+        grid.add(headline,0,0);
+        grid.add(groupNameLabel, 0,1);
+        grid.add(groupname,1,1);
+        grid.add(listView,0,2);
+        grid.add(createGroup,0,3);
+        GridPane.setColumnSpan(listView,4);
+        GridPane.setColumnSpan(createGroup,3);
 
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
