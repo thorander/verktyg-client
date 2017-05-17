@@ -6,6 +6,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by phili on 2017-05-10.
@@ -18,6 +21,7 @@ public class TakeTest {
     private Label question;
     private CheckBox correct;
     private Scene scene;
+
 
     public  GridPane setup(){
 
@@ -39,6 +43,7 @@ public class TakeTest {
         return grid;
 
     }
+
 
     public GridPane getGrid() {
         return grid;
