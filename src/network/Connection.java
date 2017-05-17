@@ -69,9 +69,7 @@ public class Connection extends Thread{
 
             case "ERROR":
                 Platform.runLater( () -> {
-                    Alert error = new Alert(Alert.AlertType.ERROR);
-                    error.setContentText(split[1]);
-                    error.show();
+                    GUI.showPopupMessage(split[1], "error");
                 });
                 break;
         }
