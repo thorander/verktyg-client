@@ -34,6 +34,7 @@ public class Login {
         pass.setId("input");
         pass.setPromptText("Password");
         login = new Button("Login");
+        login.setMinWidth(200);
         login.setId("button");
 
         signUp.setOnMouseClicked(e-> {
