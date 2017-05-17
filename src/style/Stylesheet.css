@@ -30,7 +30,7 @@
 }
 
 #headline {
-    -fx-font-size: 18pt;
+    -fx-font-size: 20pt;
     -fx-text-fill: darkorange;
     -fx-padding: 5px;
 }
@@ -84,6 +84,17 @@
     -fx-text-fill: darkorange;
     -fx-display: inline-block;
     -fx-font-size: 12px;
+
+
+}
+#combobox1{
+    -fx-border-color: darkorange;
+    -fx-background-color: white;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-fill: darkorange;
+    -fx-display: inline-block;
+
 
 
 }

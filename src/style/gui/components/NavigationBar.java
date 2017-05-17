@@ -20,7 +20,7 @@ public class NavigationBar {
         headerBackground.setFitWidth(1000);
         headerBackground.setFitHeight(700);
         headerBackground.setImage(image);
-        headerBackground.setStyle("-fx-opacity: 0.2;");
+        headerBackground.setStyle("-fx-opacity: 0.3;");
 
         HBox headerImg = new HBox();
         headerImg.getChildren().addAll(headerBackground);
@@ -77,7 +77,7 @@ public class NavigationBar {
         result = createLabel("Result");
         copyTest= createLabel("Copy test");
         createPDF = createLabel("CreatePDF");
-        group = createLabel("StudentGroup");
+        group = createLabel("Group");
         shareTest = createLabel("Share Test");
         role = createLabel("");
 

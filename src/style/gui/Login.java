@@ -25,8 +25,8 @@ public class Login {
     public static GridPane setup(){
         grid = new GridPane();
         welcome = createLabel("Welcome");
-        userName = createLabel("Username");
-        password= createLabel("Password");
+        userName = createLabel("Username:");
+        password= createLabel("Password:");
         signUp = createLabel("Register?");
         user = createText();
         user.setPromptText("Username");

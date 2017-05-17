@@ -1,6 +1,7 @@
 package style.gui;
 
 import core.Main;
+import javafx.scene.layout.HBox;
 import network.Connection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +40,7 @@ public class Register {
 
         // Labels
         registerLabel = createLabel("Register");
-        registerLabel.setId("navHeadline");
+        registerLabel.setId("headline");
         name = createLabel("Firstname");
         surname = createLabel("Lastname");
         uName = createLabel("Username");
@@ -59,17 +60,24 @@ public class Register {
 
         // Combobox
         role = new ComboBox();
+        role.setId("combobox1");
 
         role.getItems().addAll(
                 "admin",
                 "teacher",
                 "student"
         );
-        role.setPromptText("Role");
+        role.getSelectionModel().selectFirst();
+
 
         // Buttons
         register = new Button("Sign up");
         register.setId("button");
+
+        HBox hbox = new HBox(90);
+
+        hbox.getChildren().addAll(role,register);
+        hbox.setPadding(new Insets(15,0,15,0));
 
         register.setOnAction(e -> {
 
@@ -80,15 +88,15 @@ public class Register {
 
         // Layout
         VBox labels = new VBox();
-        labels.getChildren().addAll(registerLabel, name, firstName, surname, lastName, uName, userName, uPass, password, role, register);
+        labels.getChildren().addAll(registerLabel, name, firstName, surname, lastName, uName, userName, uPass, password, hbox);
         labels.setPadding(new Insets(15, 15, 15, 15));
-        labels.setMargin(role, new Insets(10, 0, 10, 0));
+        labels.setMargin(role, new Insets(15, 10, 10, 0));
         register.setAlignment(Pos.CENTER);
 
         border.setCenter(labels);
 
         border.setId("loginStyle");
-        border.setMaxWidth(300);
+        border.setMaxWidth(400);
         border.setMaxHeight(300);
         DropShadow drop = new DropShadow(50, Color.GRAY);
         border.setEffect(drop);
