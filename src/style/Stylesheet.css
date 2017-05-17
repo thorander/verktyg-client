@@ -57,8 +57,7 @@
     -fx-opacity: 1;
 
 }
-
-#button, #combobox{
+#button{
     -fx-background-color: darkorange;
     -fx-border: none;
     -fx-color: white;
@@ -80,6 +79,11 @@
 
 
 }
+
+#button:hover{
+    -fx-background-color: E37200;
+}
+
 #input{
     -fx-focus-color: darkorange;
     -fx-faint-focus-color: #d3524422;

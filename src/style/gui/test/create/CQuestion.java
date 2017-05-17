@@ -48,6 +48,7 @@ public class CQuestion extends HBox {
         chooseType = new ComboBox();
         shortQuestion.setMargin(expand, new Insets(0, 0, 0, 50));
         question.setMargin(shorten, new Insets(0, 0, 0, 5));
+        question.setMargin(chooseType, new Insets(0, 0, 15, 0));
         titleLabel.setId("headline");
         shorten.setId("icon");
         shorten.setMaxSize(50, 50);
@@ -69,8 +70,29 @@ public class CQuestion extends HBox {
 
         shortQuestion.getChildren().addAll(shortQTitle, expand);
 
+        chooseType.setOnAction(e -> {
+            if(chooseType.getValue().equals("Open question")){
+                addAnswer.setVisible(false);
+                answerList.getChildren().clear();
+                answerList.getChildren().add(new COpenAnswer(this));
+            } else {
+                addAnswer.setVisible(true);
+                answerList.getChildren().clear();
+            }
+        });
+
         addAnswer.setOnMouseClicked(e -> {
-            answerList.getChildren().add(new CAnswer(this));
+            switch((String)chooseType.getValue()){
+                case "One choice":
+                    answerList.getChildren().add(new COneChoiceAnswer(this));
+                    break;
+                case "Multiple choice":
+                    answerList.getChildren().add(new CMultipleChoiceAnswer(this));
+                    break;
+                case "Order":
+                    answerList.getChildren().add(new COrderAnswer(this));
+                    break;
+            }
             answerList.requestLayout();
         });
         shorten.setOnMouseClicked(e->{
