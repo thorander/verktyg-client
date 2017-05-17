@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import core.Main;
 import style.gui.GUI;
+import style.gui.FrontPage;
+import style.gui.GUI;
 
 import java.io.*;
 import java.net.Socket;
@@ -51,6 +53,8 @@ public class Connection extends Thread{
                 Main.loggedInPerson = split[1];
                 Main.loggedInRole = split[2];
                 Main.loggedInId = split[3];
+                GUI.FrontPageScreen();
+
 
                 if(split[2].equalsIgnoreCase("admin")){
                     GUI.loginAdmin();
@@ -60,6 +64,9 @@ public class Connection extends Thread{
                     GUI.loginStudent();
                 }
                 break;
+            case "REGSUCCESS":
+                GUI.loginScreen();
+
             case "ERROR":
                 Platform.runLater( () -> {
                     Alert error = new Alert(Alert.AlertType.ERROR);

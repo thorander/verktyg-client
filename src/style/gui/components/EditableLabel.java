@@ -16,7 +16,7 @@ public class EditableLabel extends VBox {
     private String string;
     private CustomToolTip labelTip;
 
-    public EditableLabel(){
+    public EditableLabel() {
         super();
         label = new Label();
         labelTip = new CustomToolTip("Click this label to edit its contents");
@@ -26,37 +26,34 @@ public class EditableLabel extends VBox {
         setup();
     }
 
-    public EditableLabel(String string){
+    public EditableLabel(String string) {
         this();
         this.string = string;
         textField.setText(string);
         label.setText(string);
     }
 
-    private void setup(){
+    private void setup() {
         getChildren().add(label);
-        label.setOnMouseClicked(e->{
+        label.setOnMouseClicked(e -> {
             getChildren().remove(label);
             getChildren().add(textField);
             textField.requestFocus();
         });
 
         textField.setOnKeyPressed(e -> {
-            if(e.getCode() == KeyCode.ENTER){
+            if (e.getCode() == KeyCode.ENTER) {
                 string = textField.getText();
                 label.setText(string);
                 getChildren().remove(textField);
             }
         });
 
-        textField.focusedProperty().addListener(new ChangeListener<Boolean>()
-        {
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-            {
-                if (newPropertyValue){}
-                else
-                {
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                if (newPropertyValue) {
+                } else {
                     string = textField.getText();
                     label.setText(string);
                     getChildren().remove(textField);
@@ -66,22 +63,20 @@ public class EditableLabel extends VBox {
         });
     }
 
-    public void setWidth(int width){
+    public void setWidth(int width) {
         label.setMaxWidth(width);
         label.setMinWidth(width);
         textField.setMaxWidth(width);
         textField.setMinWidth(width);
     }
 
-    public void setWrapText(boolean bool){
+    public void setWrapText(boolean bool) {
         label.setWrapText(bool);
     }
 
-    public String getText(){
+    public String getText() {
         return string;
     }
-
-
 
 
 }

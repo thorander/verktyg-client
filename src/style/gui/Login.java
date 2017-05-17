@@ -20,12 +20,14 @@ public class Login {
     private static TextField user;
     private static PasswordField pass;
     private static Button login;
+    private static Label signUp;
 
     public static GridPane setup(){
         grid = new GridPane();
         welcome = createLabel("Welcome");
         userName = createLabel("Username");
         password= createLabel("Password");
+        signUp = createLabel("Register?");
         user = createText();
         user.setPromptText("Username");
         pass = new PasswordField();
@@ -34,10 +36,14 @@ public class Login {
         login = new Button("Login");
         login.setId("button");
 
+        signUp.setOnMouseClicked(e-> {
+            GUI.registerScreen();
+        });
         login.setOnAction(e -> {
            String uName = user.getText();
            String uPass = pass.getText();
-            Main.getConnection().write("LOGIN#" + uName + "#" + uPass);
+           Main.getConnection().write("LOGIN#" + uName + "#" + uPass);
+
         });
 
         grid.setHgap(10);
@@ -48,6 +54,7 @@ public class Login {
         grid.add(password,0,4);
         grid.add(pass,0,5);
         grid.add(login,0,6);
+        grid.add(signUp,0,7);
         grid.setId("loginStyle");
         grid.setMaxWidth(300);
         grid.setMaxHeight(300);

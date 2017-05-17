@@ -26,7 +26,7 @@ public class NavigationBar {
     }
 
     public static HBox headline() {
-        Label headline = new Label("Testverktyg");
+        Label headline = new Label("Digital Test Tool");
         HBox headlineBox = new HBox();
         headline.setId("navHeadline");
         headlineBox.getChildren().addAll(headline);
