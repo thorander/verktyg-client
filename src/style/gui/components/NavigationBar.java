@@ -91,6 +91,15 @@ public class NavigationBar {
             GUI.createTestScreen();
         });
 
+        group.setOnMouseClicked(e->{
+            GUI.groupScreen();
+        });
+
+        statistics.setOnMouseClicked(e->{
+            GUI.stastisticContent();
+        });
+
+
 
     }
 
