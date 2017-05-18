@@ -40,7 +40,7 @@ public class CQuestion extends HBox {
         Label shorten = new Label("-");
         Label expand = new Label("+");
         titleLabel = new EditableLabel("Enter your question-title here...");
-        titleLabel.setStyle("-fx-font-size: 12px");
+        titleLabel.setStyle("-fx-font-size: 1.4em");
         RemoveIcon remove = new RemoveIcon();
         question.setMargin(remove, new Insets(0, 5, 0, 5));
         titleLabel.setMaxWidth(600);
