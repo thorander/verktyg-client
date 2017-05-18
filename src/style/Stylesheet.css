@@ -4,14 +4,14 @@
 
 }
 #navLabel{
-    -fx-font-size: 12pt;
+    -fx-font-size: 1em;
     -fx-font-family: "Arial";
     -fx-text-fill: white;
     -fx-opacity: 1;
     -fx-padding: 5px;
 }
 #labelType2{
-    -fx-font-size: 12pt;
+    -fx-font-size: 1.2em;
     -fx-font-family: "Arial";
     -fx-text-fill: darkorange;
     -fx-opacity: 1;
@@ -21,7 +21,7 @@
     -fx-text-fill: darkorange;
 }
 #navHeadline{
-    -fx-font-size: 24pt;
+    -fx-font-size: 2em;
     -fx-font-family: "Arial";
     -fx-text-fill: darkorange;
     -fx-opacity: 1;
@@ -30,7 +30,7 @@
 }
 
 #headline {
-    -fx-font-size: 20pt;
+    -fx-font-size: 1.7em;
     -fx-text-fill: darkorange;
     -fx-padding: 5px;
 }
@@ -51,14 +51,14 @@
     -fx-background-radius: 5;
 }
 #label{
-    -fx-font-size: 10pt;
+    -fx-font-size: 1em;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 1;
 
 }
 #frontPage{
-    -fx-font-size: 15pt;
+    -fx-font-size: 1.5pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 2;
@@ -83,7 +83,7 @@
     -fx-text-align: center;
     -fx-text-fill: darkorange;
     -fx-display: inline-block;
-    -fx-font-size: 12px;
+    -fx-font-size: 1em;
 
 
 }
@@ -117,7 +117,7 @@
 
 #icon{
     -fx-text-fill: black;
-    -fx-font-size: 38px;
+    -fx-font-size: 1.5em;
 }
 #frontIcon{
     -fx-alignment: top-left;

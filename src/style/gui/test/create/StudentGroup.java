@@ -55,6 +55,7 @@ public  class StudentGroup {
 
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
+
         grid.add(headline,0,0);
         grid.add(groupNameLabel, 0,1);
         grid.add(groupname,1,1);
