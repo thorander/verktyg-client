@@ -2,6 +2,7 @@ package style.gui.test.create;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.chart.*;
@@ -10,6 +11,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -21,6 +23,7 @@ public abstract class Statistic extends Application{
     private static Label headline, testName,completedTests, passingTests, averagePoint;
     private static String inputTest;
     private  static int completedTestsInt, passingTestsInt, averagePointInt;
+    private static HBox hbox, hboxCombobox;
 //test
 
     public Statistic (){
@@ -43,11 +46,19 @@ public abstract class Statistic extends Application{
         group.setId("combobox");
         group.setPrefWidth(300);
 
-        headline = createLabel("Test:");
-        testName = createLabel(inputTest);
-        completedTests =createLabel("Completed tests: " + completedTestsInt);
-        passingTests = createLabel("Passing tests: " + passingTestsInt);
-        averagePoint = createLabel("Avreage points" + averagePointInt);
+        hboxCombobox = new HBox(15);
+        hboxCombobox.getChildren().addAll(test,group);
+        hboxCombobox.setPadding(new Insets(0,0,0,15));
+
+        headline = CreateNodes.createLabel2("Test:");
+        testName = CreateNodes.createLabel2(inputTest);
+        completedTests =CreateNodes.createLabel2("Completed tests: " + completedTestsInt);
+        passingTests = CreateNodes.createLabel2("Passing tests: " + passingTestsInt);
+        averagePoint = CreateNodes.createLabel2("Avreage points: " + averagePointInt);
+        hbox = new HBox(50);
+        hbox.setPadding(new Insets(0,0,0,70));
+        hbox.getChildren().addAll(completedTests,passingTests,averagePoint);
+
 
         ObservableList<PieChart.Data> gradeChart =
                 FXCollections.observableArrayList(
@@ -56,17 +67,18 @@ public abstract class Statistic extends Application{
                         new PieChart.Data("VG",9));
         final PieChart chart = new PieChart(gradeChart);
         chart.setTitle("Utfall för " + inputTest);
+        chart.setPadding(new Insets(0,0,0,20));
 
 
 
-        grid.add(test, 0,0);
-        grid.add(group, 1,0);
-        GridPane.setColumnSpan(group,4);
+        grid.add(hboxCombobox, 0,0);
+        GridPane.setColumnSpan(hboxCombobox,4);
         grid.add(chart,0,3);
         GridPane.setColumnSpan(chart,4);
-        grid.add(completedTests,0,4);
-        grid.add(passingTests,1,4);
-        grid.add(averagePoint,2,4);
+        grid.add(hbox,0,4);
+        GridPane.setColumnSpan(hbox,4);
+        grid.setAlignment(Pos.CENTER);
+
         grid.setId("loginStyle");
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
@@ -74,13 +86,6 @@ public abstract class Statistic extends Application{
         grid.setMaxHeight(700);
 
     }
-    //Gives the label an id and title
-    private static Label createLabel(String title){
-        Label label = new Label(title);
-        label.setId("labelType2");
-        return label;
-    }
-
 
     public static GridPane getGrid(){
         setup();

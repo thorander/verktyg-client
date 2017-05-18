@@ -11,7 +11,7 @@
     -fx-padding: 5px;
 }
 #labelType2{
-    -fx-font-size: 1em;
+    -fx-font-size: 1.2em;
     -fx-font-family: "Arial";
     -fx-text-fill: darkorange;
     -fx-opacity: 1;
@@ -117,7 +117,7 @@
 
 #icon{
     -fx-text-fill: black;
-    -fx-font-size: 38px;
+    -fx-font-size: 1.5em;
 }
 #frontIcon{
     -fx-alignment: top-left;

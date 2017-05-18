@@ -22,47 +22,62 @@ public class CQuestion extends HBox {
 
     private GridPane question;
     private VBox answerList;
-    private HBox questionBox;
-    private HBox shortQuestion;
+    private HBox questionBox, shortQuestion;
     EditableLabel titleLabel;
+    private Label shorten, expand, shortQTitle, addAnswer;
     ComboBox chooseType;
     private COrderAnswer dragging, target;
+    private CustomToolTip shortenTip, addAnswerTip, expandTip;
+    private TextField titleField;
+    private RemoveIcon remove;
 
     public CQuestion(){
         question = new GridPane();
         questionBox = new HBox();
         shortQuestion = new HBox();
         shortQuestion.setId("questionBox");
-        Label addAnswer = new Label("+");
+
+        addAnswer = new Label("+");
+        shorten = new Label("-");
+        expand = new Label("+");
         addAnswer.setId("icon");
-        CustomToolTip addAnswerTip = new CustomToolTip("Click here to add a new answer");
+
+        addAnswerTip = new CustomToolTip("Click here to add a new answer");
         Tooltip.install(addAnswer, addAnswerTip);
-        Label shorten = new Label("-");
-        Label expand = new Label("+");
+
+
         titleLabel = new EditableLabel("Enter your question-title here...");
         titleLabel.setStyle("-fx-font-size: 1.4em");
-        RemoveIcon remove = new RemoveIcon();
+
+        remove = new RemoveIcon();
+        remove.setMaxSize(0.3,0.3);
         question.setMargin(remove, new Insets(0, 5, 0, 5));
         titleLabel.setMaxWidth(600);
         titleLabel.setMinWidth(600);
         titleLabel.setWrapText(true);
-        Label shortQTitle = new Label(titleLabel.getText());
+
+        shortQTitle = new Label(titleLabel.getText());
         shortQTitle.setMaxWidth(600);
+
         shortQuestion.setAlignment(Pos.BOTTOM_CENTER);
-        TextField titleField = new TextField();
+        titleField = new TextField();
         titleField.setMinWidth(600);
         chooseType = new ComboBox();
+        chooseType.setId("combobox1");
+
         shortQuestion.setMargin(expand, new Insets(0, 0, 0, 50));
         question.setMargin(shorten, new Insets(0, 0, 0, 5));
         question.setMargin(chooseType, new Insets(0, 0, 15, 0));
+
         titleLabel.setId("headline");
         shorten.setId("icon");
         shorten.setMaxSize(50, 50);
-        CustomToolTip shortenTip = new CustomToolTip("Minimize this question");
+        shortenTip = new CustomToolTip("Minimize this question");
         Tooltip.install(shorten, shortenTip);
+
         expand.setId("icon");
         expand.setMaxSize(50, 50);
-        CustomToolTip expandTip = new CustomToolTip("Expand this question");
+        expandTip = new CustomToolTip("Expand this question");
         Tooltip.install(expand, expandTip);
         chooseType.getItems().addAll("One choice", "Multiple choice", "Order", "Open question");
         chooseType.getSelectionModel().selectFirst();
@@ -77,7 +92,6 @@ public class CQuestion extends HBox {
         question.add(addAnswer, 0, 3);
 
         shortQTitle.setId("headline");
-
         shortQuestion.getChildren().addAll(shortQTitle, expand);
 
         chooseType.setOnAction(e -> {
