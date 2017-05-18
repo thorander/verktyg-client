@@ -58,7 +58,7 @@
 
 }
 #frontPage{
-    -fx-font-size: 1.5pt;
+    -fx-font-size: 1.5em;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 2;

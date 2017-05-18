@@ -1,17 +1,31 @@
 package style.gui.test.take;
 
+import javafx.scene.control.Button;
+import style.gui.test.create.CreateNodes;
+
+import java.util.ArrayList;
+
 public class TTest {
 
     private String title;
     private String description;
-    private int time;
+    private int time, currentQuestion;
+    private Button next, previous;
+
+    private ArrayList<TQuestion> questions;
 
     public TTest(String title, String description, int time){
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
+        setup();
     }
 
+    private void setup(){
+        questions = new ArrayList<>();
+        next = CreateNodes.createButton("Next");
+        previous = CreateNodes.createButton("Previous");
+    }
 
     public String getTitle() {
         return title;
@@ -36,4 +50,8 @@ public class TTest {
     public void setTime(int time) {
         this.time = time;
     }
+
+    public ArrayList<TQuestion> getQuestions(){return questions;}
+
+    public void addQuestion(TQuestion q){questions.add(q);}
 }
