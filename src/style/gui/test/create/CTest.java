@@ -13,13 +13,20 @@ import javafx.scene.paint.Color;
 import style.gui.components.DateTimePicker;
 import style.gui.components.EditableLabel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by Markus on 2017-05-11.
  */
 public class CTest {
 
     private static BorderPane root;
-    private static Button addQuestion,createButton;
+    public static Button addQuestion,createButton;
     private static HBox buttonBox;
     private static VBox qBox;
     private static final int HEIGHT = 500, WIDTH = 800;
@@ -35,9 +42,9 @@ public class CTest {
         VBox testHeader = new VBox();
         EditableLabel testTitle = new EditableLabel("New test");
         testTitle.setId("headline");
-        DateTimePicker openDate = new DateTimePicker();
+        DateTimePicker timePicker = new DateTimePicker();
 
-        testHeader.getChildren().addAll(testTitle, openDate);
+        testHeader.getChildren().addAll(testTitle, timePicker);
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
         root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
@@ -67,7 +74,7 @@ public class CTest {
         });
 
         createButton.setOnAction(e -> {
-            String command = "CREATETEST#" + testTitle.getText();
+            String command = "CREATETEST#" + testTitle.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
                if(q instanceof CQuestion){
