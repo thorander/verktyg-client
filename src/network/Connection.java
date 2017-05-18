@@ -6,6 +6,7 @@ import core.Main;
 import style.gui.GUI;
 import style.gui.FrontPage;
 import style.gui.GUI;
+import style.gui.test.create.StudentGroup;
 import style.gui.test.take.TTest;
 import style.gui.test.take.TTestSelect;
 
@@ -85,6 +86,13 @@ public class Connection extends Thread{
                     TTestSelect.selectFirst();
                 });
                 break;
+            case "CREATEGROUP":
+
+                break;
+            case "ADDUSER":
+
+                break;
+
         }
     }
 
