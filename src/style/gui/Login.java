@@ -31,11 +31,11 @@ public class Login {
     public GridPane setup(){
         grid = new GridPane();
         logIn = CreateNodes.createHeader("Log in");
-        welcome = createLabel("Welcome");
-        userName = createLabel("Username:");
-        password= createLabel("Password:");
-        signUp = createLabel("Register?");
-        user = createText();
+        welcome = CreateNodes.createLabel("Welcome");
+        userName = CreateNodes.createLabel("Username:");
+        password= CreateNodes.createLabel("Password:");
+        signUp = CreateNodes.createLabel("Register?");
+        user = CreateNodes.createText();
         user.setPromptText("Username");
         pass = new PasswordField();
         pass.setId("input");
