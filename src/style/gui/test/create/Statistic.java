@@ -14,16 +14,13 @@ import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-/**
- * Created by Sofia on 2017-05-11.
- */
-public abstract class Statistic extends Application{
-    private static GridPane grid;
-    private static ComboBox test,group;
-    private static Label headline, testName,completedTests, passingTests, averagePoint;
-    private static String inputTest;
-    private  static int completedTestsInt, passingTestsInt, averagePointInt;
-    private static HBox hbox, hboxCombobox;
+public class Statistic{
+    private GridPane grid;
+    private ComboBox test,group;
+    private Label headline, testName,completedTests, passingTests, averagePoint;
+    private String inputTest;
+    private int completedTestsInt, passingTestsInt, averagePointInt;
+    private HBox hbox, hboxCombobox;
 //test
 
     public Statistic (){
@@ -31,7 +28,7 @@ public abstract class Statistic extends Application{
         setup();
     }
 
-    private static void setup(){
+    private void setup(){
         grid= new GridPane();
         grid.setHgap(15);
         grid.setVgap(5);
@@ -87,8 +84,7 @@ public abstract class Statistic extends Application{
 
     }
 
-    public static GridPane getGrid(){
-        setup();
+    public GridPane getGrid(){
         return grid;
     }
 }

@@ -1,5 +1,6 @@
 package style.gui.components;
 
+import core.Main;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -7,9 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import style.gui.GUI;
 
-/**
- * Created by Sofia on 2017-05-09.
- */
 public class NavigationBar {
 
     private static Label role,takeTest,edit, create, statistics,gradeTest, register, login, result, copyTest,createPDF, group, shareTest;
@@ -81,31 +79,12 @@ public class NavigationBar {
         shareTest = createLabel("Share Test");
         role = createLabel("");
 
-        login.setOnMouseClicked(e -> {
-            GUI.loginScreen();
-        });
-
-        register.setOnMouseClicked(e -> {
-            GUI.registerScreen();
-        });
-
-        create.setOnMouseClicked(e -> {
-            GUI.createTestScreen();
-        });
-
-        group.setOnMouseClicked(e->{
-            GUI.groupScreen();
-        });
-
-        statistics.setOnMouseClicked(e->{
-            GUI.stastisticContent();
-        });
-
-        takeTest.setOnMouseClicked(e -> {
-           GUI.takeTest();
-        });
-
-
+        login.setOnMouseClicked(e -> Main.getGUI().loginScreen());
+        register.setOnMouseClicked(e -> Main.getGUI().registerScreen());
+        create.setOnMouseClicked(e -> Main.getGUI().createTestScreen());
+        group.setOnMouseClicked(e-> Main.getGUI().groupScreen());
+        statistics.setOnMouseClicked(e-> Main.getGUI().stastisticContent());
+        takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());
 
     }
 

@@ -19,19 +19,20 @@ import style.gui.components.NavigationBar;
 
 import javax.swing.*;
 
-/**
- * Created by phili on 2017-05-16.
- */
 public class FrontPage {
-    private static GridPane grid;
-    private static Label welcome;
-    private static Label info;
-    private static ImageView icon;
-    private static ImageView hat;
-    private static Label pic;
-    private static Label hatLabel;
+    private GridPane grid;
+    private Label welcome;
+    private Label info;
+    private ImageView icon;
+    private ImageView hat;
+    private Label pic;
+    private Label hatLabel;
 
-    public static GridPane setup() {
+    public FrontPage(){
+        setup();
+    }
+
+    public GridPane setup() {
 
         grid = new GridPane();
         icon = new ImageView("images/back2school.png");
@@ -69,7 +70,7 @@ public class FrontPage {
     }
 
 
-    public static GridPane getRoot() {
+    public GridPane getRoot() {
         return grid;
     }
 }

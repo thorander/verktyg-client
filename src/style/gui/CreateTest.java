@@ -1,6 +1,4 @@
-package style.gui;/**
- * Created by Matilda on 2017-05-09.
- */
+package style.gui;
 
 import network.Connection;
 import javafx.beans.value.ChangeListener;
@@ -14,21 +12,21 @@ import javafx.scene.layout.GridPane;
 
 public class CreateTest {
 
-    private static GridPane root;
-    private static TextField title; // Textfield
-    private static TextField answer1;
-    private static TextField answer2;
-    private static TextField answer3;
-    private static  TextField answer4;
-    private static TextField answer5;
-    private static TextArea description; // Textarea
-    private static TextArea question;
-    private static Button save; // Buttons
-    private static ComboBox answerChoice; // Combobox
-    private static Spinner<Integer> timeCounter; // Spinner
-    private static Label timeLabel; // Label
-    private static Connection connection; // Connection
-    private static DatePicker datePicker; //
+    private GridPane root;
+    private TextField title; // Textfield
+    private TextField answer1;
+    private TextField answer2;
+    private TextField answer3;
+    private TextField answer4;
+    private TextField answer5;
+    private TextArea description; // Textarea
+    private TextArea question;
+    private Button save; // Buttons
+    private ComboBox answerChoice; // Combobox
+    private Spinner<Integer> timeCounter; // Spinner
+    private Label timeLabel; // Label
+    private Connection connection; // Connection
+    private DatePicker datePicker; //
 
 
     public CreateTest(Connection connection){
@@ -37,7 +35,7 @@ public class CreateTest {
     }
 
 
-    public static GridPane Quiz() {
+    public GridPane Quiz() {
 
         root = new GridPane();
         title = new TextField();
@@ -50,7 +48,7 @@ public class CreateTest {
         question = new TextArea();
         save = new Button("Save Quiz");
         answerChoice = new ComboBox();
-        timeCounter = new Spinner<Integer>();
+        timeCounter = new Spinner<>();
         timeLabel = new Label();
 
         root.setVgap(10);
@@ -68,14 +66,14 @@ public class CreateTest {
         //Title field
         title.setPromptText("Title");
         title.setPrefColumnCount(30);
-        root.setConstraints(title, 0, 1);
+        GridPane.setConstraints(title, 0, 1);
         root.getChildren().add(title);
 
         // Description field
         description.setPromptText("Description");
         description.setPrefColumnCount(15);
         //description.setPrefHeight(100);
-        root.setConstraints(description, 0, 2);
+        GridPane.setConstraints(description, 0, 2);
         root.getChildren().add(description);
 
         // Time label

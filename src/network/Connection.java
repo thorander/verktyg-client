@@ -56,34 +56,32 @@ public class Connection extends Thread{
                 Main.loggedInPerson = split[1];
                 Main.loggedInRole = split[2];
                 Main.loggedInId = split[3];
-                GUI.FrontPageScreen();
+                Main.getGUI().FrontPageScreen();
 
 
                 if(split[2].equalsIgnoreCase("admin")){
-                    GUI.loginAdmin();
+                    Main.getGUI().loginAdmin();
                 } else if (split[2].equalsIgnoreCase("teacher")){
-                    GUI.loginTeacher();
+                    Main.getGUI().loginTeacher();
                 } else if (split[2].equalsIgnoreCase("student")){
-                    GUI.loginStudent();
+                    Main.getGUI().loginStudent();
                 }
                 break;
             case "REGSUCCESS":
-                GUI.showPopupMessage("Registration successful", "success");
-                GUI.loginScreen();
+                Main.getGUI().showPopupMessage("Registration successful", "success");
+                Main.getGUI().loginScreen();
                 break;
 
             case "ERROR":
-                Platform.runLater( () -> {
-                    GUI.showPopupMessage(split[1], "error");
-                });
+                Platform.runLater( () -> Main.getGUI().showPopupMessage(split[1], "error"));
                 break;
             case "AVAILABLETESTS":
                 Platform.runLater(() -> {
-                    TTestSelect.clearOptions();
+                    Main.getGUI().getTestSelectScreen().clearOptions();
                     for(int i = 1; i < split.length; i++){
-                        TTestSelect.addOption(split[i]);
+                        Main.getGUI().getTestSelectScreen().addOption(split[i]);
                     }
-                    TTestSelect.selectFirst();
+                    Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
             case "CREATEGROUP":

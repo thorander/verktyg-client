@@ -10,25 +10,30 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import core.Main;
+import style.gui.test.create.CreateNodes;
 
 public class Login {
 
-    private static GridPane grid;
-    private static Label welcome;
-    private static Label userName;
-    private static Label password;
-    private static TextField user;
-    private static PasswordField pass;
-    private static Button login;
-    private static Label signUp;
+    private GridPane grid;
+    private Label welcome;
+    private Label userName;
+    private Label password;
+    private TextField user;
+    private PasswordField pass;
+    private Button login;
+    private Label signUp;
 
-    public static GridPane setup(){
+    public Login(){
+        setup();
+    }
+
+    public GridPane setup(){
         grid = new GridPane();
-        welcome = createLabel("Welcome");
-        userName = createLabel("Username:");
-        password= createLabel("Password:");
-        signUp = createLabel("Register?");
-        user = createText();
+        welcome = CreateNodes.createLabel("Welcome");
+        userName = CreateNodes.createLabel("Username:");
+        password= CreateNodes.createLabel("Password:");
+        signUp = CreateNodes.createLabel("Register?");
+        user = CreateNodes.createText();
         user.setPromptText("Username");
         pass = new PasswordField();
         pass.setId("input");
@@ -37,9 +42,7 @@ public class Login {
         login.setMinWidth(200);
         login.setId("button");
 
-        signUp.setOnMouseClicked(e-> {
-            GUI.registerScreen();
-        });
+        signUp.setOnMouseClicked(e-> Main.getGUI().registerScreen());
         login.setOnAction(e -> {
            String uName = user.getText();
            String uPass = pass.getText();
@@ -62,19 +65,6 @@ public class Login {
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
         return grid;
-    }
-    //Gives the label an id and title
-    private static Label createLabel(String title){
-        Label label = new Label(title);
-        label.setId("label");
-        return label;
-    }
-
-    //Gives the TextField an id and title
-    private static TextField createText(){
-        TextField textField = new TextField();
-        textField.setId("input");
-        return textField;
     }
 
     public GridPane getRoot(){

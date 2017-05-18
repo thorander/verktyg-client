@@ -1,11 +1,12 @@
 package style.gui.test.take;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import style.gui.test.create.CreateNodes;
 
 import java.util.ArrayList;
 
-public class TTest {
+public class TTest extends BorderPane {
 
     private String title;
     private String description;
@@ -25,6 +26,8 @@ public class TTest {
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
+        currentQuestion = 0;
+
     }
 
     public String getTitle() {

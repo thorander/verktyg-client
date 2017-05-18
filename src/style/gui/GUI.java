@@ -26,44 +26,39 @@ import style.gui.test.create.StudentGroup;
 import style.gui.test.take.TTest;
 import style.gui.test.take.TTestSelect;
 
-/**
- * Created by Sofia on 2017-05-10.
- */
-public class GUI extends Application {
+public class GUI {
 
-    private static Stage stage;
+    private Stage stage;
 
-    private static BorderPane borderPaneBase;
-    private static BorderPane borderPane;
-    private static Scene scene;
-    private static HBox header;
-    private static HBox backgroundImage;
-    private static HBox headline;
-    private static Connection c;
-    private static Statistic statistic;
+    private BorderPane borderPaneBase;
+    private BorderPane borderPane;
+    private Scene scene;
+    private HBox header;
+    private HBox backgroundImage;
+    private HBox headline;
+    private Connection c;
+    private Statistic statistic;
 
-    private static StackPane userView;
-    private static GridPane mainContent;
+    private StackPane userView;
+    private GridPane mainContent;
+
+    private FrontPage fp;
+    private Login login;
+    private Register register;
+    private TTestSelect testSelect;
 
 
-    public GUI(String[] args){
-        launch(args);
+    public GUI(Stage primaryStage){
+        stage = primaryStage;
+        createGrid(stage);
     }
 
     public GUI(){
-
-    }
-
-    @Override
-    public void start(Stage primaryStage){
-        primaryStage.setOnCloseRequest(e -> {
-            System.exit(0);
-        });
-        createGrid(primaryStage);
-        stage = primaryStage;
     }
 
     private void createGrid(Stage primaryStage){
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
+
         borderPaneBase = new BorderPane();
         borderPane = new BorderPane();
         userView = new StackPane();
@@ -75,9 +70,17 @@ public class GUI extends Application {
 
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
+        fp = new FrontPage();
+        login = new Login();
+        register = new Register();
+        testSelect = new TTestSelect();
+        statistic = new Statistic();
+
 
 /*        stastisticContent();*/
         loginScreen();
+
+
 
         scene = new Scene(borderPaneBase, 1000,700);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -86,106 +89,85 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    public static void loginScreen() {
-        mainContent = Login.setup();
+    public void loginScreen() {
+        mainContent = login.getRoot();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
     }
-    public static void stastisticContent(){
+    public void stastisticContent(){
         mainContent = statistic.getGrid();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);}
 
 
 
-    public static void registerScreen(){
-        BorderPane p = Register.setUp();
+    public void registerScreen(){
+        BorderPane p = (BorderPane)register.getBorder();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(p, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
     }
-    public static void FrontPageScreen(){
-        mainContent = FrontPage.setup();
-        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
-        Platform.runLater(() -> {setMainContent(mainContent);});
+    public void FrontPageScreen(){
+        mainContent = fp.getRoot();
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        Platform.runLater(() -> setMainContent(mainContent));
     }
-    public static void groupScreen(){
+    public void groupScreen(){
         mainContent = StudentGroup.createGroupGrid();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
     }
 
-    public static void createTestScreen(){
+    public void createTestScreen(){
         Node g = CTest.getCreateTest();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(g, new Insets(0, 0, 100, 0));
         setMainContent(g);
     }
 
-    public static void takeTest(){
-        Node g = TTestSelect.getTestChooser();
+    public void takeTest(){
+        Node g = testSelect.getGraphics();
         mainContent.setAlignment(Pos.CENTER);
-        borderPane.setMargin(g, new Insets(0, 0, 100, 0));
+        BorderPane.setMargin(g, new Insets(0, 0, 100, 0));
         setMainContent(g);
     }
 
-    public static void loginAdmin(){
+    public void loginAdmin(){
         setNavbar(NavigationBar.navAdmin());
     }
-    public static void loginStudent(){
+    public void loginStudent(){
         setNavbar(NavigationBar.navStudent());
     }
-    public static void loginTeacher(){
+    public void loginTeacher(){
         setNavbar(NavigationBar.navTeacher());
     }
 
-    public static void setNavbar(HBox navbar){
+    public void setNavbar(HBox navbar){
         navbar.setPadding(new Insets(5, 5, 5, 5));
-        Platform.runLater(() -> {
-            borderPaneBase.setTop(navbar);
-        });
+        Platform.runLater(() -> borderPaneBase.setTop(navbar));
     }
 
-    public static void setMainContent(Node content){
-        Platform.runLater(() -> {
-            borderPane.setCenter(content);
-        });
+    public void setMainContent(Node content){
+        Platform.runLater(() -> borderPane.setCenter(content));
     }
 
-    public static void showErrorMessage(String message){
-
-    }
-
-    public static void showSuccessMessage(String message){
-
-    }
-
-    public static void showInfoMessage(String message){
-
-    }
-
-    public static Popup createPopup(final String message) {
+    public Popup createPopup(final String message) {
         final Popup popup = new Popup();
         popup.setAutoFix(true);
         popup.setAutoHide(true);
         popup.setHideOnEscape(true);
         Label label = new Label(message);
         label.setVisible(false);
-        label.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                popup.hide();
-            }
-        });
+        label.setOnMouseReleased(e -> popup.hide());
         label.getStyleClass().add("popup");
         popup.getContent().add(label);
         return popup;
     }
 
-    public static void showPopupMessage(final String message, String type) {
+    public void showPopupMessage(final String message, String type) {
         final Popup popup = createPopup(message);
         switch(type){
             case "error":
@@ -205,18 +187,17 @@ public class GUI extends Application {
         popupFade.setToValue(1.0);
         popupFade.setCycleCount(1);
         popupFade.setAutoReverse(true);
-        popup.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent e) {
+        popup.setOnShown(e ->  {
                 popup.setX(stage.getX() + stage.getWidth()/2 - popup.getWidth()/2);
                 popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - 25);
-            }
         });
-        Platform.runLater(() -> {
-            popup.show(stage);
-        });
+        Platform.runLater(() -> popup.show(stage));
         popup.getContent().get(0).setVisible(true);
         popupFade.playFromStart();
+    }
+
+    public TTestSelect getTestSelectScreen(){
+        return testSelect;
     }
 
 }

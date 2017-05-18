@@ -1,6 +1,7 @@
 package style.gui;
 
 import core.Main;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import network.Connection;
 import javafx.geometry.Insets;
@@ -11,47 +12,48 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import style.gui.test.create.CreateNodes;
+
+import java.io.UncheckedIOException;
 
 
 public class Register {
 
-    private static BorderPane border;
-    private static Label registerLabel;
-    private static Label name;
-    private static Label surname;
-    private static Label uName;
-    private static Label uPass;
-    private static TextField firstName;
-    private static TextField lastName;
-    private static TextField userName;
-    private static ComboBox role;
-    private static PasswordField password;
-    private static Button register;
-    private static Connection c;
+    private BorderPane border;
+    private Label registerLabel;
+    private Label name;
+    private Label surname;
+    private Label uName;
+    private Label uPass;
+    private TextField firstName;
+    private TextField lastName;
+    private TextField userName;
+    private ComboBox role;
+    private PasswordField password;
+    private Button register;
 
-    public Register(Connection c){
-        this.c = c;
+    public Register(){
         setUp();
     }
 
-    public static BorderPane setUp() {
+    public BorderPane setUp() {
 
         border = new BorderPane();
 
         // Labels
-        registerLabel = createLabel("Register");
+        registerLabel = CreateNodes.createLabel("Register");
         registerLabel.setId("headline");
-        name = createLabel("Firstname");
-        surname = createLabel("Lastname");
-        uName = createLabel("Username");
-        uPass = createLabel("Password");
+        name = CreateNodes.createLabel("Firstname");
+        surname = CreateNodes.createLabel("Lastname");
+        uName = CreateNodes.createLabel("Username");
+        uPass = CreateNodes.createLabel("Password");
 
         // Textfields
-        firstName = createText();
+        firstName = CreateNodes.createText();
         firstName.setPromptText("Firstname");
-        lastName = createText();
+        lastName = CreateNodes.createText();
         lastName.setPromptText("Lastname");
-        userName = createText();
+        userName = CreateNodes.createText();
         userName.setPromptText("Username");
         password = new PasswordField();
         password.setId("input");
@@ -77,22 +79,18 @@ public class Register {
 
         HBox hbox = new HBox();
         role.setMinWidth(100);
-        hbox.setMargin(role, new Insets(0, 75, 0, 0));
+        HBox.setMargin(role, new Insets(0, 75, 0, 0));
         hbox.getChildren().addAll(role,register);
         hbox.setPadding(new Insets(15,0,15,0));
         register.setAlignment(Pos.BOTTOM_LEFT);
 
-        register.setOnAction(e -> {
-
-                Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue());
-
-        });
+        register.setOnAction(e -> Main.getConnection().write("REGISTER#" + firstName.getText() + "#" + lastName.getText() + "#" + userName.getText() + "#" + password.getText() + "#" + role.getValue()));
 
         // Layout
         VBox labels = new VBox();
         labels.getChildren().addAll(registerLabel, name, firstName, surname, lastName, uName, userName, uPass, password, hbox);
         labels.setPadding(new Insets(15, 15, 15, 15));
-        labels.setMargin(role, new Insets(15, 10, 10, 0));
+        VBox.setMargin(role, new Insets(15, 10, 10, 0));
         register.setAlignment(Pos.CENTER);
 
         border.setCenter(labels);
@@ -106,17 +104,7 @@ public class Register {
         return border;
     }
 
-    private static Label createLabel(String title) {
-        Label label = new Label(title);
-        label.setId("label");
-        label.setPadding(new Insets(10, 5, 2, 5));
-        return label;
-    }
-
-    //Gives the label an id and title
-    private static TextField createText() {
-        TextField textField = new TextField();
-        textField.setId("input");
-        return textField;
+    public Node getBorder(){
+        return border;
     }
 }
