@@ -16,6 +16,7 @@ public class Login {
 
     private GridPane grid;
     private Label welcome;
+    private Label logIn;
     private Label userName;
     private Label password;
     private TextField user;
@@ -29,16 +30,17 @@ public class Login {
 
     public GridPane setup(){
         grid = new GridPane();
-        welcome = CreateNodes.createLabel("Welcome");
-        userName = CreateNodes.createLabel("Username:");
-        password= CreateNodes.createLabel("Password:");
-        signUp = CreateNodes.createLabel("Register?");
-        user = CreateNodes.createText();
+        logIn = CreateNodes.createHeader("Log in");
+        welcome = createLabel("Welcome");
+        userName = createLabel("Username:");
+        password= createLabel("Password:");
+        signUp = createLabel("Register?");
+        user = createText();
         user.setPromptText("Username");
         pass = new PasswordField();
         pass.setId("input");
         pass.setPromptText("Password");
-        login = new Button("Login");
+        login = new Button("Log in");
         login.setMinWidth(200);
         login.setId("button");
 
@@ -52,7 +54,8 @@ public class Login {
 
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(5, 10, 5, 10));
+        grid.setPadding(new Insets(0, 10, 5, 10));
+        grid.add(logIn,0,0);
         grid.add(userName,0,2);
         grid.add(user,0,3);
         grid.add(password,0,4);

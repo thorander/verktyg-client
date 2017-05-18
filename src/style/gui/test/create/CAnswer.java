@@ -14,11 +14,10 @@ public abstract class CAnswer extends HBox {
     private CQuestion question;
 
     public CAnswer(){
-        answer = new TextField();
-        answer.setMinWidth(300);
-        answer.setPromptText("Answer...");
+        answer = CreateNodes.createTextPromt("Answer..");
         this.setAlignment(Pos.TOP_LEFT);
         delete = new RemoveIcon();
+
         delete.setOnMouseClicked(e -> {
             question.removeAnswer(this);
         });

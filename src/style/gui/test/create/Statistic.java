@@ -63,7 +63,7 @@ public class Statistic{
                         new PieChart.Data("G",10),
                         new PieChart.Data("VG",9));
         final PieChart chart = new PieChart(gradeChart);
-        chart.setTitle("Utfall för " + inputTest);
+        chart.setTitle("Results for " + inputTest);
         chart.setPadding(new Insets(0,0,0,20));
 
 

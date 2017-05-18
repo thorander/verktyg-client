@@ -23,7 +23,6 @@ import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
-import style.gui.test.take.TTest;
 import style.gui.test.take.TTestSelect;
 
 public class GUI {
@@ -77,7 +76,7 @@ public class GUI {
         statistic = new Statistic();
 
 
-/*        stastisticContent();*/
+
         loginScreen();
 
 
@@ -94,6 +93,7 @@ public class GUI {
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
+
     }
     public void stastisticContent(){
         mainContent = statistic.getGrid();
