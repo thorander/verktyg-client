@@ -10,6 +10,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import core.Main;
+import style.gui.test.create.CreateNodes;
 
 public class Login {
 
@@ -20,10 +21,11 @@ public class Login {
     private static TextField user;
     private static PasswordField pass;
     private static Button login;
-    private static Label signUp;
+    private static Label signUp, logIn;
 
     public static GridPane setup(){
         grid = new GridPane();
+        logIn = CreateNodes.createHeader("Log in");
         welcome = createLabel("Welcome");
         userName = createLabel("Username:");
         password= createLabel("Password:");
@@ -33,7 +35,7 @@ public class Login {
         pass = new PasswordField();
         pass.setId("input");
         pass.setPromptText("Password");
-        login = new Button("Login");
+        login = new Button("Log in");
         login.setMinWidth(200);
         login.setId("button");
 
@@ -49,7 +51,8 @@ public class Login {
 
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(5, 10, 5, 10));
+        grid.setPadding(new Insets(0, 10, 5, 10));
+        grid.add(logIn,0,0);
         grid.add(userName,0,2);
         grid.add(user,0,3);
         grid.add(password,0,4);

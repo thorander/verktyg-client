@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import style.gui.test.create.CreateNodes;
@@ -21,22 +22,30 @@ public class TTestSelect {
     private static TTest test;
     private static Pane root;
     private static ComboBox<String> tests = new ComboBox<>();
-    private static Button takeTest = new Button("View test");
+    private static Button takeTest;// = new Button("View test");
+    private static HBox hbox;
 
     public static Node getTestChooser(){
         Main.getConnection().write("GETAVAILABLETESTS#");
         root = new Pane();
+        tests.setId("combobox1");
+        tests.setMinSize(150,20);
         root.setId("loginStyle");
-        root.setMaxWidth(300);
+        root.setMaxWidth(315);
         root.setMaxHeight(200);
-        Label chooseTestLabel = CreateNodes.createLabel("Pick your test:");
+        Label chooseTestLabel = CreateNodes.createLabel2("Pick your test:");
+
+        takeTest = CreateNodes.createButton("View test");
+
+        hbox = new HBox(15);
+        hbox.getChildren().addAll(chooseTestLabel, tests);
+        hbox.setPadding(new Insets(50,0,0,15));
         DropShadow drop = new DropShadow(50, Color.GRAY);
         root.setEffect(drop);
-        root.setPadding(new Insets(50, 25, 50, 25));
-        takeTest.relocate(100, 150);
-        chooseTestLabel.relocate(50, 50);
-        tests.relocate(50, 100);
-        root.getChildren().addAll(chooseTestLabel, tests, takeTest);
+        root.setPadding(new Insets(50, 25, 50, 30));
+        takeTest.relocate(60, 120);
+        root.getChildren().addAll(hbox, takeTest);
+
         return root;
     }
 

@@ -40,7 +40,7 @@ public  class StudentGroup {
         grid.setVgap(5);
         grid.setId("loginStyle");
 
-        groupNameLabel = CreateNodes.createLabel("Group name:");
+        groupNameLabel = CreateNodes.createLabel2("Group name:");
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
 

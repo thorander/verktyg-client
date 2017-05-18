@@ -23,7 +23,6 @@ import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
-import style.gui.test.take.TTest;
 import style.gui.test.take.TTestSelect;
 
 /**
@@ -76,7 +75,7 @@ public class GUI extends Application {
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
 
-/*        stastisticContent();*/
+
         loginScreen();
 
         scene = new Scene(borderPaneBase, 1000,700);
@@ -91,6 +90,7 @@ public class GUI extends Application {
         mainContent.setAlignment(Pos.CENTER);
         borderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
+
     }
     public static void stastisticContent(){
         mainContent = statistic.getGrid();

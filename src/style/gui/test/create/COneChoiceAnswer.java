@@ -19,7 +19,7 @@ public class COneChoiceAnswer extends CAnswer {
         super(question);
         correct = new RadioButton();
         correct.setToggleGroup(radioGroup);
-        correct.setPadding(new Insets(0, 0, 0, 5));
+        correct.setPadding(new Insets(5, 0, 0, 5));
 
         CustomToolTip correctTip = new CustomToolTip("Whether this answer is correct or not. \n Checked means it is true.");
         Tooltip.install(correct, correctTip);

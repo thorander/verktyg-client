@@ -23,9 +23,9 @@ public class CQuestion extends HBox {
     private GridPane question;
     private VBox answerList;
     private HBox questionBox, shortQuestion;
-    EditableLabel titleLabel;
+    private EditableLabel titleLabel;
     private Label shorten, expand, shortQTitle, addAnswer;
-    ComboBox chooseType;
+    private ComboBox chooseType;
     private COrderAnswer dragging, target;
     private CustomToolTip shortenTip, addAnswerTip, expandTip;
     private TextField titleField;
@@ -39,6 +39,8 @@ public class CQuestion extends HBox {
 
         addAnswer = new Label("+");
         shorten = new Label("-");
+        shorten.setStyle("-fx-font-size: 2em");
+        shorten.setId("shortenHover");
         expand = new Label("+");
         addAnswer.setId("icon");
 
@@ -50,7 +52,7 @@ public class CQuestion extends HBox {
         titleLabel.setStyle("-fx-font-size: 1.4em");
 
         remove = new RemoveIcon();
-        remove.setMaxSize(0.3,0.3);
+
         question.setMargin(remove, new Insets(0, 5, 0, 5));
         titleLabel.setMaxWidth(600);
         titleLabel.setMinWidth(600);
@@ -70,8 +72,6 @@ public class CQuestion extends HBox {
         question.setMargin(chooseType, new Insets(0, 0, 15, 0));
 
         titleLabel.setId("headline");
-        shorten.setId("icon");
-        shorten.setMaxSize(50, 50);
         shortenTip = new CustomToolTip("Minimize this question");
         Tooltip.install(shorten, shortenTip);
 
