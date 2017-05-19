@@ -34,7 +34,7 @@ public class Login {
         welcome = CreateNodes.createLabel("Welcome");
         userName = CreateNodes.createLabel("Username:");
         password= CreateNodes.createLabel("Password:");
-        signUp = CreateNodes.createLabel("Register?");
+        signUp = CreateNodes.createLabel("Register");
         user = CreateNodes.createText();
         user.setPromptText("Username");
         pass = new PasswordField();
@@ -51,6 +51,9 @@ public class Login {
            Main.getConnection().write("LOGIN#" + uName + "#" + uPass);
 
         });
+
+        user.setText("mackan");
+        pass.setText("1234");
 
         grid.setHgap(10);
         grid.setVgap(10);

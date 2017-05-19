@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import style.gui.test.create.CreateNodes;
 
 public class EditableLabel extends VBox {
 
@@ -21,7 +22,7 @@ public class EditableLabel extends VBox {
         label = new Label();
         labelTip = new CustomToolTip("Click this label to edit its contents");
         Tooltip.install(label, labelTip);
-        textField = new TextField();
+        textField = CreateNodes.createText();
         string = "";
         setup();
     }

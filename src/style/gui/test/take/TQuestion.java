@@ -31,10 +31,13 @@ public class TQuestion extends HBox {
     public void setupGraphics(){
         box.setMaxWidth(500);
         box.setMaxHeight(500);
+        box.setStyle("-fx-border-width: 2px;");
 
         box.setPadding(new Insets(10, 10, 10, 10));
         box.setTop(question);
         box.setCenter(answers);
+
+        getChildren().add(box);
     }
 
     public void addAnswer(TAnswer answer){
@@ -61,4 +64,6 @@ public class TQuestion extends HBox {
     public ToggleGroup getGroup(){
         return group;
     }
+
+    public String getTitle() {return question.getText();}
 }
