@@ -72,7 +72,6 @@ public class GUI {
         fp = new FrontPage();
         login = new Login();
         register = new Register();
-        testSelect = new TTestSelect();
         statistic = new Statistic();
 
 
@@ -129,6 +128,7 @@ public class GUI {
     }
 
     public void takeTest(){
+        testSelect = new TTestSelect();
         Node g = testSelect.getGraphics();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(g, new Insets(0, 0, 100, 0));
