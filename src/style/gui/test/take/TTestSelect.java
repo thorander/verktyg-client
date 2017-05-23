@@ -49,6 +49,8 @@ public class TTestSelect {
 
         takeTest = CreateNodes.createButton("View test");
 
+        takeTest.setOnAction(e -> {Main.getConnection().write("FETCHTESTBYID#" + getId(tests.getSelectionModel().getSelectedIndex()));});
+
         hbox = new HBox(15);
         hbox.getChildren().addAll(chooseTestLabel, tests);
         hbox.setPadding(new Insets(50,0,0,15));

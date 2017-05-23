@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-public abstract class TAnswer extends HBox {
+public class TAnswer extends HBox {
 
     protected Label title;
     protected int id;

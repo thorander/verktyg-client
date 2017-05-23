@@ -18,8 +18,9 @@ public class TQuestion extends HBox {
     private Label question;
     private String type;
     private ToggleGroup group;
+    private int id;
 
-    public TQuestion(String question, String type){
+    public TQuestion(String question, String type, int id){
         answers = new TAnswerBox();
         this.question = CreateNodes.createHeader(question);
         this.type = type;
@@ -66,4 +67,12 @@ public class TQuestion extends HBox {
     }
 
     public String getTitle() {return question.getText();}
+
+    public void setQId(int id){
+        this.id = id;
+    }
+
+    public int getQId(){
+        return id;
+    }
 }

@@ -66,23 +66,23 @@ public class CreateNodes {
     }
 
     public static TTest getTestTest(){
-        TTest test = new TTest("Testtest", "A test where we test the testing", 0);
+        TTest test = new TTest("Testtest", "A test where we test the testing", 0, 5);
 
-        TQuestion multipleChoiceQuestion = new TQuestion("Hur många barn får jag när jag blir stor?", "Multiple choice");
+        TQuestion multipleChoiceQuestion = new TQuestion("Hur många barn får jag när jag blir stor?", "Multiple choice", 1);
         multipleChoiceQuestion.addAnswer(new TMultipleChoiceAnswer("Två", 2, true));
         multipleChoiceQuestion.addAnswer(new TMultipleChoiceAnswer("Tre", 3, false));
 
-        TQuestion oneChoiceQuestion = new TQuestion("Seven of...", "One choice");
+        TQuestion oneChoiceQuestion = new TQuestion("Seven of...", "One choice", 2);
         oneChoiceQuestion.addAnswer(new TOneChoiceAnswer("Five", 4, false, oneChoiceQuestion.getGroup()));
         oneChoiceQuestion.addAnswer(new TOneChoiceAnswer("Two", 5, false, oneChoiceQuestion.getGroup()));
         oneChoiceQuestion.addAnswer(new TOneChoiceAnswer("Nine", 6, true, oneChoiceQuestion.getGroup()));
 
-        TQuestion orderQuestion = new TQuestion("Rangordna efter ålder (äldst högst upp): ", "Order");
+        TQuestion orderQuestion = new TQuestion("Rangordna efter ålder (äldst högst upp): ", "Order", 3);
         orderQuestion.addAnswer(new TOrderAnswer("Rasmus", 7));
         orderQuestion.addAnswer(new TOrderAnswer("Sofia", 7));
         orderQuestion.addAnswer(new TOrderAnswer("Markus", 7));
 
-        TQuestion openQuestion = new TQuestion("Skriv en dikt: ", "Open");
+        TQuestion openQuestion = new TQuestion("Skriv en dikt: ", "Open",4);
         openQuestion.addAnswer(new TOpenAnswer("Vad ska stå här?", 1));
 
         test.addQuestion(multipleChoiceQuestion);

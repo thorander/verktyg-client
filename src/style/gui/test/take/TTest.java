@@ -16,12 +16,13 @@ public class TTest extends BorderPane {
 
     private Label title;
     private String description;
+    private int id;
     private int time, currentQuestion;
     private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
 
-    public TTest(String title, String description, int time){
+    public TTest(String title, String description, int time, int id){
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);

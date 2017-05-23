@@ -23,6 +23,8 @@ public class Connection extends Thread{
     private String ipadress;
     private int port;
 
+    private TTest takeTest;
+
     public Connection(String ipadress, int port){
         this.ipadress = ipadress;
         this.port = port;
@@ -89,6 +91,12 @@ public class Connection extends Thread{
 
                 break;
             case "ADDUSER":
+
+                break;
+            case "TAKETEST":
+                takeTest = new TTest(split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                break;
+            case "ADDTQUESTION":
 
                 break;
 
