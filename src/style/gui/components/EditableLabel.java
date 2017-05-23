@@ -39,7 +39,6 @@ public class EditableLabel extends VBox {
         label.setOnMouseClicked(e -> {
             getChildren().remove(label);
             getChildren().add(textField);
-            textField.clear();
             textField.requestFocus();
         });
 

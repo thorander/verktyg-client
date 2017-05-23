@@ -26,6 +26,11 @@ public class CreateNodes {
         label.setId("labelType2");
         return label;
     }
+    public static Label createLabelTest(String title){
+        Label label = new Label(title);
+        label.setId("labelTest");
+        return label;
+    }
     //Gives the TextField an id and title
    public static TextField createText() {
        TextField textField = new TextField();

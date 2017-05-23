@@ -39,15 +39,19 @@ public class CTest {
         createButton.setId("button");
         addQuestion.setId("button");
 
-        VBox testHeader = new VBox();
+        HBox testHeader = new HBox();
         EditableLabel testTitle = new EditableLabel("New test");
         testTitle.setId("headline");
         EditableLabel testDescription = new EditableLabel("Description");
-        testDescription.setId("descline");
+        testDescription.setWrapText(true);
+        testDescription.setId("description");
         DateTimePicker timePicker = new DateTimePicker();
-
-        testHeader.getChildren().addAll(testTitle, testDescription, timePicker);
-        testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
+        VBox titleBox = new VBox(testTitle, testDescription);
+        Region spacingRegion = new Region();
+        HBox.setHgrow(spacingRegion, Priority.ALWAYS);
+        titleBox.setMaxWidth(300);
+        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker);
+        testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 5px;");
         root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
         buttonBox = new HBox();

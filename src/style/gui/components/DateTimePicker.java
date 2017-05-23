@@ -1,11 +1,20 @@
 package style.gui.components;
 
 import core.Main;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import style.gui.test.create.CTest;
+import style.gui.test.create.CreateNodes;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +22,7 @@ import java.util.Date;
 /**
  * Created by Matilda on 2017-05-16.
  */
-public class DateTimePicker extends VBox {
+public class DateTimePicker extends HBox {
 
     private DatePicker openDate;
     private DatePicker closeDate;
@@ -21,8 +30,11 @@ public class DateTimePicker extends VBox {
     private String close;
     private String currentDate;
     private Slider slider;
-    private Label label;
+    private Label label, openLabel, closeLabel;
     private String time;
+    private VBox dateBox;
+    private VBox timeBox;
+    private CustomToolTip sliderTip;
 
 
     public DateTimePicker() {
@@ -32,8 +44,18 @@ public class DateTimePicker extends VBox {
         open = "";
         close = "";
         currentDate = null;
-        slider = new Slider(1, 120, 5);
-        label  = new Label("Minuter");
+        slider = new Slider(0, 300, 0);
+        slider.setOrientation(Orientation.VERTICAL);
+
+        sliderTip = new CustomToolTip("Set a time limit for this test in minutes.\n0 means no time limit.");
+        CustomToolTip.install(slider, sliderTip);
+
+        dateBox = new VBox();
+        timeBox = new VBox();
+
+        label  = CreateNodes.createLabelTest("Time");
+        openLabel = CreateNodes.createLabelTest("Opening date");
+        closeLabel = CreateNodes.createLabelTest("Close date");
         time = "";
         Date();
         Time();
@@ -41,10 +63,15 @@ public class DateTimePicker extends VBox {
 
     private void Date() {
         openDate.setMaxWidth(130);
-        openDate.setPromptText("Startdatum");
+        openDate.setPromptText("Start date");
         closeDate.setMaxWidth(130);
-        closeDate.setPromptText("Slutdatum");
-        getChildren().addAll(openDate, closeDate);
+        closeDate.setPromptText("End date");
+        Region space = new Region();
+        VBox.setVgrow(space, Priority.ALWAYS);
+        dateBox.getChildren().addAll(openLabel,openDate, space, closeLabel, closeDate);
+        VBox.setMargin(closeDate, new Insets(0, 0, 10, 0));
+        VBox.setMargin(closeLabel, new Insets(5, 0, 5, 0));
+        VBox.setMargin(openLabel, new Insets(0, 0, 5, 0));
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
@@ -76,14 +103,14 @@ public class DateTimePicker extends VBox {
 
     private void Time() {
 
-        slider.setMaxWidth(150);
         slider.valueProperty().addListener(
                 (observable, oldvalue, newvalue) ->
                 {
-                    int i = newvalue.intValue();
+                    int i = 15*(Math.round(Float.parseFloat(newvalue + "")/15));
                     label.setText(Integer.toString(i)); //Kan använda textfield om man vill
                     setTime(i);
                 } );
+
 
         /*Annan metod som också fungerar
         slider.setMaxWidth(130);
@@ -94,8 +121,13 @@ public class DateTimePicker extends VBox {
                         slider.valueProperty()
                 )
         );*/
-
-        getChildren().addAll(label, slider);
+        timeBox.setMinWidth(100);
+        timeBox.setAlignment(Pos.CENTER);
+        timeBox.getChildren().addAll(label, slider);
+        HBox.setMargin(slider, new Insets(0, 0, 5, 0));
+        HBox.setMargin(dateBox, new Insets(0, 10, 0, 0));
+        getChildren().addAll(dateBox, timeBox);
+        HBox.setMargin(timeBox, new Insets(0, 0, 0, 5));
 
     }
 
