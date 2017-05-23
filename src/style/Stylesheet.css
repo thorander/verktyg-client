@@ -35,6 +35,12 @@
     -fx-padding: 5px;
 }
 
+#descline {
+    -fx-font-size: 1.7em;
+    -fx-text-fill: darkorange;
+    -fx-padding: 5px;
+}
+
 #scrollpane {
     -fx-background-color: transparent;
     -fx-focus-color: transparent;

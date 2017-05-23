@@ -1,14 +1,13 @@
 package style.gui.components;
 
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import style.gui.test.create.CTest;
-
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by Matilda on 2017-05-16.
@@ -17,25 +16,33 @@ public class DateTimePicker extends VBox {
 
     private DatePicker openDate;
     private DatePicker closeDate;
-    //private Spinner<Integer> spinner = new Spinner<Integer>();
-    private String open = "";
-    private String close = "";
-    private String time = "";
-    private String currentDate = null;
+    private String open;
+    private String close;
+    private String currentDate;
+    private Slider slider;
+    private Label label;
+    private String time;
 
 
     public DateTimePicker() {
         super();
         openDate = new DatePicker();
         closeDate = new DatePicker();
-        Do();
+        open = "";
+        close = "";
+        currentDate = null;
+        slider = new Slider(1, 120, 5);
+        label  = new Label("Minuter");
+        time = "";
+        Date();
+        Time();
     }
 
-    private void Do() {
+    private void Date() {
         openDate.setMaxWidth(130);
+        openDate.setPromptText("Startdatum");
         closeDate.setMaxWidth(130);
-        //spinner.setMaxWidth(80);
-       // spinner.setEditable(true);
+        closeDate.setPromptText("Slutdatum");
         getChildren().addAll(openDate, closeDate);
 
         Calendar cal = Calendar.getInstance();
@@ -64,14 +71,31 @@ public class DateTimePicker extends VBox {
                 CTest.createButton.setDisable(true);
         });
 
-        /*
-        SpinnerValueFactory<Integer> valueFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 120);
-        spinner.setValueFactory(valueFactory);
+    }
 
-        spinner.valueProperty().addListener((obs, oldValue, newValue) ->
-                time = newValue +"");
-                */
+    private void Time() {
+
+        slider.setMaxWidth(150);
+        slider.valueProperty().addListener(
+                (observable, oldvalue, newvalue) ->
+                {
+                    int i = newvalue.intValue();
+                    label.setText(Integer.toString(i)); //Kan använda textfield om man vill
+                    setTime(i);
+                } );
+
+        /*Annan metod som också fungerar
+        slider.setMaxWidth(130);
+
+        label.textProperty().bind(
+                Bindings.format(
+                        "%.2f",
+                        slider.valueProperty()
+                )
+        );*/
+
+        getChildren().addAll(label, slider);
+
     }
 
     public void setOpenDate(String date) {
@@ -90,6 +114,15 @@ public class DateTimePicker extends VBox {
 
     public String getCloseDate() {
         return close;
+    }
+
+    public void setTime(Integer timeValue) {
+        time = timeValue.toString();
+        //System.out.println(time);
+    }
+
+    public String getTime() {
+        return time;
     }
 
 }
