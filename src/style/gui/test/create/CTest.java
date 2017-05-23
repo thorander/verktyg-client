@@ -74,7 +74,7 @@ public class CTest {
         });
 
         createButton.setOnAction(e -> {
-            String command = "CREATETEST#" + testTitle.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate();
+            String command = "CREATETEST#" + testTitle.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate() + "#" + timePicker.getTime();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
                if(q instanceof CQuestion){
