@@ -110,17 +110,17 @@ public class CQuestion extends HBox {
             CAnswer answer;
             switch((String)chooseType.getValue()){
                 case "One choice":
-                    answer = new COneChoiceAnswer(this);
+                    answer = new COneChoiceAnswer(this, answerList.getChildren().size() + 1);
                     answerList.getChildren().add(answer);
                     answerList.setMargin(answer, new Insets(0, 0, 5, 0));
                     break;
                 case "Multiple choice":
-                    answer = new CMultipleChoiceAnswer(this);
+                    answer = new CMultipleChoiceAnswer(this, answerList.getChildren().size() + 1);
                     answerList.getChildren().add(answer);
                     answerList.setMargin(answer, new Insets(0, 0, 5, 0));
                     break;
                 case "Order":
-                    answer = new COrderAnswer(this);
+                    answer = new COrderAnswer(this, answerList.getChildren().size() + 1);
                     setDraggable((COrderAnswer)answer);
                     answerList.getChildren().add(answer);
                     answerList.setMargin(answer, new Insets(0, 0, 5, 0));

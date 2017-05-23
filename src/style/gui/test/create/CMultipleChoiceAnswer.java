@@ -12,8 +12,8 @@ public class CMultipleChoiceAnswer extends CAnswer {
 
     private CheckBox correct;
 
-    public CMultipleChoiceAnswer(CQuestion question){
-        super(question);
+    public CMultipleChoiceAnswer(CQuestion question, int order){
+        super(question, order);
         correct = new CheckBox();
         correct.setPadding(new Insets(0, 0, 0, 5));
 
@@ -24,6 +24,6 @@ public class CMultipleChoiceAnswer extends CAnswer {
     }
     @Override
     public String toString() {
-        return "#ANSWER#" + answer.getText() + "#" + correct.isSelected();
+        return "#ANSWER#" + answer.getText() + "#" + correct.isSelected() + "#" + order;
     }
 }

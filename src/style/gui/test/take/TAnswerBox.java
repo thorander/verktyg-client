@@ -9,6 +9,7 @@ public class TAnswerBox extends VBox {
     private TOrderAnswer target;
 
     public TAnswerBox(){
+
     }
 
     private void setDraggable(TOrderAnswer answer){
@@ -26,8 +27,12 @@ public class TAnswerBox extends VBox {
                 int targetId = getChildren().indexOf(target);
                 String targetText = ((TAnswer)getChildren().get(targetId)).getText();
                 String draggedText = ((TAnswer)getChildren().get(answerId)).getText();
+                int targetSwitchId = ((TAnswer)getChildren().get(targetId)).getAnswerId();
+                int draggedSwitchId = ((TAnswer)getChildren().get(answerId)).getAnswerId();
                 ((TAnswer)getChildren().get(answerId)).setText(targetText);
                 ((TAnswer)getChildren().get(targetId)).setText(draggedText);
+                ((TAnswer)getChildren().get(answerId)).setAnswerId(targetSwitchId);
+                ((TAnswer)getChildren().get(targetId)).setAnswerId(draggedSwitchId);
             }
         });
     }

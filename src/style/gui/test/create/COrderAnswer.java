@@ -11,8 +11,8 @@ public class COrderAnswer extends CAnswer {
 
     private Label moveLabel;
 
-    public COrderAnswer(CQuestion question){
-        super(question);
+    public COrderAnswer(CQuestion question, int order){
+        super(question, order);
         moveLabel = new Label("≡");
         moveLabel.setId("icon");
         moveLabel.setStyle("-fx-font-size: 20px;");
@@ -25,7 +25,7 @@ public class COrderAnswer extends CAnswer {
 
     @Override
     public String toString() {
-        return "#ANSWER#" + answer.getText() + "#true";
+        return "#ANSWER#" + answer.getText() + "#true" + "#" + order;
     }
 
     public Label getMoveLabel(){

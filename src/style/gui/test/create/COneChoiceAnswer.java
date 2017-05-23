@@ -15,8 +15,8 @@ public class COneChoiceAnswer extends CAnswer {
     private static ToggleGroup radioGroup = new ToggleGroup();
     private RadioButton correct;
 
-    public COneChoiceAnswer(CQuestion question){
-        super(question);
+    public COneChoiceAnswer(CQuestion question, int order){
+        super(question, order);
         correct = new RadioButton();
         correct.setToggleGroup(radioGroup);
         correct.setPadding(new Insets(5, 0, 0, 5));
@@ -28,6 +28,6 @@ public class COneChoiceAnswer extends CAnswer {
 
     @Override
     public String toString() {
-        return "#ANSWER#" + answer.getText() + "#" + correct.isSelected();
+        return "#ANSWER#" + answer.getText() + "#" + correct.isSelected() + "#" + order;
     }
 }

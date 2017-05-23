@@ -103,6 +103,7 @@ public class Connection extends Thread{
                 for(int i = 5; i < split.length; i++){
                     TAnswer tAnswer = new TAnswer(split[i++], Integer.parseInt(split[i++]), false);
                     i++;
+                    i++;
                     tQuestion.addAnswer(tAnswer);
                 }
                 takeTest.addQuestion(tQuestion);

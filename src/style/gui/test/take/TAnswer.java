@@ -9,6 +9,7 @@ public class TAnswer extends HBox {
     protected Label title;
     protected int id;
     protected boolean bCorrect;
+    protected int answerOrder;
 
     public TAnswer(){
         title = new Label("");
@@ -44,5 +45,13 @@ public class TAnswer extends HBox {
 
     public boolean isbCorrect() {
         return bCorrect;
+    }
+
+    public int getAnswerOrder(){
+        return answerOrder;
+    }
+
+    public void setAnswerId(int id){
+        this.id = id;
     }
 }

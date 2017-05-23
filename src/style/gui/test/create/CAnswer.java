@@ -10,6 +10,7 @@ public abstract class CAnswer extends HBox {
 
     protected TextField answer;
     protected RemoveIcon delete;
+    protected int order;
 
     private CQuestion question;
 
@@ -26,6 +27,11 @@ public abstract class CAnswer extends HBox {
     public CAnswer(CQuestion question){
         this();
         this.question = question;
+    }
+
+    public CAnswer(CQuestion question, int order){
+        this(question);
+        this.order = order;
     }
 
     public abstract String toString();
