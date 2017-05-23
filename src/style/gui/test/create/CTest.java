@@ -42,9 +42,11 @@ public class CTest {
         VBox testHeader = new VBox();
         EditableLabel testTitle = new EditableLabel("New test");
         testTitle.setId("headline");
+        EditableLabel testDescription = new EditableLabel("Description");
+        testDescription.setId("descline");
         DateTimePicker timePicker = new DateTimePicker();
 
-        testHeader.getChildren().addAll(testTitle, timePicker);
+        testHeader.getChildren().addAll(testTitle, testDescription, timePicker);
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px");
         root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
@@ -74,7 +76,7 @@ public class CTest {
         });
 
         createButton.setOnAction(e -> {
-            String command = "CREATETEST#" + testTitle.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate() + "#" + timePicker.getTime();
+            String command = "CREATETEST#" + testTitle.getText() + "#" + testDescription.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate() + "#" + timePicker.getTime();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
                if(q instanceof CQuestion){
