@@ -1,5 +1,6 @@
 package style.gui.components;
 
+import core.Main;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -55,20 +56,20 @@ public class DateTimePicker extends VBox {
             String myDate = openDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
-                CTest.createButton.setDisable(false);
+                Main.getGUI().getCreateTest().createButton.setDisable(false);
                 setOpenDate(myDate);
             } else if (currentDate.compareTo(myDate)>-1)
-            CTest.createButton.setDisable(true);
+                Main.getGUI().getCreateTest().createButton.setDisable(true);
         });
 
         closeDate.setOnAction(event -> {
             String myDate = closeDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
-                CTest.createButton.setDisable(false);
+                Main.getGUI().getCreateTest().createButton.setDisable(false);
                 setCloseDate(myDate);
             } else if (currentDate.compareTo(myDate)>-1)
-                CTest.createButton.setDisable(true);
+                Main.getGUI().getCreateTest().createButton.setDisable(true);
         });
 
     }

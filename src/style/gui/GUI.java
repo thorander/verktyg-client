@@ -24,6 +24,7 @@ import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
 import style.gui.test.take.ShareTest;
+import style.gui.test.take.ShareTest;
 import style.gui.test.take.TTestSelect;
 
 public class GUI {
@@ -46,6 +47,7 @@ public class GUI {
     private Login login;
     private Register register;
     private TTestSelect testSelect;
+    private CTest createTest;
     private ShareTest shareTest;
 
 
@@ -75,6 +77,7 @@ public class GUI {
         login = new Login();
         register = new Register();
         statistic = new Statistic();
+        createTest = new CTest();
         shareTest = new ShareTest();
 
 
@@ -130,7 +133,7 @@ public class GUI {
     }
 
     public void createTestScreen(){
-        Node g = CTest.getCreateTest();
+        Node g = createTest.getCreateTest();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(g, new Insets(0, 0, 100, 0));
         setMainContent(g);
@@ -208,5 +211,7 @@ public class GUI {
     public TTestSelect getTestSelectScreen(){
         return testSelect;
     }
+
+    public CTest getCreateTest() {return createTest;}
 
 }

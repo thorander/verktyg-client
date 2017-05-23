@@ -1,5 +1,6 @@
 package style.gui.test.create;
 
+import core.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -138,7 +139,7 @@ public class CQuestion extends HBox {
         });
 
         remove.setOnMouseClicked(e->{
-            CTest.removeQuestion(this);
+            Main.getGUI().getCreateTest().removeQuestion(this);
         });
         questionBox.getChildren().add(question);
         this.getChildren().add(questionBox);

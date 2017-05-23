@@ -14,11 +14,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import style.gui.test.create.CreateNodes;
 
+import java.util.ArrayList;
+
 public class TTestSelect {
 
     private TTest test;
     private Pane root;
     private ComboBox<String> tests = new ComboBox<>();
+    private ArrayList<Integer> testIds = new ArrayList<>();
     private Button takeTest = new Button("View test");
     private HBox hbox;
 
@@ -36,7 +39,13 @@ public class TTestSelect {
         root.setMaxHeight(200);
         Label chooseTestLabel = CreateNodes.createLabel2("Pick your test:");
 
-        chooseTestLabel.setOnMouseClicked(e -> Main.getGUI().setMainContent(CreateNodes.getTestTest()));
+        chooseTestLabel.setOnMouseClicked(e -> {
+            Main.getGUI().setMainContent(CreateNodes.getTestTest());
+        });
+
+        tests.setOnAction(e -> {
+            System.out.println(getId(tests.getSelectionModel().getSelectedIndex()));
+        });
 
         takeTest = CreateNodes.createButton("View test");
 
@@ -53,6 +62,14 @@ public class TTestSelect {
 
     public void addOption(String test){
         tests.getItems().add(test);
+    }
+
+    public void addId(String id){
+        testIds.add(Integer.parseInt(id));
+    }
+
+    public Integer getId(int index){
+        return testIds.get(index);
     }
 
     public void clearOptions(){

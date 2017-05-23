@@ -79,7 +79,8 @@ public class Connection extends Thread{
                 Platform.runLater(() -> {
                     Main.getGUI().getTestSelectScreen().clearOptions();
                     for(int i = 1; i < split.length; i++){
-                        Main.getGUI().getTestSelectScreen().addOption(split[i]);
+                        Main.getGUI().getTestSelectScreen().addOption(split[i++]);
+                        Main.getGUI().getTestSelectScreen().addId(split[i]);
                     }
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });

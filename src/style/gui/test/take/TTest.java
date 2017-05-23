@@ -17,7 +17,7 @@ public class TTest extends BorderPane {
     private Label title;
     private String description;
     private int time, currentQuestion;
-    private Button next, previous;
+    private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
 
@@ -32,10 +32,14 @@ public class TTest extends BorderPane {
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
+        start = CreateNodes.createButton("Start");
+        turnIn = CreateNodes.createButton("Turn in");
         currentQuestion = -1;
-        setBottom(new HBox(previous, next));
+        setBottom(new HBox(start));
         next.setOnAction(e -> nextQuestion());
         previous.setOnAction(e -> previousQuestion());
+        start.setOnAction(e -> start());
+        turnIn.setOnAction(e -> turnIn());
         setCenter(title);
         HBox.setMargin(next, new Insets(0, 0, 0, 40));
         setMaxWidth(600);
@@ -92,5 +96,14 @@ public class TTest extends BorderPane {
             currentQuestion--;
             setCenter(title);
         }
+    }
+
+    public void start(){
+        setBottom(new HBox(previous, next, turnIn));
+        nextQuestion();
+    }
+
+    public void turnIn(){
+        System.out.println("Here will be the code for turning in a test");
     }
 }

@@ -25,13 +25,13 @@ import java.util.Locale;
  */
 public class CTest {
 
-    private static BorderPane root;
-    public static Button addQuestion,createButton;
-    private static HBox buttonBox;
-    private static VBox qBox;
-    private static final int HEIGHT = 500, WIDTH = 800;
+    private BorderPane root;
+    public Button addQuestion,createButton;
+    private HBox buttonBox;
+    private VBox qBox;
+    private final int HEIGHT = 500, WIDTH = 800;
 
-    public static BorderPane getCreateTest(){
+    public BorderPane getCreateTest(){
         root = new BorderPane();
         root.setId("loginStyle");
         addQuestion = new Button("Add question");
@@ -88,7 +88,7 @@ public class CTest {
         return root;
     }
 
-    public static void removeQuestion(Node n){
+    public void removeQuestion(Node n){
         qBox.getChildren().remove(n);
     }
 
