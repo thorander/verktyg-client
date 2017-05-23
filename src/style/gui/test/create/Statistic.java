@@ -29,18 +29,14 @@ public class Statistic{
     }
 
     private void setup(){
-        grid= new GridPane();
+        grid = CreateNodes.createGrid();
         grid.setHgap(15);
         grid.setVgap(5);
 
-        test = new ComboBox();
-        test.setPromptText("Select test");
-        test.setId("combobox");
+        test = CreateNodes.createComboBox("Select tet");
         test.setPrefWidth(300);
 
-        group = new ComboBox();
-        group.setPromptText("Select group");
-        group.setId("combobox");
+        group = CreateNodes.createComboBox("Select group");
         group.setPrefWidth(300);
 
         hboxCombobox = new HBox(15);
@@ -76,9 +72,7 @@ public class Statistic{
         GridPane.setColumnSpan(hbox,4);
         grid.setAlignment(Pos.CENTER);
 
-        grid.setId("loginStyle");
-        DropShadow drop = new DropShadow(50, Color.GRAY);
-        grid.setEffect(drop);
+
         grid.setMaxWidth(700);
         grid.setMaxHeight(700);
 

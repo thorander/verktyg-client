@@ -85,6 +85,7 @@ public class NavigationBar {
         group.setOnMouseClicked(e-> Main.getGUI().groupScreen());
         statistics.setOnMouseClicked(e-> Main.getGUI().stastisticContent());
         takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());
+        shareTest.setOnMouseClicked(e -> Main.getGUI().shareTestContent());
 
     }
 

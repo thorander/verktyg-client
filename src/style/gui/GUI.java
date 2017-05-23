@@ -23,6 +23,7 @@ import style.gui.components.NavigationBar;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
+import style.gui.test.take.ShareTest;
 import style.gui.test.take.TTestSelect;
 
 public class GUI {
@@ -45,6 +46,7 @@ public class GUI {
     private Login login;
     private Register register;
     private TTestSelect testSelect;
+    private ShareTest shareTest;
 
 
     public GUI(Stage primaryStage){
@@ -73,6 +75,7 @@ public class GUI {
         login = new Login();
         register = new Register();
         statistic = new Statistic();
+        shareTest = new ShareTest();
 
 
 
@@ -96,6 +99,12 @@ public class GUI {
     }
     public void stastisticContent(){
         mainContent = statistic.getGrid();
+        mainContent.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);}
+
+    public void shareTestContent(){
+        mainContent = shareTest.getShareTest();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);}

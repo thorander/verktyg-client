@@ -1,8 +1,12 @@
 package style.gui.test.create;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import style.gui.test.take.*;
 
 /**
@@ -45,6 +49,20 @@ public class CreateNodes {
         Label label = new Label(title);
         label.setId("headline");
         return label;
+    }
+    public static ComboBox createComboBox(String title){
+        ComboBox cb = new ComboBox();
+        cb.setPromptText(title);
+        cb.setId("combobox");
+        return cb;
+    }
+    public static GridPane createGrid(){
+        GridPane grid= new GridPane();
+        grid.setId("loginStyle");
+        DropShadow drop = new DropShadow(50, Color.GRAY);
+        grid.setEffect(drop);
+        return grid;
+
     }
 
     public static TTest getTestTest(){
