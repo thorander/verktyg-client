@@ -7,6 +7,8 @@ import style.gui.GUI;
 import style.gui.FrontPage;
 import style.gui.GUI;
 import style.gui.test.create.StudentGroup;
+import style.gui.test.take.TAnswer;
+import style.gui.test.take.TQuestion;
 import style.gui.test.take.TTest;
 import style.gui.test.take.TTestSelect;
 
@@ -97,7 +99,16 @@ public class Connection extends Thread{
                 takeTest = new TTest(split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
                 break;
             case "ADDTQUESTION":
-
+                TQuestion tQuestion = new TQuestion(split[1], split[2], Integer.parseInt(split[3]));
+                for(int i = 5; i < split.length; i++){
+                    TAnswer tAnswer = new TAnswer(split[i++], Integer.parseInt(split[i++]), false);
+                    i++;
+                    tQuestion.addAnswer(tAnswer);
+                }
+                takeTest.addQuestion(tQuestion);
+                break;
+            case "SHOWTEST":
+                Main.getGUI().setMainContent(takeTest);
                 break;
 
         }

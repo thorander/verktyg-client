@@ -55,7 +55,7 @@ public class TQuestion extends HBox {
                 TOrderAnswer oanswer = new TOrderAnswer(answer.getText(), answer.getAnswerId());
                 answers.addAnswer(oanswer);
                 break;
-            case "Open":
+            case "Open question":
                 TOpenAnswer openAnswer = new TOpenAnswer(answer.getText(), answer.getAnswerId());
                 answers.addAnswer(openAnswer);
                 break;

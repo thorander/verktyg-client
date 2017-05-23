@@ -82,7 +82,7 @@ public class CreateNodes {
         orderQuestion.addAnswer(new TOrderAnswer("Sofia", 7));
         orderQuestion.addAnswer(new TOrderAnswer("Markus", 7));
 
-        TQuestion openQuestion = new TQuestion("Skriv en dikt: ", "Open",4);
+        TQuestion openQuestion = new TQuestion("Skriv en dikt: ", "Open question",4);
         openQuestion.addAnswer(new TOpenAnswer("Vad ska stå här?", 1));
 
         test.addQuestion(multipleChoiceQuestion);

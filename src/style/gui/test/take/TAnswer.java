@@ -23,6 +23,13 @@ public class TAnswer extends HBox {
         this.id = id;
     }
 
+    public TAnswer(String text, int id, boolean bCorrect){
+        this();
+        title.setText(text);
+        this.id = id;
+        this.bCorrect = bCorrect;
+    }
+
     public String getText(){
         return title.getText();
     }
