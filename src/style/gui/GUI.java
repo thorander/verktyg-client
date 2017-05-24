@@ -49,6 +49,7 @@ public class GUI {
     private TTestSelect testSelect;
     private CTest createTest;
     private ShareTest shareTest;
+    private CorrectTest correctTest;
 
 
     public GUI(Stage primaryStage){
@@ -66,6 +67,7 @@ public class GUI {
         borderPane = new BorderPane();
         userView = new StackPane();
 
+
         backgroundImage = NavigationBar.navBackgroundImage();
         userView.getChildren().addAll( backgroundImage,borderPane);
         borderPane.toFront();
@@ -79,6 +81,7 @@ public class GUI {
         statistic = new Statistic();
         createTest = new CTest();
         shareTest = new ShareTest();
+        correctTest = new CorrectTest();
 
 
 
@@ -105,6 +108,12 @@ public class GUI {
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);}
+
+    public void correctTestContent(){
+        Node g = correctTest.getCorrectTestContent();
+        mainContent.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(g);}
 
     public void shareTestContent(){
         mainContent = shareTest.getShareTest();

@@ -31,10 +31,11 @@ public class TTest extends BorderPane {
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
+        this.id = id;
         setup();
     }
 
-    private void setup() {
+    private void setup(){
 
 
         questions = new ArrayList<>();
@@ -45,8 +46,6 @@ public class TTest extends BorderPane {
         questionCounter = CreateNodes.createLabel("Question: " + getQuestions());
 
         timer = CreateNodes.createLabel("");
-
-
 
 
         currentQuestion = -1;
@@ -89,29 +88,25 @@ public class TTest extends BorderPane {
         this.time = time;
     }
 
-    public ArrayList<TQuestion> getQuestions() {
-        return questions;
-    }
+    public ArrayList<TQuestion> getQuestions(){return questions;}
 
-    public void addQuestion(TQuestion q) {
-        questions.add(q);
-    }
+    public void addQuestion(TQuestion q){questions.add(q);}
 
-    public void nextQuestion() {
+    public void nextQuestion(){
         System.out.println("Clicked next");
-        if (currentQuestion < questions.size() - 1) {
+        if(currentQuestion < questions.size() -1){
             TQuestion q = questions.get(++currentQuestion);
             setCenter(q);
             System.out.println(q.getTitle());
         }
     }
 
-    public void previousQuestion() {
+    public void previousQuestion(){
         System.out.println("Clicked previous");
-        if (currentQuestion > 0) {
+        if(currentQuestion > 0){
             --currentQuestion;
             setCenter(questions.get(currentQuestion));
-        } else if (currentQuestion == 0) {
+        } else if (currentQuestion == 0){
             currentQuestion--;
             setCenter(title);
         }
@@ -120,33 +115,29 @@ public class TTest extends BorderPane {
     private void countDownTimer() {
 
 
-        final int seconds = getTime() * 60;
-        final int minutes = getTime();
+        final int minutes =  getTime();
+        final int seconds = getTime();
         final int up = 0;
 
 
-        Thread thread = new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable () {
 
             public void run() {
                 int countdownSeconds;
-                countdownSeconds = seconds;
+                countdownSeconds = minutes;
                 int countUpSeconds = up;
 
-                for (int i= countdownSeconds; i >= 0; i--) {
+                for (int i = countdownSeconds ; i >= 0; i--) {
 
-                    try {
+                    try{
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                    }
-                    Platform.runLater(() -> {
-                        timer.setText("Minutes: " + minutes + " Seconds: " + seconds);
-
+                    }catch (InterruptedException e) {}
+                    Platform.runLater(()->{
+                        timer.setText("Minutes: " + minutes );
                     });
 
                     System.out.println(i);
-
                 }
-
                 /*for (int i = countUpSeconds ; i >= 0; i++) {
 
                     try{
@@ -163,7 +154,7 @@ public class TTest extends BorderPane {
         thread.start();
     }
 
-    public void start() {
+    public void start(){
 
         setTop(timer);
         //setTop(questionCounter);
@@ -173,7 +164,12 @@ public class TTest extends BorderPane {
         nextQuestion();
     }
 
-    public void turnIn() {
-        System.out.println("Here will be the code for turning in a test");
+    public void turnIn(){
+
+
+
+        questions.stream().forEach(e -> {
+
+        });
     }
 }

@@ -84,7 +84,14 @@ public class CTest {
         });
 
         createButton.setOnAction(e -> {
-            String command = "CREATETEST#" + testTitle.getText() + "#" + testDescription.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate() + "#" + timePicker.getTime();
+            String command = "CREATETEST#" + testTitle.getText()
+                    + "#" + testDescription.getText()
+                    + "#" + timePicker.getOpenDate()
+                    + "#" + timePicker.getCloseDate()
+                    + "#" + timePicker.getTime()
+                    + "#" + selfCorrecting.isSelected()
+                    + "#" + showResult.isSelected()
+                    + "#" + getMaxPoints();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
                if(q instanceof CQuestion){
@@ -98,6 +105,14 @@ public class CTest {
 
     public void removeQuestion(Node n){
         qBox.getChildren().remove(n);
+    }
+
+    private int getMaxPoints(){
+        int sum = 0;
+        for(Node n : qBox.getChildren()){
+            sum += ((CQuestion)n).getPoints();
+        }
+        return sum;
     }
 
 }

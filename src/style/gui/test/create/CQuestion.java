@@ -194,11 +194,15 @@ public class CQuestion extends HBox {
     }
 
     public String getRepresentation(){
-        String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue();
+        String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue() + "#" + pointsField.getText();
         for(Node n : answerList.getChildren()){
             s += n.toString();
         }
         return(s);
+    }
+
+    public int getPoints(){
+        return Integer.parseInt(pointsField.getText());
     }
 
 }
