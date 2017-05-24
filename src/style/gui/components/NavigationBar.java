@@ -11,7 +11,6 @@ import style.gui.GUI;
 public class NavigationBar {
 
     private static Label role,takeTest,edit, create, statistics,gradeTest, register, login, result, copyTest,createPDF, group, shareTest;
-    private static String callMethod = "calling";
 
     public static HBox navBackgroundImage() {
         Image image = new Image("images/headerImage.jpg");
@@ -86,7 +85,7 @@ public class NavigationBar {
 
         group.setOnMouseClicked(e-> {
             Main.getGUI().groupScreen();
-            Main.getConnection().write("GETUSERSFORGROUP#" + callMethod);
+            Main.getConnection().write("GETUSERSFORGROUP#");
         });
         statistics.setOnMouseClicked(e-> Main.getGUI().stastisticContent());
         takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());

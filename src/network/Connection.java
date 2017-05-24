@@ -91,9 +91,6 @@ public class Connection extends Thread{
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
-            case "GETUSERSFORGROUP":
-
-                break;
             case "USERSFORGROUP":
                 /*studentGroup = new StudentGroup(split[1]);*/
                 for(int i = 1; i < split.length; i++){
