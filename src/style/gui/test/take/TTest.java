@@ -19,21 +19,22 @@ public class TTest extends BorderPane {
     private String description;
     private int id;
     private int time, currentQuestion;
-    private Label timer, timerUp;
+
+    private Label timer, timerUp, questionCounter;
 
     private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
 
 
-    public TTest(String title, String description, int time, int id){
+    public TTest(String title, String description, int time, int id) {
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
         setup();
     }
 
-    private void setup(){
+    private void setup() {
 
 
         questions = new ArrayList<>();
@@ -41,8 +42,11 @@ public class TTest extends BorderPane {
         previous = CreateNodes.createButton("Previous");
         start = CreateNodes.createButton("Start");
         turnIn = CreateNodes.createButton("Turn in");
+        questionCounter = CreateNodes.createLabel("Question: " + getQuestions());
 
         timer = CreateNodes.createLabel("");
+
+
 
 
         currentQuestion = -1;
@@ -85,25 +89,29 @@ public class TTest extends BorderPane {
         this.time = time;
     }
 
-    public ArrayList<TQuestion> getQuestions(){return questions;}
+    public ArrayList<TQuestion> getQuestions() {
+        return questions;
+    }
 
-    public void addQuestion(TQuestion q){questions.add(q);}
+    public void addQuestion(TQuestion q) {
+        questions.add(q);
+    }
 
-    public void nextQuestion(){
+    public void nextQuestion() {
         System.out.println("Clicked next");
-        if(currentQuestion < questions.size() -1){
+        if (currentQuestion < questions.size() - 1) {
             TQuestion q = questions.get(++currentQuestion);
             setCenter(q);
             System.out.println(q.getTitle());
         }
     }
 
-    public void previousQuestion(){
+    public void previousQuestion() {
         System.out.println("Clicked previous");
-        if(currentQuestion > 0){
+        if (currentQuestion > 0) {
             --currentQuestion;
             setCenter(questions.get(currentQuestion));
-        } else if (currentQuestion == 0){
+        } else if (currentQuestion == 0) {
             currentQuestion--;
             setCenter(title);
         }
@@ -112,29 +120,33 @@ public class TTest extends BorderPane {
     private void countDownTimer() {
 
 
-        final int minutes =  getTime();
-        final int seconds = getTime();
+        final int seconds = getTime() * 60;
+        final int minutes = getTime();
         final int up = 0;
 
 
-        Thread thread = new Thread(new Runnable () {
+        Thread thread = new Thread(new Runnable() {
 
             public void run() {
                 int countdownSeconds;
-                countdownSeconds = minutes;
+                countdownSeconds = seconds;
                 int countUpSeconds = up;
 
-                for (int i = countdownSeconds ; i >= 0; i--) {
+                for (int i= countdownSeconds; i >= 0; i--) {
 
-                    try{
+                    try {
                         Thread.sleep(1000);
-                    }catch (InterruptedException e) {}
-                    Platform.runLater(()->{
-                        timer.setText("Minutes: " + minutes );
+                    } catch (InterruptedException e) {
+                    }
+                    Platform.runLater(() -> {
+                        timer.setText("Minutes: " + minutes + " Seconds: " + seconds);
+
                     });
 
                     System.out.println(i);
+
                 }
+
                 /*for (int i = countUpSeconds ; i >= 0; i++) {
 
                     try{
@@ -151,16 +163,17 @@ public class TTest extends BorderPane {
         thread.start();
     }
 
-    public void start(){
+    public void start() {
 
         setTop(timer);
-
+        //setTop(questionCounter);
         setBottom(new HBox(previous, next, turnIn));
+        setBottom(questionCounter);
         countDownTimer();
         nextQuestion();
     }
 
-    public void turnIn(){
+    public void turnIn() {
         System.out.println("Here will be the code for turning in a test");
     }
 }

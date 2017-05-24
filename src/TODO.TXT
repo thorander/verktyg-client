@@ -5,3 +5,6 @@ GUI
     Antingen får en "ladda"-ruta dyka upp, eller så byter man direkt, eller så försvinner förra rutan. Något måste hända.
 
     - Göra någonting mer med knapparna när man kör hover eller kanske när man klickar. Just nu är de väldigt statiska.
+
+
+    - 
