@@ -33,6 +33,16 @@ public  class StudentGroup {
     private static TextField groupname;
     private static Button createGroup;
 
+    private static String gname;
+
+    private static String group;
+
+    public StudentGroup(String gn){
+        //this.setGroupName(gn);
+        this.group = gn;
+        createGroupGrid();
+    }
+
 
     public static GridPane createGroupGrid() {
         grid = new GridPane();
@@ -45,16 +55,16 @@ public  class StudentGroup {
         createGroup = CreateNodes.createButton("Create group");
 
         createGroup.setOnAction(e -> {
-            String gname = groupname.getText();
-            String members = "ADDUSER#" + names;
-            Main.getConnection().write("ADDUSER#" + users);
-            Main.getConnection().write("CREATEGROUP#" + gname + "#" + members );
+            gname = groupname.getText();
+            //String members = "ADDUSER#" + names;
+            //Main.getConnection().write("ADDUSER#" + users);
+            Main.getConnection().write("CREATEGROUP#" + gname/* + "#" + members */);
 
         });
 
         headline = CreateNodes.createHeader("Create Group");
 
-        names = FXCollections.observableArrayList("ADDUSER#") ;
+        names = FXCollections.observableArrayList("ADDGROUP#" + group);
         data = FXCollections.observableArrayList();
 
 
@@ -71,6 +81,7 @@ public  class StudentGroup {
                 "Lynne", "Myrtle", "Rose", "Rudolph",
                 "Tony", "Trudy", "Williams", "Zach"
         );*/
+
         for (int i = 0; i < 30; i++) {
             data.add("");
         }
@@ -92,6 +103,16 @@ public  class StudentGroup {
         grid.setMaxHeight(400);
         return grid;
 
+    }
+
+    public void setGroupName(String gn) {
+        //data.add(gn);
+        this.group = gn;
+        System.out.println(group);
+    }
+
+    public List getGroupName(){
+        return data;
     }
 
 
