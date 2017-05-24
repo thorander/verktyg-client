@@ -1,16 +1,17 @@
 package style.gui.test.take;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import style.gui.test.create.CreateNodes;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class TTest extends BorderPane {
 
@@ -18,9 +19,12 @@ public class TTest extends BorderPane {
     private String description;
     private int id;
     private int time, currentQuestion;
+    private Label timer, timerUp;
+
     private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
+
 
     public TTest(String title, String description, int time, int id){
         this.setTitle(title);
@@ -30,11 +34,17 @@ public class TTest extends BorderPane {
     }
 
     private void setup(){
+
+
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
         start = CreateNodes.createButton("Start");
         turnIn = CreateNodes.createButton("Turn in");
+
+        timer = CreateNodes.createLabel("");
+
+
         currentQuestion = -1;
         setBottom(new HBox(start));
         next.setOnAction(e -> nextQuestion());
@@ -99,8 +109,54 @@ public class TTest extends BorderPane {
         }
     }
 
+    private void countDownTimer() {
+
+
+        final int minutes =  getTime();
+        final int seconds = getTime();
+        final int up = 0;
+
+
+        Thread thread = new Thread(new Runnable () {
+
+            public void run() {
+                int countdownSeconds;
+                countdownSeconds = minutes;
+                int countUpSeconds = up;
+
+                for (int i = countdownSeconds ; i >= 0; i--) {
+
+                    try{
+                        Thread.sleep(1000);
+                    }catch (InterruptedException e) {}
+                    Platform.runLater(()->{
+                        timer.setText("Minutes: " + minutes );
+                    });
+
+                    System.out.println(i);
+                }
+                /*for (int i = countUpSeconds ; i >= 0; i++) {
+
+                    try{
+                        Thread.sleep(1000);
+                    }catch (InterruptedException e) {}
+                    Platform.runLater(()->{
+                        timerUp.setText("Minutes: " + minutes);
+                    });
+
+                    System.out.println(i);
+                }*/
+            }
+        });
+        thread.start();
+    }
+
     public void start(){
+
+        setTop(timer);
+
         setBottom(new HBox(previous, next, turnIn));
+        countDownTimer();
         nextQuestion();
     }
 
