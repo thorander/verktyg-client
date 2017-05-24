@@ -15,4 +15,8 @@ public class TOneChoiceAnswer extends TAnswer {
         getChildren().addAll(title, this.correct);
     }
 
+    public boolean isChecked(){
+        return correct.isSelected();
+    }
+
 }

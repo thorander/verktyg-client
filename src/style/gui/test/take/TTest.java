@@ -4,6 +4,7 @@ import core.Main;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -157,14 +158,46 @@ public class TTest extends BorderPane {
 
     public void turnIn(){
 
-/*        Main.getConnection().write("ADDTAKENTEST"
+        Main.getConnection().write("ADDTAKENTEST"
                                 + "#" + id
-                                + "#" + countTime);*/
-        System.out.println(countTime);
+                                + "#" + countTime);
 
 
         questions.stream().forEach(e -> {
+            String question = "ADDUSERQUESTION#" + e.getQId();
+            for(Node n : e.getAnswerBox().getChildren()){
+                switch(e.getType()){
+                    case "One choice":
+                        TOneChoiceAnswer choiceAnswer = ((TOneChoiceAnswer)n);
+                        if(choiceAnswer.isChecked()){
+                            question += "#" + choiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + choiceAnswer.getText() + "#false";
+                        }
+                        break;
+                    case "Multiple choice":
+                        TMultipleChoiceAnswer multipleChoiceAnswer = ((TMultipleChoiceAnswer)n);
+                        if(multipleChoiceAnswer.isChecked()){
+                            question += "#" + multipleChoiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + multipleChoiceAnswer.getText() + "#true";
+                        } else {
+                            question += "#" + multipleChoiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + multipleChoiceAnswer.getText() + "#false";
 
+                        }
+                        break;
+                    case "Order":
+                        TOrderAnswer orderAnswer = ((TOrderAnswer)n);
+                        question += "#" + orderAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + orderAnswer.getText() + "#false";
+
+                        break;
+                    case "Open question":
+                        TOpenAnswer openAnswer = ((TOpenAnswer)n);
+                        question += "#" + openAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + openAnswer.getText() + "#false";
+                        break;
+                }
+            }
+            Main.getConnection().write(question);
         });
+
+        Main.getConnection().write("PERSISTTAKENTEST#");
+
+        Main.getGUI().FrontPageScreen();
     }
 }

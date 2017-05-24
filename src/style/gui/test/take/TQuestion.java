@@ -26,6 +26,7 @@ public class TQuestion extends HBox {
         this.type = type;
         box = new BorderPane();
         group = new ToggleGroup();
+        this.id = id;
         setupGraphics();
     }
 
@@ -74,5 +75,13 @@ public class TQuestion extends HBox {
 
     public int getQId(){
         return id;
+    }
+
+    public TAnswerBox getAnswerBox(){
+        return answers;
+    }
+
+    public String getType(){
+        return type;
     }
 }

@@ -15,4 +15,8 @@ public class TMultipleChoiceAnswer extends TAnswer {
         this.correct.setSelected(correct);
         getChildren().addAll(title, this.correct);
     }
+
+    public boolean isChecked(){
+        return correct.isSelected();
+    }
 }
