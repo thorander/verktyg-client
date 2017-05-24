@@ -91,11 +91,14 @@ public class Connection extends Thread{
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
-            case "ADDGROUP":
-                studentGroup = new StudentGroup(split[1]);
-                break;
-            case "ADDUSER":
+            case "GETUSERSFORGROUP":
 
+                break;
+            case "USERSFORGROUP":
+                /*studentGroup = new StudentGroup(split[1]);*/
+                for(int i = 1; i < split.length; i++){
+                    StudentGroup.addName(split[i]);
+                }
                 break;
             case "TAKETEST":
                 takeTest = new TTest(split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]));

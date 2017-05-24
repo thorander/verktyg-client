@@ -34,12 +34,12 @@ public  class StudentGroup {
     private static Button createGroup;
 
     private static String gname;
-
     private static String group;
+    private static String user;
 
     public StudentGroup(String gn){
-        //this.setGroupName(gn);
-        this.group = gn;
+        this.user = gn;
+        System.out.println(user);
         createGroupGrid();
     }
 
@@ -56,15 +56,12 @@ public  class StudentGroup {
 
         createGroup.setOnAction(e -> {
             gname = groupname.getText();
-            //String members = "ADDUSER#" + names;
-            //Main.getConnection().write("ADDUSER#" + users);
             Main.getConnection().write("CREATEGROUP#" + gname/* + "#" + members */);
-
         });
 
         headline = CreateNodes.createHeader("Create Group");
 
-        names = FXCollections.observableArrayList("ADDGROUP#" + group);
+        names = FXCollections.observableArrayList("ADDGROUP#");
         data = FXCollections.observableArrayList();
 
 
@@ -113,6 +110,10 @@ public  class StudentGroup {
 
     public List getGroupName(){
         return data;
+    }
+
+    public static void addName(String name){
+        names.add(name);
     }
 
 
