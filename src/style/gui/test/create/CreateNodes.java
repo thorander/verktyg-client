@@ -5,6 +5,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import style.gui.test.take.*;
@@ -55,9 +57,9 @@ public class CreateNodes {
         label.setId("headline");
         return label;
     }
-    public static ComboBox createComboBox(String title){
+    public static ComboBox createComboBox(String promptText){
         ComboBox cb = new ComboBox();
-        cb.setPromptText(title);
+        cb.setPromptText(promptText);
         cb.setId("combobox");
         return cb;
     }
@@ -67,6 +69,14 @@ public class CreateNodes {
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
         return grid;
+
+    }
+    public static BorderPane createBorderPane(){
+        BorderPane root= new BorderPane();
+        root.setId("loginStyle");
+        DropShadow drop = new DropShadow(50, Color.GRAY);
+        root.setEffect(drop);
+        return root;
 
     }
 
