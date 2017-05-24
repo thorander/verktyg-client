@@ -16,6 +16,7 @@ import style.gui.test.create.CTest;
 import style.gui.test.create.CreateNodes;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -56,7 +57,7 @@ public class DateTimePicker extends HBox {
         label  = CreateNodes.createLabelTest("Time");
         openLabel = CreateNodes.createLabelTest("Opening date");
         closeLabel = CreateNodes.createLabelTest("Close date");
-        time = "";
+        time = "0";
         Date();
         Time();
     }
@@ -64,8 +65,10 @@ public class DateTimePicker extends HBox {
     private void Date() {
         openDate.setMaxWidth(130);
         openDate.setPromptText("Start date");
+        openDate.setValue(LocalDate.now());
         closeDate.setMaxWidth(130);
         closeDate.setPromptText("End date");
+        closeDate.setValue(LocalDate.now().plusWeeks(1));
         Region space = new Region();
         VBox.setVgrow(space, Priority.ALWAYS);
         dateBox.getChildren().addAll(openLabel,openDate, space, closeLabel, closeDate);
@@ -137,7 +140,7 @@ public class DateTimePicker extends HBox {
     }
 
     public String getOpenDate() {
-        return open;
+        return openDate.getValue().toString();
     }
 
     public void setCloseDate(String date) {
@@ -146,7 +149,7 @@ public class DateTimePicker extends HBox {
     }
 
     public String getCloseDate() {
-        return close;
+        return closeDate.getValue().toString();
     }
 
     public void setTime(Integer timeValue) {

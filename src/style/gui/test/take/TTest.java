@@ -30,6 +30,7 @@ public class TTest extends BorderPane {
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
+        this.id = id;
         setup();
     }
 
@@ -161,6 +162,11 @@ public class TTest extends BorderPane {
     }
 
     public void turnIn(){
-        System.out.println("Here will be the code for turning in a test");
+
+
+
+        questions.stream().forEach(e -> {
+
+        });
     }
 }
