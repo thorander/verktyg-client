@@ -27,6 +27,8 @@ public class Connection extends Thread{
 
     private TTest takeTest;
 
+    private StudentGroup studentGroup;
+
     public Connection(String ipadress, int port){
         this.ipadress = ipadress;
         this.port = port;
@@ -89,8 +91,8 @@ public class Connection extends Thread{
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
-            case "CREATEGROUP":
-
+            case "ADDGROUP":
+                studentGroup = new StudentGroup(split[1]);
                 break;
             case "ADDUSER":
 
