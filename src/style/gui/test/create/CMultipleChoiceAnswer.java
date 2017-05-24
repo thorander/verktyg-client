@@ -11,13 +11,15 @@ import style.gui.components.CustomToolTip;
 public class CMultipleChoiceAnswer extends CAnswer {
 
     private CheckBox correct;
+    CustomToolTip correctTip;
 
     public CMultipleChoiceAnswer(CQuestion question, int order){
         super(question, order);
+
         correct = new CheckBox();
         correct.setPadding(new Insets(0, 0, 0, 5));
 
-        CustomToolTip correctTip = new CustomToolTip("Whether this answer is correct or not. \n Checked means it is true.");
+        correctTip = new CustomToolTip("Whether this answer is correct or not. \n Checked means it is true.");
         Tooltip.install(correct, correctTip);
 
         this.getChildren().addAll(answer, correct, delete);

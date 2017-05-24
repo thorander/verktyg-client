@@ -10,6 +10,7 @@ import style.gui.components.CustomToolTip;
 public class COrderAnswer extends CAnswer {
 
     private Label moveLabel;
+    CustomToolTip orderTip;
 
     public COrderAnswer(CQuestion question, int order){
         super(question, order);
@@ -17,7 +18,7 @@ public class COrderAnswer extends CAnswer {
         moveLabel.setId("icon");
         moveLabel.setStyle("-fx-font-size: 20px;");
 
-        CustomToolTip orderTip = new CustomToolTip("Click and drag to swap answers");
+        orderTip = new CustomToolTip("Click and drag to swap answers");
         Tooltip.install(moveLabel, orderTip);
         this.setMargin(moveLabel, new Insets(0, 5, 0, 5));
         this.getChildren().addAll(answer, moveLabel, delete);
