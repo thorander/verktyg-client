@@ -40,6 +40,8 @@ public class CTest {
         createButton = new Button("Create");
         createButton.setId("button");
         addQuestion.setId("button");
+        selfCorrecting = new CheckBox("Self-Correcting");
+        showResult = new CheckBox("show result");
 
         HBox testHeader = new HBox();
         EditableLabel testTitle = new EditableLabel("New test");
@@ -52,7 +54,7 @@ public class CTest {
         Region spacingRegion = new Region();
         HBox.setHgrow(spacingRegion, Priority.ALWAYS);
         titleBox.setMaxWidth(300);
-        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker);
+        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker, selfCorrecting,showResult);
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 5px;");
         root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
@@ -82,7 +84,14 @@ public class CTest {
         });
 
         createButton.setOnAction(e -> {
-            String command = "CREATETEST#" + testTitle.getText() + "#" + testDescription.getText() + "#" + timePicker.getOpenDate() + "#" + timePicker.getCloseDate() + "#" + timePicker.getTime();
+            String command = "CREATETEST#" + testTitle.getText()
+                    + "#" + testDescription.getText()
+                    + "#" + timePicker.getOpenDate()
+                    + "#" + timePicker.getCloseDate()
+                    + "#" + timePicker.getTime()
+                    + "#" + selfCorrecting.isSelected()
+                    + "#" + showResult.isSelected()
+                    + "#" + getMaxPoints();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
                if(q instanceof CQuestion){
@@ -96,6 +105,14 @@ public class CTest {
 
     public void removeQuestion(Node n){
         qBox.getChildren().remove(n);
+    }
+
+    private int getMaxPoints(){
+        int sum = 0;
+        for(Node n : qBox.getChildren()){
+            sum += ((CQuestion)n).getPoints();
+        }
+        return sum;
     }
 
 }

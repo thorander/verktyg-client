@@ -1,6 +1,8 @@
 package style.gui.test.create;
 
 import core.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.NumberStringConverter;
 import style.gui.components.CustomToolTip;
 import style.gui.icons.RemoveIcon;
 import style.gui.components.EditableLabel;
@@ -25,19 +28,20 @@ public class CQuestion extends HBox {
     private VBox answerList;
     private HBox questionBox, shortQuestion;
     private EditableLabel titleLabel;
-    private Label shorten, expand, shortQTitle, addAnswer;
+    private Label shorten, expand, shortQTitle, addAnswer, points;
     private ComboBox chooseType;
     private COrderAnswer dragging, target;
-    private CustomToolTip shortenTip, addAnswerTip, expandTip;
-    private TextField titleField;
+    private CustomToolTip shortenTip, addAnswerTip, expandTip, pointsTip;
+    private TextField titleField, pointsField;
     private RemoveIcon remove;
+
 
     public CQuestion(){
         question = new GridPane();
         questionBox = new HBox();
         shortQuestion = new HBox();
         shortQuestion.setId("questionBox");
-
+        points = CreateNodes.createLabel("Max points: ");
         addAnswer = new Label("+");
         shorten = new Label("-");
         shorten.setStyle("-fx-font-size: 2em");
@@ -61,6 +65,22 @@ public class CQuestion extends HBox {
 
         shortQTitle = new Label(titleLabel.getText());
         shortQTitle.setMaxWidth(600);
+
+        pointsField = CreateNodes.createText();
+        pointsField.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
+        pointsField.setMaxWidth(32);
+        pointsField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    pointsField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        pointsTip = new CustomToolTip("Set the max amount of points that you can get on this question.");
+        CustomToolTip.install(pointsField, pointsTip);
+        pointsField.setText("1");
+        HBox.setMargin(pointsField, new Insets(0, 0, 0, 10));
 
         shortQuestion.setAlignment(Pos.BOTTOM_CENTER);
         titleField = new TextField();
@@ -88,9 +108,10 @@ public class CQuestion extends HBox {
         question.add(titleLabel, 0, 0);
         question.add(shorten, 2, 0);
         question.add(remove, 1, 0);
-        question.add(chooseType, 0, 1);
+        question.add(new HBox(chooseType, pointsField), 0, 1);
         question.add(answerList, 0, 2);
         question.add(addAnswer, 0, 3);
+        GridPane.setMargin(answerList, new Insets(10, 0, 0, 0));
 
         shortQTitle.setId("headline");
         shortQuestion.getChildren().addAll(shortQTitle, expand);
@@ -173,11 +194,15 @@ public class CQuestion extends HBox {
     }
 
     public String getRepresentation(){
-        String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue();
+        String s = "QUESTION#" + titleLabel.getText() + "#" + chooseType.getValue() + "#" + pointsField.getText();
         for(Node n : answerList.getChildren()){
             s += n.toString();
         }
         return(s);
+    }
+
+    public int getPoints(){
+        return Integer.parseInt(pointsField.getText());
     }
 
 }

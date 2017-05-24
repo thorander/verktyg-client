@@ -14,6 +14,7 @@ public class COneChoiceAnswer extends CAnswer {
 
     private static ToggleGroup radioGroup = new ToggleGroup();
     private RadioButton correct;
+    private CustomToolTip correctTip;
 
     public COneChoiceAnswer(CQuestion question, int order){
         super(question, order);
@@ -21,7 +22,7 @@ public class COneChoiceAnswer extends CAnswer {
         correct.setToggleGroup(radioGroup);
         correct.setPadding(new Insets(5, 0, 0, 5));
 
-        CustomToolTip correctTip = new CustomToolTip("Whether this answer is correct or not. \n Checked means it is true.");
+        correctTip = new CustomToolTip("Whether this answer is correct or not. \n Checked means it is true.");
         Tooltip.install(correct, correctTip);
         this.getChildren().addAll(answer, correct, delete);
     }

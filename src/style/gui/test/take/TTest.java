@@ -1,40 +1,54 @@
 package style.gui.test.take;
 
+import core.Main;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import style.gui.test.create.CreateNodes;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class TTest extends BorderPane {
 
     private Label title;
     private String description;
     private int id;
-    private int time, currentQuestion;
+    private int time, currentQuestion, countTime, countdownSeconds;
+
+    private Label timer, timerUp, questionCounter;
+
     private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
 
-    public TTest(String title, String description, int time, int id){
+
+    public TTest(String title, String description, int time, int id) {
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
+        this.id = id;
         setup();
     }
 
     private void setup(){
+
+
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
         start = CreateNodes.createButton("Start");
         turnIn = CreateNodes.createButton("Turn in");
+        questionCounter = CreateNodes.createLabel("Question: " + getQuestions());
+
+        timer = CreateNodes.createLabel("");
+
+
         currentQuestion = -1;
         setBottom(new HBox(start));
         next.setOnAction(e -> nextQuestion());
@@ -99,12 +113,58 @@ public class TTest extends BorderPane {
         }
     }
 
+    private void countDownTimer() {
+
+        Thread thread = new Thread(new Runnable () {
+
+            public void run() {
+                boolean onTime = false;
+                countTime = 0;
+                if(getTime() != 0){
+                    onTime = true;
+                }
+                countdownSeconds = getTime() * 60;
+
+                while(true){
+                    try{
+                        Thread.sleep(1000);
+                        countTime++;
+                        if(onTime){
+                            countdownSeconds--;
+                            if(countdownSeconds == 0){
+                                turnIn();
+                            }
+                        }
+
+                    }catch (InterruptedException e) {}
+                    Platform.runLater(()->{
+                        timer.setText("Timer: " + countdownSeconds );
+                    });
+                }
+            }
+        });
+        thread.start();
+    }
+
     public void start(){
+
+        setTop(timer);
+        //setTop(questionCounter);
         setBottom(new HBox(previous, next, turnIn));
+        countDownTimer();
         nextQuestion();
     }
 
     public void turnIn(){
-        System.out.println("Here will be the code for turning in a test");
+
+/*        Main.getConnection().write("ADDTAKENTEST"
+                                + "#" + id
+                                + "#" + countTime);*/
+        System.out.println(countTime);
+
+
+        questions.stream().forEach(e -> {
+
+        });
     }
 }
