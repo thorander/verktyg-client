@@ -92,9 +92,13 @@ public class Connection extends Thread{
                 });
                 break;
             case "USERSFORGROUP":
-                /*studentGroup = new StudentGroup(split[1]);*/
                 for(int i = 1; i < split.length; i++){
-                    StudentGroup.addName(split[i]);
+                    StudentGroup.addUsers(split[i]);
+                }
+                break;
+            case "GETGROUPS":
+                for(int i = 1; i < split.length; i++){
+                    StudentGroup.addGroups(split[i]);
                 }
                 break;
             case "TAKETEST":

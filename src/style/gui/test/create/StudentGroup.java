@@ -24,10 +24,11 @@ import java.util.List;
  */
 public  class StudentGroup {
     private static GridPane grid;
+
     private static ObservableList names;
     private static ObservableList data;
-    private static List users;
-    private static List savedUssers;
+    private static ObservableList groups;
+
 
     private static Label groupNameLabel, headline;
     private static TextField groupname;
@@ -56,13 +57,14 @@ public  class StudentGroup {
 
         createGroup.setOnAction(e -> {
             gname = groupname.getText();
-            Main.getConnection().write("CREATEGROUP#" + gname/* + "#" + members */);
+            Main.getConnection().write("CREATEGROUP#" + gname);
         });
 
         headline = CreateNodes.createHeader("Create Group");
 
-        names = FXCollections.observableArrayList("ADDGROUP#");
+        names = FXCollections.observableArrayList();
         data = FXCollections.observableArrayList();
+        groups = FXCollections.observableArrayList();
 
 
 
@@ -103,7 +105,6 @@ public  class StudentGroup {
     }
 
     public void setGroupName(String gn) {
-        //data.add(gn);
         this.group = gn;
         System.out.println(group);
     }
@@ -112,8 +113,12 @@ public  class StudentGroup {
         return data;
     }
 
-    public static void addName(String name){
+    public static void addUsers(String name){
         names.add(name);
+    }
+
+    public static void addGroups(String name){
+        groups.add(name);
     }
 
 
