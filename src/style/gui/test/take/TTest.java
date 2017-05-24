@@ -1,5 +1,6 @@
 package style.gui.test.take;
 
+import core.Main;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +19,7 @@ public class TTest extends BorderPane {
     private Label title;
     private String description;
     private int id;
-    private int time, currentQuestion;
+    private int time, currentQuestion, countTime, countdownSeconds;
 
     private Label timer, timerUp, questionCounter;
 
@@ -114,41 +115,32 @@ public class TTest extends BorderPane {
 
     private void countDownTimer() {
 
-
-        final int minutes =  getTime();
-        final int seconds = getTime();
-        final int up = 0;
-
-
         Thread thread = new Thread(new Runnable () {
 
             public void run() {
-                int countdownSeconds;
-                countdownSeconds = minutes;
-                int countUpSeconds = up;
-
-                for (int i = countdownSeconds ; i >= 0; i--) {
-
-                    try{
-                        Thread.sleep(1000);
-                    }catch (InterruptedException e) {}
-                    Platform.runLater(()->{
-                        timer.setText("Minutes: " + minutes );
-                    });
-
-                    System.out.println(i);
+                boolean onTime = false;
+                countTime = 0;
+                if(getTime() != 0){
+                    onTime = true;
                 }
-                /*for (int i = countUpSeconds ; i >= 0; i++) {
+                countdownSeconds = getTime() * 60;
 
+                while(true){
                     try{
                         Thread.sleep(1000);
+                        countTime++;
+                        if(onTime){
+                            countdownSeconds--;
+                            if(countdownSeconds == 0){
+                                turnIn();
+                            }
+                        }
+
                     }catch (InterruptedException e) {}
                     Platform.runLater(()->{
-                        timerUp.setText("Minutes: " + minutes);
+                        timer.setText("Timer: " + countdownSeconds );
                     });
-
-                    System.out.println(i);
-                }*/
+                }
             }
         });
         thread.start();
@@ -159,13 +151,16 @@ public class TTest extends BorderPane {
         setTop(timer);
         //setTop(questionCounter);
         setBottom(new HBox(previous, next, turnIn));
-        setBottom(questionCounter);
         countDownTimer();
         nextQuestion();
     }
 
     public void turnIn(){
 
+/*        Main.getConnection().write("ADDTAKENTEST"
+                                + "#" + id
+                                + "#" + countTime);*/
+        System.out.println(countTime);
 
 
         questions.stream().forEach(e -> {
