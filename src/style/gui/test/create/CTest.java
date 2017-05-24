@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
@@ -29,6 +30,7 @@ public class CTest {
     public Button addQuestion,createButton;
     private HBox buttonBox;
     private VBox qBox;
+    private CheckBox selfCorrecting, showResult;
     private final int HEIGHT = 500, WIDTH = 800;
 
     public BorderPane getCreateTest(){

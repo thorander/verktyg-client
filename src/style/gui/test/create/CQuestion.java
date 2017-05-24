@@ -106,6 +106,7 @@ public class CQuestion extends HBox {
             }
         });
 
+
         addAnswer.setOnMouseClicked(e -> {
             CAnswer answer;
             switch((String)chooseType.getValue()){
