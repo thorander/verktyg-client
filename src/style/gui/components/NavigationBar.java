@@ -10,7 +10,8 @@ import style.gui.GUI;
 
 public class NavigationBar {
 
-    private static Label role,takeTest,edit, create, statistics,gradeTest, register, login, result, copyTest,createPDF, group, shareTest;
+    private static Label role,takeTest,edit,logout, create, statistics,gradeTest, register, login, result,
+            copyTest,createPDF, group, shareTest;
 
     public static HBox navBackgroundImage() {
         Image image = new Image("images/headerImage.jpg");
@@ -41,7 +42,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF, takeTest);
+        header.getChildren().addAll(logout,role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF, takeTest);
 
         return header;
     }
@@ -50,7 +51,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(takeTest,result);
+        header.getChildren().addAll(takeTest,result,logout);
 
         return header;
     }
@@ -59,7 +60,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(edit,create,statistics,gradeTest,copyTest);
+        header.getChildren().addAll(edit,create,statistics,gradeTest,copyTest, logout);
 
         return header;
     }
@@ -71,6 +72,7 @@ public class NavigationBar {
         gradeTest = createLabel("Grade test");
         register = createLabel("Rregister");
         login = createLabel("Log in");
+        logout = createLabel("Log out");
         takeTest= createLabel("Take test");
         result = createLabel("Result");
         copyTest= createLabel("Copy test");
@@ -91,6 +93,7 @@ public class NavigationBar {
         takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());
         shareTest.setOnMouseClicked(e -> Main.getGUI().shareTestContent());
         gradeTest.setOnMouseClicked(e-> Main.getGUI().correctTestContent());
+        logout.setOnMouseClicked(e->Main.getGUI().loginScreen());
 
     }
 
