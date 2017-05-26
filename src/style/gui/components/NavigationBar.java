@@ -95,6 +95,7 @@ public class NavigationBar {
         gradeTest.setOnMouseClicked(e-> Main.getGUI().correctTestContent());
         logout.setOnMouseClicked(e->Main.getGUI().loginScreen());
         copyTest.setOnMouseClicked(e->Main.getGUI().copyTestContent());
+        createPDF.setOnMouseClicked(e-> Main.getGUI().createPDFContent());
 
     }
 

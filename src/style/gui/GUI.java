@@ -51,6 +51,8 @@ public class GUI {
     private ShareTest shareTest;
     private CorrectTest correctTest;
     private CopyTest copyTest;
+    private CreatePDF createPDF;
+
 
 
     public GUI(Stage primaryStage){
@@ -68,6 +70,7 @@ public class GUI {
         borderPane = new BorderPane();
         userView = new StackPane();
         copyTest = new CopyTest();
+        createPDF = new CreatePDF();
 
 
         backgroundImage = NavigationBar.navBackgroundImage();
@@ -113,6 +116,12 @@ public class GUI {
 
     public void copyTestContent(){
         mainContent = copyTest.getCopyTest();
+        mainContent.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);}
+
+    public void createPDFContent(){
+        mainContent = createPDF.getCreatePDF();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);}
