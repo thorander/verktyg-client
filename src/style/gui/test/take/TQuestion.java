@@ -1,6 +1,7 @@
 package style.gui.test.take;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
@@ -22,22 +23,28 @@ public class TQuestion extends HBox {
 
     public TQuestion(String question, String type, int id){
         answers = new TAnswerBox();
+
         this.question = CreateNodes.createHeader(question);
         this.type = type;
         box = new BorderPane();
         group = new ToggleGroup();
         this.id = id;
         setupGraphics();
+
     }
 
     public void setupGraphics(){
-        box.setMaxWidth(500);
+        //box.setMaxWidth(500);
         box.setMaxHeight(500);
         box.setStyle("-fx-border-width: 2px;");
 
         box.setPadding(new Insets(10, 10, 10, 10));
         box.setTop(question);
+
         box.setCenter(answers);
+
+
+
 
         getChildren().add(box);
     }
