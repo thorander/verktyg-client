@@ -94,6 +94,7 @@ public class NavigationBar {
         shareTest.setOnMouseClicked(e -> Main.getGUI().shareTestContent());
         gradeTest.setOnMouseClicked(e-> Main.getGUI().correctTestContent());
         logout.setOnMouseClicked(e->Main.getGUI().loginScreen());
+        copyTest.setOnMouseClicked(e->Main.getGUI().copyTestContent());
 
     }
 

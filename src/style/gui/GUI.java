@@ -50,6 +50,7 @@ public class GUI {
     private CTest createTest;
     private ShareTest shareTest;
     private CorrectTest correctTest;
+    private CopyTest copyTest;
 
 
     public GUI(Stage primaryStage){
@@ -66,6 +67,7 @@ public class GUI {
         borderPaneBase = new BorderPane();
         borderPane = new BorderPane();
         userView = new StackPane();
+        copyTest = new CopyTest();
 
 
         backgroundImage = NavigationBar.navBackgroundImage();
@@ -105,6 +107,12 @@ public class GUI {
     }
     public void stastisticContent(){
         mainContent = statistic.getGrid();
+        mainContent.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        setMainContent(mainContent);}
+
+    public void copyTestContent(){
+        mainContent = copyTest.getCopyTest();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);}
