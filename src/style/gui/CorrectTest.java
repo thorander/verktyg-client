@@ -1,5 +1,6 @@
 package style.gui;
 
+import core.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import style.gui.test.correct.CorrAnswer;
+import style.gui.test.correct.CorrQuestion;
+import style.gui.test.correct.CorrTest;
 import style.gui.test.create.CreateNodes;
 
 /**
@@ -54,6 +58,21 @@ public class CorrectTest {
   private void createFooter(){
       grade = CreateNodes.createButton("Grade");
       root.setBottom(grade);
+      grade.setOnAction(e -> {
+            CorrTest test = new CorrTest(1, "How to do shit.");
+            CorrQuestion question = new CorrQuestion(2, "How to peel banana?", 3);
+            CorrQuestion question2 = new CorrQuestion(3, "Why in the world??", 5);
+            test.addCorrQuestion(question);
+            test.addCorrQuestion(question2);
+            question.addAnswer(new CorrAnswer("At top", true, true));
+            question.addAnswer(new CorrAnswer("At top", true, false));
+            question.addAnswer(new CorrAnswer("At bottom", false, false));
+            question.addAnswer(new CorrAnswer("At bottom", false, true));
+            question2.addAnswer(new CorrAnswer("Because", true, true));
+            question2.addAnswer(new CorrAnswer("Därför", true, true));
+            question2.addAnswer(new CorrAnswer("Therefore", true, false));
+            Main.getGUI().setMainContent(test);
+      });
       BorderPane.setAlignment(grade, Pos.BOTTOM_RIGHT);
      BorderPane.setMargin(grade, new Insets(15,20,15,15));
 
