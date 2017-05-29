@@ -1,10 +1,12 @@
 package style.gui.test.create;
 
 import core.Main;
+import core.User;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxListCell;
@@ -24,31 +26,21 @@ import java.util.List;
  * Created by Sofia on 2017-05-16.
  */
 public  class StudentGroup {
-    private static GridPane grid;
-
-    private static ObservableList names;
-    private static ObservableList data;
-    private static ObservableList groups;
+    private GridPane grid;
 
 
-    private static Label groupNameLabel, headline;
-    private static TextField groupname;
-    private static Button createGroup;
+    private Label groupNameLabel, headline, availableStudents, includedStudents;
+    private TextField groupname;
+    private Button createGroup, includeButton, excludeButton;
 
-    private static String gname;
-    private static String uname;
-    private static String group;
-    private static String user;
-    private static ArrayList<String> checkUsers;
+    private ListView<User> userView, groupView;
 
-    public StudentGroup(String gn){
-        this.user = gn;
-        System.out.println(user);
+    public StudentGroup(){
         createGroupGrid();
     }
 
 
-    public static GridPane createGroupGrid() {
+    public GridPane createGroupGrid() {
         grid = new GridPane();
         grid.setHgap(15);
         grid.setVgap(5);
@@ -57,92 +49,70 @@ public  class StudentGroup {
         groupNameLabel = CreateNodes.createLabel2("Group name:");
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
+        includeButton = new Button("->");
+        excludeButton = new Button("<-");
+        availableStudents = CreateNodes.createLabel("Available students");
+        includedStudents = CreateNodes.createLabel("Included students");
 
         headline = CreateNodes.createHeader("Create Group");
 
-        names = FXCollections.observableArrayList();
-        data = FXCollections.observableArrayList();
-        groups = FXCollections.observableArrayList();
+        userView = new ListView<>();
+        groupView = new ListView<>();
 
+        userView.getItems().add(new User("Markus Gustafsson", 2));
 
-
-        final ListView listView = new ListView(names);
-        listView.setPrefSize(200, 250);
-        listView.setEditable(true);
-
-
-
-        /*names.addAll(
-                "Adam", "Alex", "Alfred", "Albert",
-                "Brenda", "Connie", "Derek", "Donny",
-                "Lynne", "Myrtle", "Rose", "Rudolph",
-                "Tony", "Trudy", "Williams", "Zach"
-        );*/
-
-        for (int i = 0; i < 30; i++) {
-            data.add("");
-        }
-
-        listView.setItems(data);
-        listView.setCellFactory(ComboBoxListCell.forListView(names));
+        userView.setMaxWidth(200);
+        groupView.setMaxWidth(200);
 
         createGroup.setOnAction(e -> {
 
-            try {
-                gname = groupname.getText();
+            String s = "CREATEGROUP#" + groupname.getText();
+            for(User u : groupView.getItems()){
+                s += "#" + u.getId();
+            }
+            Main.getConnection().write(s);
+        });
 
-                checkUsers = new ArrayList<String>(listView.getItems());
+        includeButton.setOnAction(e -> {
+            groupView.getItems().add(userView.getSelectionModel().getSelectedItem());
+            userView.getItems().remove(userView.getSelectionModel().getSelectedItem());
+        });
 
-                //.equals("[, , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]")
-
-                for(String s : checkUsers){
-                    if(s != ""){
-                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + listView.getItems());
-                        break;
-                    } else
-                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + "null");
-                    break;
-                }
-
-
-
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            };
-
+        excludeButton.setOnAction(e -> {
+            userView.getItems().add(groupView.getSelectionModel().getSelectedItem());
+            groupView.getItems().remove(groupView.getSelectionModel().getSelectedItem());
         });
 
         grid.add(headline,0,0);
         grid.add(groupNameLabel, 0,1);
         grid.add(groupname,1,1);
-        grid.add(listView,0,2);
-        grid.add(createGroup,0,3);
-        GridPane.setColumnSpan(listView,4);
+        grid.add(availableStudents, 0, 2);
+        grid.add(includedStudents, 2, 2);
+        grid.add(userView,0,3);
+        grid.add(groupView, 2, 3);
+        grid.add(includeButton, 1, 4);
+        grid.add(excludeButton, 1, 5);
+        grid.add(createGroup,0,6);
         GridPane.setColumnSpan(createGroup,3);
+        GridPane.setColumnSpan(groupname, 2);
+        GridPane.setRowSpan(userView, 3);
+        GridPane.setRowSpan(groupView, 3);
 
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
         grid.setMaxWidth(500);
-        grid.setMaxHeight(400);
+        grid.setMaxHeight(500);
         return grid;
 
     }
 
-    public void setGroupName(String gn) {
-        this.group = gn;
-        System.out.println(group);
-    }
-
-    public List getGroupName(){
-        return data;
-    }
-
-    public static void addUsers(String name){
-        names.add(name);
-    }
-
-    public static void addGroups(String name){
-        groups.add(name);
+    public void addUser(String name, String id){
+        try{
+            User user = new User(name, Integer.parseInt(id));
+            userView.getItems().add(user);
+        } catch (Exception e){
+            System.out.println("Couldn't add user");
+        }
     }
 
 

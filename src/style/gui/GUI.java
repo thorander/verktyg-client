@@ -55,6 +55,7 @@ public class GUI {
     private CopyTest copyTest;
     private CreatePDF createPDF;
     private Results results;
+    private StudentGroup sg;
 
 
 
@@ -91,6 +92,7 @@ public class GUI {
         createTest = new CTest();
         shareTest = new ShareTest();
         correctTest = new CorrectTest();
+        sg = new StudentGroup();
 
 
 
@@ -169,7 +171,7 @@ public class GUI {
         Platform.runLater(() -> setMainContent(mainContent));
     }
     public void groupScreen(){
-        mainContent = StudentGroup.createGroupGrid();
+        mainContent = sg.createGroupGrid();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
@@ -270,5 +272,9 @@ public class GUI {
     }
 
     public CTest getCreateTest() {return createTest;}
+
+    public StudentGroup getStudentGroup(){
+        return sg;
+    }
 
 }

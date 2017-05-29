@@ -100,14 +100,10 @@ public class Connection extends Thread{
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
-            case "USERSFORGROUP":
-                for(int i = 1; i < split.length; i++){
-                    StudentGroup.addUsers(split[i]);
-                }
-                break;
-            case "GETGROUPS":
-                for(int i = 1; i < split.length; i++){
-                    StudentGroup.addGroups(split[i]);
+            case "STUDENTSFORGROUP":
+                String[] users = split[1].split("@");
+                for(int i = 0; i < users.length; ){
+                    Main.getGUI().getStudentGroup().addUser(users[i++], users[i++]);
                 }
                 break;
             case "TAKETEST":
