@@ -20,9 +20,9 @@ public class TTest extends BorderPane {
     private Label title;
     private String description;
     private int id;
-    private int time, currentQuestion, countTime, countdownSeconds, minutes, countDownMinutes;
-
-    private Label timer, timerUp, questionCounter;
+    private int time,questionCounter, currentQuestion, countTime, countdownSeconds, minutes, countDownMinutes;
+    private HBox show;
+    private Label timer, numberOfQuestion;
 
     private Button next, previous, start, turnIn;
 
@@ -39,13 +39,15 @@ public class TTest extends BorderPane {
 
     private void setup(){
 
-
+        show = new HBox(10);
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
         start = CreateNodes.createButton("Start");
         turnIn = CreateNodes.createButton("Turn in");
-        questionCounter = CreateNodes.createLabel("Question: " + getQuestions());
+
+        numberOfQuestion = CreateNodes.createLabel("" );
+        questionCounter = 1;
 
         timer = CreateNodes.createLabel("");
 
@@ -57,6 +59,7 @@ public class TTest extends BorderPane {
         start.setOnAction(e -> start());
         turnIn.setOnAction(e -> turnIn());
         setCenter(title);
+        show.getChildren().addAll(timer, numberOfQuestion);
         HBox.setMargin(next, new Insets(0, 0, 0, 40));
         setMaxWidth(600);
         setMaxHeight(500);
@@ -95,6 +98,8 @@ public class TTest extends BorderPane {
     public void addQuestion(TQuestion q){questions.add(q);}
 
     public void nextQuestion(){
+        numberOfQuestion.setText("Question: " + questionCounter+ " of " + getQuestions().size());
+        questionCounter ++;
         System.out.println("Clicked next");
         if(currentQuestion < questions.size() -1){
             TQuestion q = questions.get(++currentQuestion);
@@ -158,11 +163,13 @@ public class TTest extends BorderPane {
 
     public void start(){
 
-        setTop(timer);
-        //setTop(questionCounter);
+
+        setTop(show);
+
         setBottom(new HBox(previous, next, turnIn));
         countDownTimer();
         nextQuestion();
+        questions.stream().forEach(q -> q.shuffleAnswers());
     }
 
     public void turnIn(){

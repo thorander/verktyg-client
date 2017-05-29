@@ -70,6 +70,10 @@ public class TQuestion extends HBox {
         }
     }
 
+    public void shuffleAnswers(){
+        answers.shuffle();
+    }
+
     public ToggleGroup getGroup(){
         return group;
     }

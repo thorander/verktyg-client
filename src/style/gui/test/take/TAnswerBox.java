@@ -1,7 +1,10 @@
 package style.gui.test.take;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+
+import java.util.Collections;
 
 public class TAnswerBox extends VBox {
 
@@ -43,6 +46,10 @@ public class TAnswerBox extends VBox {
         }
 
         getChildren().add(t);
+    }
+
+    public void shuffle(){
+        FXCollections.shuffle(getChildren());
     }
 
 

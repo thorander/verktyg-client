@@ -8,6 +8,16 @@
 *.war
 *.ear
 
+!itext-pdfa-5.5.4.jar
+!itext-pdfa-5.5.4-javadoc.jar
+!itext-pdfa-5.5.4-sources.jar
+!itext-xtra-5.5.4.jar
+!itext-xtra-5.5.4-javadoc.jar
+!itext-xtra-5.5.4-sources.jar
+!itextpdf-5.5.4.jar
+!itextpdf-5.5.4-javadoc.jar
+!itextpdf-5.5.4-sources.jar
+
 vcs.xml
 workspace.xml
 kotlinc.xml

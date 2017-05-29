@@ -204,6 +204,10 @@ public class GUI {
         Platform.runLater(() -> borderPaneBase.setTop(navbar));
     }
 
+    public void clearNavbar(){
+        Platform.runLater(() -> borderPaneBase.getChildren().remove(borderPaneBase.getTop()));
+    }
+
     public void setMainContent(Node content){
         Platform.runLater(() -> borderPane.setCenter(content));
     }
