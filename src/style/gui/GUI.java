@@ -142,7 +142,10 @@ public class GUI {
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
-        Main.getConnection().write("ALLTESTS#");}
+        Main.getConnection().write("ALLTESTS#");
+        //Main.getConnection().write("GETSTUDENTS#");
+
+    }
 
 
 
@@ -221,6 +224,7 @@ public class GUI {
        shareTest.addInfo(string);
     }
     public void addStudentsToShare(String string){
+        System.out.println(string);
         shareTest.addStudents(string);
 
     }

@@ -1,5 +1,6 @@
 package style.gui.test.take;
 
+import core.Main;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -20,11 +21,12 @@ public class ShareTest {
     private final ToggleGroup select;
     private ArrayList listGroup, listStudent;
     private Label radioButtonLabel, label;
+    private Boolean studentOrGroup;
 
 
 
 
-    public ShareTest(){
+    public ShareTest() {
 
         grid = CreateNodes.createGrid();
         grid.setHgap(5);
@@ -49,29 +51,33 @@ public class ShareTest {
         group.setMaxWidth(310);
 
 
-
-        select= new ToggleGroup();
+        select = new ToggleGroup();
         groups.setToggleGroup(select);
         students.setToggleGroup(select);
 
 
-        groups.setOnAction(e ->{group.setPromptText("Select group");});
-        students.setOnAction(e ->{group.setPromptText("Select student");});
+        groups.setOnAction(e -> {
+            group.setPromptText("Select group");
+            studentOrGroup = true;
+        });
+        students.setOnAction(e -> {
+            group.setPromptText("Select student");
+            Main.getConnection().write("GETSTUDENTS#");
+        });
 
-        grid.add(label,1,1);
-        grid.add(radioButtonLabel,1,2);
-        grid.add(groups,1,3);
-        grid.add(students,2,3);
-        grid.add(test, 1,4);
-        GridPane.setColumnSpan(test,2);
-        grid.add(group, 1,5);
-        GridPane.setColumnSpan(group,2);
-        grid.add(button,1,6);
-        GridPane.setColumnSpan(button,2);
+        grid.add(label, 1, 1);
+        grid.add(radioButtonLabel, 1, 2);
+        grid.add(groups, 1, 3);
+        grid.add(students, 2, 3);
+        grid.add(test, 1, 4);
+        GridPane.setColumnSpan(test, 2);
+        grid.add(group, 1, 5);
+        GridPane.setColumnSpan(group, 2);
+        grid.add(button, 1, 6);
+        GridPane.setColumnSpan(button, 2);
 
         grid.setMaxWidth(400);
         grid.setMaxHeight(400);
-
 
     }
     public void addInfo(String testData){
@@ -80,12 +86,16 @@ public class ShareTest {
          test.getItems().add(myList.get(i));
          i++;
         }}
+
         public void addStudents(String testData){
-
-
-
-
-
+            List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+            System.out.println("" + myList.size());
+            for (int i = 0; i < myList.size(); i++) {
+                group.getItems().add(myList.get(i));
+                System.out.println("" + myList.get(i));
+                i++;
+            System.out.println(testData);
+        }
     }
     public GridPane getShareTest(){
         return grid;
