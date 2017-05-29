@@ -17,6 +17,7 @@ import javafx.util.Callback;
 import network.Connection;
 import sun.util.resources.cldr.en.CalendarData_en_GY;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,18 +25,21 @@ import java.util.List;
  */
 public  class StudentGroup {
     private static GridPane grid;
+
     private static ObservableList names;
     private static ObservableList data;
-    private static List users;
-    private static List savedUssers;
+    private static ObservableList groups;
+
 
     private static Label groupNameLabel, headline;
     private static TextField groupname;
     private static Button createGroup;
 
     private static String gname;
+    private static String uname;
     private static String group;
     private static String user;
+    private static ArrayList<String> checkUsers;
 
     public StudentGroup(String gn){
         this.user = gn;
@@ -54,15 +58,11 @@ public  class StudentGroup {
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
 
-        createGroup.setOnAction(e -> {
-            gname = groupname.getText();
-            Main.getConnection().write("CREATEGROUP#" + gname/* + "#" + members */);
-        });
-
         headline = CreateNodes.createHeader("Create Group");
 
-        names = FXCollections.observableArrayList("ADDGROUP#");
+        names = FXCollections.observableArrayList();
         data = FXCollections.observableArrayList();
+        groups = FXCollections.observableArrayList();
 
 
 
@@ -86,6 +86,32 @@ public  class StudentGroup {
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
 
+        createGroup.setOnAction(e -> {
+
+            try {
+                gname = groupname.getText();
+
+                checkUsers = new ArrayList<String>(listView.getItems());
+
+                //.equals("[, , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]")
+
+                for(String s : checkUsers){
+                    if(s != ""){
+                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + listView.getItems());
+                        break;
+                    } else
+                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + "null");
+                    break;
+                }
+
+
+
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            };
+
+        });
+
         grid.add(headline,0,0);
         grid.add(groupNameLabel, 0,1);
         grid.add(groupname,1,1);
@@ -103,7 +129,6 @@ public  class StudentGroup {
     }
 
     public void setGroupName(String gn) {
-        //data.add(gn);
         this.group = gn;
         System.out.println(group);
     }
@@ -112,8 +137,12 @@ public  class StudentGroup {
         return data;
     }
 
-    public static void addName(String name){
+    public static void addUsers(String name){
         names.add(name);
+    }
+
+    public static void addGroups(String name){
+        groups.add(name);
     }
 
 

@@ -84,7 +84,7 @@ public class GUI {
 
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
-        fp = new FrontPage();
+
         login = new Login();
         register = new Register();
         statistic = new Statistic();
@@ -159,6 +159,7 @@ public class GUI {
         setMainContent(p);}
 
     public void FrontPageScreen(){
+        fp = new FrontPage();
         mainContent = fp.getRoot();
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         Platform.runLater(() -> setMainContent(mainContent));

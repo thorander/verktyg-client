@@ -187,6 +187,15 @@
     -fx-background-color: lightgreen;
 }
 
+.answered {
+
+}
+
+.unanswered {
+    -fx-text-fill: blue;
+    -fx-opacity: 0.5;
+}
+
 .popup .label {
     -fx-padding: 20;
 }

@@ -10,29 +10,42 @@ import javafx.scene.image.ImageView;
 
 public abstract class Icon extends Label {
 
-    private ImageView removeImageView = new ImageView();
-    private Image removeImageOrange, removeImage;
-    private final int SIZE = 25;
+    private ImageView imageView = new ImageView();
+    private Image orangeImage, image;
+    private int size = 25;
 
     public Icon(){
-        this("/Images/removeOrange.png", "/Images/remove.png");
+        super();
+        imageView = new ImageView();
+        ((StyleableProperty<Node>)(WritableValue<Node>)graphicProperty()).applyStyle(null, imageView);
+        setSize(size);
+    }
+
+    public Icon(String img_path){
+        this();
+        image = new Image(img_path);
+        imageView.setImage(image);
     }
 
 
     public Icon(String img_path_1, String img_path_2){
-            super();
-            removeImageOrange = new Image(img_path_1);
-            removeImage = new Image(img_path_2);
-            removeImageView = new ImageView(removeImage);
-            ((StyleableProperty<Node>)(WritableValue<Node>)graphicProperty()).applyStyle(null, removeImageView);
-            removeImageView.setFitHeight(SIZE);
-            removeImageView.setFitWidth(SIZE);
+            this();
+            orangeImage = new Image(img_path_1);
+            image = new Image(img_path_2);
+            imageView.setImage(image);
+            ((StyleableProperty<Node>)(WritableValue<Node>)graphicProperty()).applyStyle(null, imageView);
             setOnMouseEntered(event -> {
-                removeImageView.setImage(removeImageOrange);
+                imageView.setImage(orangeImage);
             });
 
             setOnMouseExited(event -> {
-                removeImageView.setImage(removeImage);
+                imageView.setImage(image);
             });
+    }
+
+    public void setSize(int size){
+        this.size = size;
+        imageView.setFitHeight(size);
+        imageView.setFitWidth(size);
     }
 }
