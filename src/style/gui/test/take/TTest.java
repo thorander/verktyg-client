@@ -20,7 +20,7 @@ public class TTest extends BorderPane {
     private Label title;
     private String description;
     private int id;
-    private int time, currentQuestion, countTime, countdownSeconds;
+    private int time, currentQuestion, countTime, countdownSeconds, minutes, countDownMinutes;
 
     private Label timer, timerUp, questionCounter;
 
@@ -121,25 +121,34 @@ public class TTest extends BorderPane {
             public void run() {
                 boolean onTime = false;
                 countTime = 0;
+                int min = getTime();
+                int sec =  getTime()*60;
+
                 if(getTime() != 0){
                     onTime = true;
                 }
-                countdownSeconds = getTime() * 60;
+                countdownSeconds = sec;
+
+                countDownMinutes =  min;
 
                 while(true){
                     try{
                         Thread.sleep(1000);
                         countTime++;
-                        if(onTime){
+
+                        if(onTime) {
                             countdownSeconds--;
+
+
                             if(countdownSeconds == 0){
+
                                 turnIn();
                             }
                         }
 
                     }catch (InterruptedException e) {}
                     Platform.runLater(()->{
-                        timer.setText("Timer: " + countdownSeconds );
+                        timer.setText("Timer: " + " Minutes: "+countdownSeconds/60+ " Seconds: "+ countdownSeconds%60);
                     });
                 }
             }

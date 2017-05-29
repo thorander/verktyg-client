@@ -6,6 +6,8 @@ import javafx.scene.layout.GridPane;
 import style.gui.test.create.CreateNodes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Sofia on 2017-05-23.
@@ -69,6 +71,17 @@ public class ShareTest {
 
         grid.setMaxWidth(400);
         grid.setMaxHeight(400);
+
+
+    }
+    public void addInfo(String testData){
+
+        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        for(int i = 0; i < myList.size(); i++){
+         test.getItems().add(myList.get(i));
+         i++;
+        }
+
 
 
     }

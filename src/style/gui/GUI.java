@@ -1,5 +1,6 @@
 package style.gui;
 
+import core.Main;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import style.gui.components.NavigationBar;
+import style.gui.test.Results;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
@@ -52,6 +54,7 @@ public class GUI {
     private CorrectTest correctTest;
     private CopyTest copyTest;
     private CreatePDF createPDF;
+    private Results results;
 
 
 
@@ -71,6 +74,7 @@ public class GUI {
         userView = new StackPane();
         copyTest = new CopyTest();
         createPDF = new CreatePDF();
+        results = new Results();
 
 
         backgroundImage = NavigationBar.navBackgroundImage();
@@ -80,6 +84,7 @@ public class GUI {
 
         headline = NavigationBar.headline();
         borderPane.setTop(headline);
+
         login = new Login();
         register = new Register();
         statistic = new Statistic();
@@ -132,10 +137,12 @@ public class GUI {
         setMainContent(g);}
 
     public void shareTestContent(){
+
         mainContent = shareTest.getShareTest();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
-        setMainContent(mainContent);}
+        setMainContent(mainContent);
+        Main.getConnection().write("ALLTESTS#");}
 
 
 
@@ -145,6 +152,12 @@ public class GUI {
         BorderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
     }
+    public void resultScreen(){
+        BorderPane p = (BorderPane)results.getResults();
+        mainContent.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(p, new Insets(0, 0, 100, 0));
+        setMainContent(p);}
+
     public void FrontPageScreen(){
         fp = new FrontPage();
         mainContent = fp.getRoot();
@@ -207,6 +220,11 @@ public class GUI {
         label.getStyleClass().add("popup");
         popup.getContent().add(label);
         return popup;
+    }
+    public void addTestsToShare(String string){
+       shareTest.addInfo(string);
+       System.out.println(string);
+
     }
 
     public void showPopupMessage(final String message, String type) {
