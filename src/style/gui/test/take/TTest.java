@@ -154,6 +154,7 @@ public class TTest extends BorderPane {
         setBottom(new HBox(previous, next, turnIn));
         countDownTimer();
         nextQuestion();
+        questions.stream().forEach(q -> q.shuffleAnswers());
     }
 
     public void turnIn(){
