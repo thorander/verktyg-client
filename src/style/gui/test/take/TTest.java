@@ -1,8 +1,10 @@
 package style.gui.test.take;
 
+import core.Main;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -15,18 +17,23 @@ import java.util.*;
 
 public class TTest extends BorderPane {
 
-    private Label title,timer, timerUp;
+    private Label title;
     private String description;
-    private int time, currentQuestion,id;
+    private int id;
+    private int time, currentQuestion, countTime, countdownSeconds;
+
+    private Label timer, timerUp, questionCounter;
+
     private Button next, previous, start, turnIn;
 
     private ArrayList<TQuestion> questions;
 
 
-    public TTest(String title, String description, int time, int id){
+    public TTest(String title, String description, int time, int id) {
         this.setTitle(title);
         this.setDescription(description);
         this.setTime(time);
+        this.id = id;
         setup();
     }
 
@@ -38,6 +45,7 @@ public class TTest extends BorderPane {
         previous = CreateNodes.createButton("Previous");
         start = CreateNodes.createButton("Start");
         turnIn = CreateNodes.createButton("Turn in");
+        questionCounter = CreateNodes.createLabel("Question: " + getQuestions());
 
         timer = CreateNodes.createLabel("");
 
@@ -108,41 +116,32 @@ public class TTest extends BorderPane {
 
     private void countDownTimer() {
 
-
-        final int minutes =  getTime();
-        final int seconds = getTime();
-        final int up = 0;
-
-
         Thread thread = new Thread(new Runnable () {
 
             public void run() {
-                int countdownSeconds;
-                countdownSeconds = minutes;
-                int countUpSeconds = up;
-
-                for (int i = countdownSeconds ; i >= 0; i--) {
-
-                    try{
-                        Thread.sleep(1000);
-                    }catch (InterruptedException e) {}
-                    Platform.runLater(()->{
-                        timer.setText("Minutes: " + minutes );
-                    });
-
-                    System.out.println(i);
+                boolean onTime = false;
+                countTime = 0;
+                if(getTime() != 0){
+                    onTime = true;
                 }
-                /*for (int i = countUpSeconds ; i >= 0; i++) {
+                countdownSeconds = getTime() * 60;
 
+                while(true){
                     try{
                         Thread.sleep(1000);
+                        countTime++;
+                        if(onTime){
+                            countdownSeconds--;
+                            if(countdownSeconds == 0){
+                                turnIn();
+                            }
+                        }
+
                     }catch (InterruptedException e) {}
                     Platform.runLater(()->{
-                        timerUp.setText("Minutes: " + minutes);
+                        timer.setText("Timer: " + countdownSeconds );
                     });
-
-                    System.out.println(i);
-                }*/
+                }
             }
         });
         thread.start();
@@ -151,13 +150,54 @@ public class TTest extends BorderPane {
     public void start(){
 
         setTop(timer);
-
+        //setTop(questionCounter);
         setBottom(new HBox(previous, next, turnIn));
         countDownTimer();
         nextQuestion();
     }
 
     public void turnIn(){
-        System.out.println("Here will be the code for turning in a test");
+
+        Main.getConnection().write("ADDTAKENTEST"
+                + "#" + id
+                + "#" + countTime);
+
+
+        questions.stream().forEach(e -> {
+            String question = "ADDUSERQUESTION#" + e.getQId();
+            for(Node n : e.getAnswerBox().getChildren()){
+                switch(e.getType()){
+                    case "One choice":
+                        TOneChoiceAnswer choiceAnswer = ((TOneChoiceAnswer)n);
+                        if(choiceAnswer.isChecked()){
+                            question += "#" + choiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + choiceAnswer.getText() + "#false";
+                        }
+                        break;
+                    case "Multiple choice":
+                        TMultipleChoiceAnswer multipleChoiceAnswer = ((TMultipleChoiceAnswer)n);
+                        if(multipleChoiceAnswer.isChecked()){
+                            question += "#" + multipleChoiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + multipleChoiceAnswer.getText() + "#true";
+                        } else {
+                            question += "#" + multipleChoiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + multipleChoiceAnswer.getText() + "#false";
+
+                        }
+                        break;
+                    case "Order":
+                        TOrderAnswer orderAnswer = ((TOrderAnswer)n);
+                        question += "#" + orderAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + orderAnswer.getText() + "#false";
+
+                        break;
+                    case "Open question":
+                        TOpenAnswer openAnswer = ((TOpenAnswer)n);
+                        question += "#" + openAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + openAnswer.getText() + "#false";
+                        break;
+                }
+            }
+            Main.getConnection().write(question);
+        });
+
+        Main.getConnection().write("PERSISTTAKENTEST#");
+
+        Main.getGUI().FrontPageScreen();
     }
 }

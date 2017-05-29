@@ -1,14 +1,14 @@
 package style.gui.test.create;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.util.converter.NumberStringConverter;
 import style.gui.test.take.*;
 
 /**
@@ -78,6 +78,24 @@ public class CreateNodes {
         root.setEffect(drop);
         return root;
 
+    }
+
+    public static TextField createNumberCorrectingField(int maxPoints){
+        TextField numberField = createText();
+        numberField.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
+        numberField.setMaxWidth(32);
+        numberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numberField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+                if(!numberField.getText().equals("") && Integer.parseInt(numberField.getText()) > maxPoints){
+                    numberField.setText(maxPoints + "");
+                }
+            }
+        });
+        return numberField;
     }
 
     public static TTest getTestTest(){
