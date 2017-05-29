@@ -92,7 +92,10 @@ public class NavigationBar {
         statistics.setOnMouseClicked(e-> Main.getGUI().stastisticContent());
         takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());
         shareTest.setOnMouseClicked(e -> Main.getGUI().shareTestContent());
-        gradeTest.setOnMouseClicked(e-> Main.getGUI().correctTestContent());
+        gradeTest.setOnMouseClicked(e-> {
+            Main.getGUI().shareTestContent();
+            Main.getConnection().write("GETTEST#");
+        });
         logout.setOnMouseClicked(e->Main.getGUI().loginScreen());
         copyTest.setOnMouseClicked(e->Main.getGUI().copyTestContent());
         createPDF.setOnMouseClicked(e-> Main.getGUI().createPDFContent());

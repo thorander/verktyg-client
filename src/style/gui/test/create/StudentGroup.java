@@ -17,6 +17,7 @@ import javafx.util.Callback;
 import network.Connection;
 import sun.util.resources.cldr.en.CalendarData_en_GY;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,7 @@ public  class StudentGroup {
     private static String uname;
     private static String group;
     private static String user;
+    private static ArrayList<String> checkUsers;
 
     public StudentGroup(String gn){
         this.user = gn;
@@ -88,12 +90,21 @@ public  class StudentGroup {
 
             try {
                 gname = groupname.getText();
-                for(Object o : listView.getItems()){
-                    if(!o.equals("")){
-                        Main.getConnection().write("CREATEGROUP#" + gname);
-                    } else
+
+                checkUsers = new ArrayList<String>(listView.getItems());
+
+                //.equals("[, , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]")
+
+                for(String s : checkUsers){
+                    if(s != ""){
                         Main.getConnection().write("CREATEGROUP#" + gname + "#" + listView.getItems());
+                        break;
+                    } else
+                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + "null");
+                    break;
                 }
+
+
 
             } catch(Exception ex) {
                 ex.printStackTrace();
