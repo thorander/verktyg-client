@@ -35,6 +35,7 @@ public  class StudentGroup {
     private static Button createGroup;
 
     private static String gname;
+    private static String uname;
     private static String group;
     private static String user;
 
@@ -54,11 +55,6 @@ public  class StudentGroup {
         groupNameLabel = CreateNodes.createLabel2("Group name:");
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
-
-        createGroup.setOnAction(e -> {
-            gname = groupname.getText();
-            Main.getConnection().write("CREATEGROUP#" + gname);
-        });
 
         headline = CreateNodes.createHeader("Create Group");
 
@@ -87,6 +83,23 @@ public  class StudentGroup {
 
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
+
+        createGroup.setOnAction(e -> {
+
+            try {
+                gname = groupname.getText();
+                for(Object o : listView.getItems()){
+                    if(!o.equals("")){
+                        Main.getConnection().write("CREATEGROUP#" + gname);
+                    } else
+                        Main.getConnection().write("CREATEGROUP#" + gname + "#" + listView.getItems());
+                }
+
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            };
+
+        });
 
         grid.add(headline,0,0);
         grid.add(groupNameLabel, 0,1);
