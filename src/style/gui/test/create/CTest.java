@@ -99,6 +99,7 @@ public class CTest {
                }
             });
             Main.getConnection().write("PERSISTTEST#");
+            Main.getGUI().FrontPageScreen();
         });
         return root;
     }

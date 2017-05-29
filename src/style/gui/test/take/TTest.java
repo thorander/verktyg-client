@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import style.gui.test.create.CreateNodes;
 
@@ -20,7 +21,7 @@ public class TTest extends BorderPane {
     private Label title;
     private String description;
     private int id;
-    private int time,questionCounter, currentQuestion, countTime, countdownSeconds, minutes, countDownMinutes;
+    private int time,questionCounter, currentQuestion, countTime, countdownSeconds;
     private HBox show;
     private Label timer, numberOfQuestion;
 
@@ -39,7 +40,7 @@ public class TTest extends BorderPane {
 
     private void setup(){
 
-        show = new HBox(10);
+        show = new HBox(50);
         questions = new ArrayList<>();
         next = CreateNodes.createButton("Next");
         previous = CreateNodes.createButton("Previous");
@@ -59,6 +60,8 @@ public class TTest extends BorderPane {
         start.setOnAction(e -> start());
         turnIn.setOnAction(e -> turnIn());
         setCenter(title);
+        show.setMinWidth(300);
+        HBox.setHgrow(timer, Priority.ALWAYS);
         show.getChildren().addAll(timer, numberOfQuestion);
         HBox.setMargin(next, new Insets(0, 0, 0, 40));
         setMaxWidth(600);
@@ -98,10 +101,9 @@ public class TTest extends BorderPane {
     public void addQuestion(TQuestion q){questions.add(q);}
 
     public void nextQuestion(){
-        numberOfQuestion.setText("Question: " + questionCounter+ " of " + getQuestions().size());
-        questionCounter ++;
         System.out.println("Clicked next");
         if(currentQuestion < questions.size() -1){
+            numberOfQuestion.setText("Question: " + (currentQuestion+2) + " of " + getQuestions().size());
             TQuestion q = questions.get(++currentQuestion);
             setCenter(q);
             System.out.println(q.getTitle());
@@ -116,6 +118,7 @@ public class TTest extends BorderPane {
         } else if (currentQuestion == 0){
             currentQuestion--;
             setCenter(title);
+            numberOfQuestion.setText("Question: " + (currentQuestion+1) + " of " + getQuestions().size());
         }
     }
 
@@ -126,15 +129,12 @@ public class TTest extends BorderPane {
             public void run() {
                 boolean onTime = false;
                 countTime = 0;
-                int min = getTime();
                 int sec =  getTime()*60;
 
                 if(getTime() != 0){
                     onTime = true;
                 }
                 countdownSeconds = sec;
-
-                countDownMinutes =  min;
 
                 while(true){
                     try{
@@ -153,7 +153,7 @@ public class TTest extends BorderPane {
 
                     }catch (InterruptedException e) {}
                     Platform.runLater(()->{
-                        timer.setText("Timer: " + " Minutes: "+countdownSeconds/60+ " Seconds: "+ countdownSeconds%60);
+                        timer.setText(countdownSeconds/60+ ":"+ countdownSeconds%60);
                     });
                 }
             }
