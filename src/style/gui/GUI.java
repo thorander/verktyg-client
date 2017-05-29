@@ -219,7 +219,9 @@ public class GUI {
     }
     public void addTestsToShare(String string){
        shareTest.addInfo(string);
-       System.out.println(string);
+    }
+    public void addStudentsToShare(String string){
+        shareTest.addStudents(string);
 
     }
 

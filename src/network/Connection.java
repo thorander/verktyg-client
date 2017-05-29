@@ -80,6 +80,10 @@ public class Connection extends Thread{
             case "ALLTESTS":
               Main.getGUI().addTestsToShare(split[1]);
               break;
+
+            case "GETSTUDENTS":
+                Main.getGUI().addStudentsToShare(split[1]);
+                break;
             case "ERROR":
                 Platform.runLater( () -> Main.getGUI().showPopupMessage(split[1], "error"));
                 break;

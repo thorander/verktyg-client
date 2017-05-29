@@ -75,12 +75,14 @@ public class ShareTest {
 
     }
     public void addInfo(String testData){
-
         List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
         for(int i = 0; i < myList.size(); i++){
          test.getItems().add(myList.get(i));
          i++;
-        }
+        }}
+        public void addStudents(String testData){
+
+
 
 
 
