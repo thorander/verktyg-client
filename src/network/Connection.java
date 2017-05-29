@@ -82,9 +82,10 @@ public class Connection extends Thread{
               break;
 
             case "GETSTUDENTS":
-                System.out.println("test connection");
                 Main.getGUI().addStudentsToShare(split[1]);
-                System.out.println(" " + split[1]);
+                break;
+            case "GETUTEST":
+               Main.getGUI().addUTestToPDF(split[1]);
                 break;
             case "ERROR":
                 Platform.runLater( () -> Main.getGUI().showPopupMessage(split[1], "error"));

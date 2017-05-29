@@ -9,6 +9,9 @@ import style.gui.test.take.TTest;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Sofia on 2017-05-26.
@@ -40,6 +43,12 @@ public class CreatePDF {
         grid.setMaxWidth(400);
 
     }
+    public void getUTest(String testData){
+        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        for(int i = 0; i < myList.size(); i++){
+            test.getItems().add(myList.get(i));
+            i++;
+        }}
 
     public GridPane getCreatePDF() {
         return grid;

@@ -33,7 +33,7 @@ public class Statistic{
         grid.setHgap(15);
         grid.setVgap(5);
 
-        test = CreateNodes.createComboBox("Select tet");
+        test = CreateNodes.createComboBox("Select test");
         test.setPrefWidth(300);
 
         group = CreateNodes.createComboBox("Select group");
@@ -51,6 +51,7 @@ public class Statistic{
         hbox = new HBox(50);
         hbox.setPadding(new Insets(0,0,0,70));
         hbox.getChildren().addAll(completedTests,passingTests,averagePoint);
+
 
 
         ObservableList<PieChart.Data> gradeChart =

@@ -128,7 +128,10 @@ public class GUI {
         mainContent = createPDF.getCreatePDF();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
-        setMainContent(mainContent);}
+        Main.getConnection().write("GETUTEST#");
+        setMainContent(mainContent);
+
+    }
 
     public void correctTestContent(){
         Node g = correctTest.getCorrectTestContent();
@@ -143,8 +146,6 @@ public class GUI {
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
         Main.getConnection().write("ALLTESTS#");
-        //Main.getConnection().write("GETSTUDENTS#");
-
     }
 
 
@@ -228,9 +229,11 @@ public class GUI {
        shareTest.addInfo(string);
     }
     public void addStudentsToShare(String string){
-        System.out.println(string);
         shareTest.addStudents(string);
 
+    }
+    public void addUTestToPDF(String string){
+        createPDF.getUTest(string);
     }
 
     public void showPopupMessage(final String message, String type) {
