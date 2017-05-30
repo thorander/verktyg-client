@@ -155,6 +155,7 @@ public class GUI {
 
 
     public void registerScreen(){
+        register.clearPage();
         BorderPane p = (BorderPane)register.getBorder();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(p, new Insets(0, 0, 100, 0));

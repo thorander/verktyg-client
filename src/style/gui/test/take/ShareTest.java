@@ -61,7 +61,7 @@ public class ShareTest {
 
 
         groups.setOnAction(e -> {
-            studentBox.setPromptText("Select studentBox");
+            studentBox.setPromptText("Select group");
             studentOrGroup = true;
         });
         students.setOnAction(e -> {
@@ -91,13 +91,15 @@ public class ShareTest {
     }
     public void addInfo(String testData){
         List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
-        for(int i = 0; i < myList.size(); i++){
-         test.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
-        }}
+        if(myList.size() > 1){
+            for(int i = 0; i < myList.size(); i++){
+             test.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
+            }
+        }
+    }
 
         public void addStudents(String testData){
             List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
-            System.out.println("" + myList.size());
             for (int i = 0; i < myList.size(); i++) {
                 studentBox.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
             System.out.println(testData);
