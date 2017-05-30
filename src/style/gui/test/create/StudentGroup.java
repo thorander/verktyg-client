@@ -67,8 +67,6 @@ public  class StudentGroup {
         userView = new ListView<>();
         groupView = new ListView<>();
 
-        userView.getItems().add(new User("Markus Gustafsson", 1));
-
         userView.setMaxWidth(200);
         groupView.setMaxWidth(200);
 

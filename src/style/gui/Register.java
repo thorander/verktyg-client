@@ -107,4 +107,11 @@ public class Register {
     public Node getBorder(){
         return border;
     }
+
+    public void clearPage(){
+        firstName.clear();
+        lastName.clear();
+        userName.clear();
+        password.clear();
+    }
 }

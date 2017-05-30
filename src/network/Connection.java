@@ -84,7 +84,7 @@ public class Connection extends Thread{
                 break;
             case "REGSUCCESS":
                 Main.getGUI().showPopupMessage("Registration successful", "success");
-                Main.getGUI().loginScreen();
+                Main.getGUI().FrontPageScreen();
                 break;
             case "SUCCESS":
                 Main.getGUI().showPopupMessage(split[1], "success");

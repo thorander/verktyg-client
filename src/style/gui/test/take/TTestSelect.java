@@ -39,10 +39,6 @@ public class TTestSelect {
         root.setMaxHeight(200);
         Label chooseTestLabel = CreateNodes.createLabel2("Pick your test:");
 
-        chooseTestLabel.setOnMouseClicked(e -> {
-            Main.getGUI().setMainContent(CreateNodes.getTestTest());
-        });
-
         tests.setOnAction(e -> {
             System.out.println(getId(tests.getSelectionModel().getSelectedIndex()));
         });
