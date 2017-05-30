@@ -32,6 +32,8 @@ public class CorrTest extends BorderPane {
             this.id = id;
             this.testName = CreateNodes.createHeader(testName);
             setId("loginStyle");
+            System.out.println(id);
+            System.out.println(testName+"");
 
             doneCorrecting = CreateNodes.createButton("Submit");
 

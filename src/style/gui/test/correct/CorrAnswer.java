@@ -24,6 +24,10 @@ public class CorrAnswer extends HBox {
         }
             getChildren().add(correctIcon);
 
+        System.out.println(text);
+        System.out.println(correct);
+        System.out.println(answered);
+
         Label answerLabel = CreateNodes.createLabel2(text);
 
         getChildren().add(answerLabel);

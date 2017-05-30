@@ -3,9 +3,13 @@ package network;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import core.Main;
+import style.gui.CorrectTest;
 import style.gui.GUI;
 import style.gui.FrontPage;
 import style.gui.GUI;
+import style.gui.test.correct.CorrAnswer;
+import style.gui.test.correct.CorrQuestion;
+import style.gui.test.correct.CorrTest;
 import style.gui.test.create.StudentGroup;
 import style.gui.test.take.TAnswer;
 import style.gui.test.take.TQuestion;
@@ -122,7 +126,18 @@ public class Connection extends Thread{
             case "SHOWTEST":
                 Main.getGUI().setMainContent(takeTest);
                 break;
-
+            case "UTEST":
+                CorrTest test = new CorrTest(Integer.parseInt(split[1]), split[2]);
+                Main.getGUI().setMainContent(test);
+                break;
+            case "UQUESTION":
+                CorrQuestion test1 = new CorrQuestion(Integer.parseInt(split[1]), split[2], Integer.parseInt(split[3]));
+                Main.getGUI().setMainContent(test1);
+                break;
+            case "UANSWER":
+                CorrAnswer test2 = new CorrAnswer(split[1], Boolean.parseBoolean(split[2]), Boolean.parseBoolean(split[3]));
+                Main.getGUI().setMainContent(test2);
+                break;
         }
     }
 

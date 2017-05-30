@@ -25,6 +25,9 @@ public class CorrectTest {
   private Label headline;
   private Button grade;
 
+    private int id;
+    private String uname;
+
   public CorrectTest(){
       root = CreateNodes.createBorderPane();
       root.setMaxWidth(800);
@@ -33,15 +36,8 @@ public class CorrectTest {
       createHeader();
       createFooter();
 
-
-
-
-
-
-
-
-
   }
+    
   private void createHeader(){
 
       headline = CreateNodes.createHeader("Correct test");

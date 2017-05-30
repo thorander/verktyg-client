@@ -34,6 +34,10 @@ public class CorrQuestion extends GridPane {
         commentArea.setMaxHeight(100);
         commentArea.setWrapText(true);
 
+        System.out.println(id);
+        System.out.println(questionText+"");
+        System.out.println(maxPoints);
+
         GridPane.setMargin(commentArea, new Insets(10, 0, 0, 0));
 
         add(questionLabel, 0, 0);
