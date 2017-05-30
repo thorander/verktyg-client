@@ -13,6 +13,7 @@ import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.DragEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
@@ -34,6 +35,7 @@ public  class StudentGroup {
     private Button createGroup, includeButton, excludeButton;
 
     private ListView<User> userView, groupView;
+    private VBox vbox;
 
     public StudentGroup(){
         createGroupGrid();
@@ -50,9 +52,15 @@ public  class StudentGroup {
         groupname = CreateNodes.createText();
         createGroup = CreateNodes.createButton("Create group");
         includeButton = new Button("->");
+        includeButton.setId("smallButton");
         excludeButton = new Button("<-");
+        excludeButton.setId("smallButton");
         availableStudents = CreateNodes.createLabel("Available students");
         includedStudents = CreateNodes.createLabel("Included students");
+
+        vbox = new VBox(15);
+        vbox.getChildren().addAll(includeButton,excludeButton);
+
 
         headline = CreateNodes.createHeader("Create Group");
 
@@ -89,9 +97,10 @@ public  class StudentGroup {
         grid.add(availableStudents, 0, 2);
         grid.add(includedStudents, 2, 2);
         grid.add(userView,0,3);
+        GridPane.setRowSpan(userView,2);
         grid.add(groupView, 2, 3);
-        grid.add(includeButton, 1, 4);
-        grid.add(excludeButton, 1, 5);
+        GridPane.setRowSpan(groupView,2);
+        grid.add(vbox, 1, 5);
         grid.add(createGroup,0,6);
         GridPane.setColumnSpan(createGroup,3);
         GridPane.setColumnSpan(groupname, 2);
@@ -100,8 +109,8 @@ public  class StudentGroup {
 
         DropShadow drop = new DropShadow(50, Color.GRAY);
         grid.setEffect(drop);
-        grid.setMaxWidth(500);
-        grid.setMaxHeight(500);
+        grid.setMaxWidth(600);
+        grid.setMaxHeight(700);
         return grid;
 
     }

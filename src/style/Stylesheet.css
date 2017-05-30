@@ -93,6 +93,17 @@
     -fx-display: inline-block;
     -fx-font-size: 12px;
 }
+
+#smallButton{
+    -fx-background-color: darkorange;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 12px;
+
+}
 #combobox{
     -fx-border-color: darkorange;
     -fx-background-color: white;
