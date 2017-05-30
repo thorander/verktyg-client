@@ -14,6 +14,10 @@ import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Statistic{
     private GridPane grid;
     private ComboBox test,group;
@@ -21,7 +25,8 @@ public class Statistic{
     private String inputTest;
     private int completedTestsInt, passingTestsInt, averagePointInt;
     private HBox hbox, hboxCombobox;
-//test
+    private List<String> testList, userList;
+
 
     public Statistic (){
 
@@ -53,7 +58,7 @@ public class Statistic{
         hbox.getChildren().addAll(completedTests,passingTests,averagePoint);
 
 
-
+/*
         ObservableList<PieChart.Data> gradeChart =
                 FXCollections.observableArrayList(
                         new PieChart.Data("IG", 4),
@@ -61,23 +66,31 @@ public class Statistic{
                         new PieChart.Data("VG",9));
         final PieChart chart = new PieChart(gradeChart);
         chart.setTitle("Results for " + inputTest);
-        chart.setPadding(new Insets(0,0,0,20));
+        chart.setPadding(new Insets(0,0,0,20));*/
 
 
 
         grid.add(hboxCombobox, 0,0);
         GridPane.setColumnSpan(hboxCombobox,4);
-        grid.add(chart,0,3);
-        GridPane.setColumnSpan(chart,4);
-        grid.add(hbox,0,4);
-        GridPane.setColumnSpan(hbox,4);
-        grid.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.TOP_CENTER);
+
+        //grid.add(chart,0,3);
+        //GridPane.setColumnSpan(chart,4);
+        //grid.add(hbox,0,4);
+        //GridPane.setColumnSpan(hbox,4);
 
 
         grid.setMaxWidth(700);
         grid.setMaxHeight(700);
 
     }
+    public void getUTest(String testData){
+        System.out.println("test statistik");
+        testList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        for(int i = 0; i < testList.size(); i++){
+            test.getItems().add(testList.get(i));
+            i++;
+        }}
 
     public GridPane getGrid(){
         return grid;

@@ -45,7 +45,7 @@ public class Register {
         registerLabel.setId("headline");
         name = CreateNodes.createLabel("Firstname");
         surname = CreateNodes.createLabel("Lastname");
-        uName = CreateNodes.createLabel("Username");
+        uName = CreateNodes.createLabel("Email");
         uPass = CreateNodes.createLabel("Password");
 
         // Textfields
@@ -54,7 +54,7 @@ public class Register {
         lastName = CreateNodes.createText();
         lastName.setPromptText("Lastname");
         userName = CreateNodes.createText();
-        userName.setPromptText("Username");
+        userName.setPromptText("Email");
         password = new PasswordField();
         password.setId("input");
 

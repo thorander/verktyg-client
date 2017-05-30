@@ -118,6 +118,8 @@ public class GUI {
         mainContent = statistic.getGrid();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
+        Main.getConnection().write("GETUTEST#");
+        System.out.println("test gui");
         setMainContent(mainContent);}
 
     public void copyTestContent(){
@@ -240,6 +242,7 @@ public class GUI {
     }
     public void addUTestToPDF(String string){
         createPDF.getUTest(string);
+        statistic.getUTest(string);
     }
 
     public void showPopupMessage(final String message, String type) {
