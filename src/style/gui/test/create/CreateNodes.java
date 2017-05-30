@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
+import style.gui.components.CustomComboBox;
 import style.gui.test.take.*;
 
 /**
@@ -123,5 +124,12 @@ public class CreateNodes {
         test.addQuestion(orderQuestion);
         test.addQuestion(openQuestion);
         return test;
+    }
+
+    public static CustomComboBox createCustomComboBox(String s) {
+        CustomComboBox cb = new CustomComboBox();
+        cb.setPromptText(s);
+        cb.setId("combobox");
+        return cb;
     }
 }

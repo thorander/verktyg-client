@@ -67,7 +67,7 @@ public  class StudentGroup {
         userView = new ListView<>();
         groupView = new ListView<>();
 
-        userView.getItems().add(new User("Markus Gustafsson", 2));
+        userView.getItems().add(new User("Markus Gustafsson", 1));
 
         userView.setMaxWidth(200);
         groupView.setMaxWidth(200);
@@ -79,6 +79,7 @@ public  class StudentGroup {
                 s += "#" + u.getId();
             }
             Main.getConnection().write(s);
+            Main.getGUI().FrontPageScreen();
         });
 
         includeButton.setOnAction(e -> {

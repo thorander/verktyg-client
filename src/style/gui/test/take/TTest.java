@@ -186,6 +186,8 @@ public class TTest extends BorderPane {
                     case "One choice":
                         TOneChoiceAnswer choiceAnswer = ((TOneChoiceAnswer)n);
                         if(choiceAnswer.isChecked()){
+                            question += "#" + choiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + choiceAnswer.getText() + "#true";
+                        } else {
                             question += "#" + choiceAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + choiceAnswer.getText() + "#false";
                         }
                         break;

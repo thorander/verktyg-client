@@ -42,7 +42,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(logout,role, edit, create, statistics, gradeTest, register, login, copyTest,group, shareTest,createPDF, takeTest);
+        header.getChildren().addAll(logout, create, statistics, gradeTest, register, group, shareTest, takeTest);
 
         return header;
     }
@@ -60,7 +60,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(edit,create,statistics,gradeTest,copyTest, logout);
+        header.getChildren().addAll(create, statistics, gradeTest, logout);
 
         return header;
     }
@@ -68,9 +68,9 @@ public class NavigationBar {
     private static void setupNavbarLabels() {
         edit = createLabel("Edit");
         create = createLabel("Create test");
-        statistics = createLabel("statistics");
+        statistics = createLabel("Statistics");
         gradeTest = createLabel("Grade test");
-        register = createLabel("Rregister");
+        register = createLabel("Register");
         login = createLabel("Log in");
         logout = createLabel("Log out");
         takeTest= createLabel("Take test");
@@ -96,7 +96,10 @@ public class NavigationBar {
             Main.getGUI().correctTestContent();
             Main.getConnection().write("GETTEST#");
         });
-        logout.setOnMouseClicked(e->Main.getGUI().loginScreen());
+        logout.setOnMouseClicked(e->{
+            Main.getGUI().loginScreen();
+            Main.getGUI().clearNavbar();
+        });
         copyTest.setOnMouseClicked(e->Main.getGUI().copyTestContent());
         createPDF.setOnMouseClicked(e-> Main.getGUI().createPDFContent());
         result.setOnMouseClicked(e->Main.getGUI().resultScreen());

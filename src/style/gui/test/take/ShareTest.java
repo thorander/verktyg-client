@@ -1,9 +1,9 @@
 package style.gui.test.take;
 
 import core.Main;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import style.gui.components.CustomComboBox;
 import style.gui.test.create.CreateNodes;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ShareTest {
     private GridPane grid;
-    private ComboBox test, group;
+    private CustomComboBox test, studentBox, group;
     private Button button;
     private RadioButton groups, students;
     private final ToggleGroup select;
@@ -42,11 +42,15 @@ public class ShareTest {
         radioButtonLabel = CreateNodes.createLabel2("Choose a recipient");
         label = CreateNodes.createHeader("Share test");
 
-        test = CreateNodes.createComboBox("Choose test");
+        test = CreateNodes.createCustomComboBox("Choose test");
         test.setMinWidth(290);
         test.setMaxWidth(310);
 
-        group = CreateNodes.createComboBox("Choose a recipient");
+        studentBox = CreateNodes.createCustomComboBox("Choose a recipient");
+        studentBox.setMinWidth(290);
+        studentBox.setMaxWidth(310);
+
+        group = CreateNodes.createCustomComboBox("Choose group");
         group.setMinWidth(290);
         group.setMaxWidth(310);
 
@@ -57,11 +61,12 @@ public class ShareTest {
 
 
         groups.setOnAction(e -> {
-            group.setPromptText("Select group");
+            studentBox.setPromptText("Select studentBox");
             studentOrGroup = true;
         });
         students.setOnAction(e -> {
-            group.setPromptText("Select student");
+            studentBox.clear();
+            studentBox.setPromptText("Select student");
             Main.getConnection().write("GETSTUDENTS#");
         });
 
@@ -71,33 +76,43 @@ public class ShareTest {
         grid.add(students, 2, 3);
         grid.add(test, 1, 4);
         GridPane.setColumnSpan(test, 2);
-        grid.add(group, 1, 5);
-        GridPane.setColumnSpan(group, 2);
+        grid.add(studentBox, 1, 5);
+        GridPane.setColumnSpan(studentBox, 2);
         grid.add(button, 1, 6);
         GridPane.setColumnSpan(button, 2);
 
         grid.setMaxWidth(400);
         grid.setMaxHeight(400);
 
+        button.setOnAction(e -> {
+           Main.getConnection().write("SHARETOSTUDENT#" + test.getSelectedId() + "#" + studentBox.getSelectedId());
+        });
+
     }
     public void addInfo(String testData){
         List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
         for(int i = 0; i < myList.size(); i++){
-         test.getItems().add(myList.get(i));
-         i++;
+         test.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
         }}
 
         public void addStudents(String testData){
             List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
             System.out.println("" + myList.size());
             for (int i = 0; i < myList.size(); i++) {
-                group.getItems().add(myList.get(i));
-                System.out.println("" + myList.get(i));
-                i++;
+                studentBox.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
             System.out.println(testData);
         }
     }
     public GridPane getShareTest(){
         return grid;
+    }
+
+    public void addGroups(String testData) {
+        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        System.out.println("" + myList.size());
+        for (int i = 0; i < myList.size(); i++) {
+            group.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
+            System.out.println(testData);
+        }
     }
 }

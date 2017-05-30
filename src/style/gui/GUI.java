@@ -117,9 +117,9 @@ public class GUI {
     public void stastisticContent(){
         mainContent = statistic.getGrid();
         mainContent.setAlignment(Pos.CENTER);
+        statistic.clearMenus();
+        Main.getConnection().write("GETSTATGROUPSANDTESTS#");
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
-        Main.getConnection().write("GETUTEST#");
-        System.out.println("test gui");
         setMainContent(mainContent);}
 
     public void copyTestContent(){
@@ -236,13 +236,17 @@ public class GUI {
         shareTest.addStudents(string);
 
     }
+    public void addGroupsToShare(String string) {
+        shareTest.addGroups(string);
+    }
     public void addStudentsToPDF(String string){
         createPDF.getStudentPDF(string);
 
     }
+
     public void addUTestToPDF(String string){
         createPDF.getUTest(string);
-        statistic.getUTest(string);
+/*        statistic.getUTest(string);*/
     }
 
     public void showPopupMessage(final String message, String type) {
@@ -284,4 +288,5 @@ public class GUI {
         return sg;
     }
 
+    public Statistic getStatistic() {return statistic;}
 }

@@ -1,6 +1,8 @@
 package style.gui.test.create;
 
+import core.Main;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import style.gui.components.CustomComboBox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,12 +23,11 @@ import java.util.List;
 
 public class Statistic{
     private GridPane grid;
-    private ComboBox test,group;
-    private Label headline, testName,completedTests, passingTests, averagePoint;
-    private String inputTest;
-    private int completedTestsInt, passingTestsInt, averagePointInt;
+    private CustomComboBox test,group;
+    private Label completedTests, passingTests, averagePoint;
+    ObservableList<PieChart.Data> gradeChart;
+    private PieChart chart;
     private HBox hbox, hboxCombobox;
-    private List<String> testList, userList;
 
 
     public Statistic (){
@@ -38,62 +40,94 @@ public class Statistic{
         grid.setHgap(15);
         grid.setVgap(5);
 
-        test = CreateNodes.createComboBox("Select test");
+        test = CreateNodes.createCustomComboBox("Select test");
         test.setPrefWidth(300);
 
-        group = CreateNodes.createComboBox("Select group");
+        group = CreateNodes.createCustomComboBox("Select group");
         group.setPrefWidth(300);
 
         hboxCombobox = new HBox(15);
         hboxCombobox.getChildren().addAll(test,group);
         hboxCombobox.setPadding(new Insets(0,0,0,15));
 
-        headline = CreateNodes.createLabel2("Test:");
-        testName = CreateNodes.createLabel2(inputTest);
-        completedTests =CreateNodes.createLabel2("Completed tests: " + completedTestsInt);
-        passingTests = CreateNodes.createLabel2("Passing tests: " + passingTestsInt);
-        averagePoint = CreateNodes.createLabel2("Avreage points: " + averagePointInt);
+        completedTests =CreateNodes.createLabel2("");
+        passingTests = CreateNodes.createLabel2("");
+        averagePoint = CreateNodes.createLabel2("");
         hbox = new HBox(50);
         hbox.setPadding(new Insets(0,0,0,70));
         hbox.getChildren().addAll(completedTests,passingTests,averagePoint);
 
 
-/*
-        ObservableList<PieChart.Data> gradeChart =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("IG", 4),
-                        new PieChart.Data("G",10),
-                        new PieChart.Data("VG",9));
-        final PieChart chart = new PieChart(gradeChart);
-        chart.setTitle("Results for " + inputTest);
-        chart.setPadding(new Insets(0,0,0,20));*/
+
+        gradeChart = FXCollections.observableArrayList(
+                        new PieChart.Data("No chosen test or group", 1));
+        chart = new PieChart(gradeChart);
+        chart.setTitle("Nothing chosen...");
+        chart.setPadding(new Insets(0,0,0,20));
 
 
 
         grid.add(hboxCombobox, 0,0);
         GridPane.setColumnSpan(hboxCombobox,4);
-        grid.setAlignment(Pos.TOP_CENTER);
-
-        //grid.add(chart,0,3);
-        //GridPane.setColumnSpan(chart,4);
-        //grid.add(hbox,0,4);
-        //GridPane.setColumnSpan(hbox,4);
+        grid.add(chart,0,3);
+        GridPane.setColumnSpan(chart,4);
+        grid.add(hbox,0,4);
+        GridPane.setColumnSpan(hbox,4);
+        grid.setAlignment(Pos.CENTER);
 
 
         grid.setMaxWidth(700);
         grid.setMaxHeight(700);
 
+        test.setOnAction(e -> {
+            checkIfStats();
+        });
+
+        group.setOnAction(e -> {
+            checkIfStats();
+        });
+
     }
-    public void getUTest(String testData){
-        System.out.println("test statistik");
-        testList = new ArrayList<String>(Arrays.asList(testData.split("@")));
-        for(int i = 0; i < testList.size(); i++){
-            test.getItems().add(testList.get(i));
-            i++;
-        }}
 
     public GridPane getGrid(){
         return grid;
+    }
+
+    public void addTest(String testName, String testId){
+        Platform.runLater(() -> {
+            test.addItem(testName, Integer.parseInt(testId));
+        });
+    }
+
+    public void addGroup(String groupName, String groupId){
+        Platform.runLater(() -> {
+            group.addItem(groupName, Integer.parseInt(groupId));
+        });
+    }
+
+    public void updateStats(String nrTests, String nrPassedTests, String averageScore,
+                            String nrIG, String nrG, String nrVG){
+        Platform.runLater(() -> {
+            completedTests.setText("Completed tests: " + nrTests);
+            passingTests.setText("Passed tests: " + nrPassedTests);
+            averagePoint.setText("Average score: " + averageScore);
+            gradeChart.clear();
+            gradeChart.add(new PieChart.Data("IG", Integer.parseInt(nrIG)));
+            gradeChart.add(new PieChart.Data("G", Integer.parseInt(nrG)));
+            gradeChart.add(new PieChart.Data("VG", Integer.parseInt(nrVG)));
+        });
+    }
+
+    private void checkIfStats(){
+        if(test.getValue() != null && group.getValue() != null){
+            Main.getConnection().write("GETSTATISTICS#" + test.getSelectedId() + "#" + group.getSelectedId());
+            chart.setTitle(test.getValue() + " by " + group.getValue());
+        }
+    }
+
+    public void clearMenus() {
+        group.clear();
+        test.clear();
     }
 }
 

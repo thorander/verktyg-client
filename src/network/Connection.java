@@ -86,6 +86,9 @@ public class Connection extends Thread{
                 Main.getGUI().showPopupMessage("Registration successful", "success");
                 Main.getGUI().loginScreen();
                 break;
+            case "SUCCESS":
+                Main.getGUI().showPopupMessage(split[1], "success");
+                break;
             case "ALLTESTS":
               Main.getGUI().addTestsToShare(split[1]);
               break;
@@ -94,8 +97,11 @@ public class Connection extends Thread{
                 Main.getGUI().addStudentsToPDF(split[1]);
                 break;
 
-            case "GETSTUDENTS":
+            case "GETSTUDENTSTOSHARE":
                 Main.getGUI().addStudentsToShare(split[1]);
+                break;
+            case "GETGROUPSTOSHARE":
+                Main.getGUI().addGroupsToShare(split[1]);
                 break;
             case "GETUTEST":
                Main.getGUI().addUTestToPDF(split[1]);
@@ -115,6 +121,7 @@ public class Connection extends Thread{
                 break;
             case "STUDENTSFORGROUP":
                 String[] users = split[1].split("@");
+                System.out.println(input);
                 for(int i = 0; i < users.length; ){
                     Main.getGUI().getStudentGroup().addUser(users[i++], users[i++]);
                 }
@@ -152,6 +159,20 @@ public class Connection extends Thread{
                     }
                     System.out.println(input);
 
+                break;
+            case "ADDTESTS":
+                    System.out.println(input);
+                for(int i = 1; i < split.length;){
+                    Main.getGUI().getStatistic().addTest(split[i++], split[i++]);
+                }
+                break;
+            case "ADDGROUPS":
+                for(int i = 1; i < split.length;){
+                    Main.getGUI().getStatistic().addGroup(split[i++], split[i++]);
+                }
+                break;
+            case "UPDATESTATS":
+                Main.getGUI().getStatistic().updateStats(split[1],split[2],split[3],split[4],split[5],split[6]);
                 break;
         }
     }
