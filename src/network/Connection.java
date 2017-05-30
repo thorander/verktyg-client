@@ -31,6 +31,11 @@ public class Connection extends Thread{
 
     private TTest takeTest;
 
+    private CorrTest test;
+    private CorrQuestion question;
+    private CorrAnswer answer;
+    private CorrectTest correctTest;
+
     private StudentGroup studentGroup;
 
     public Connection(String ipadress, int port){
@@ -131,16 +136,22 @@ public class Connection extends Thread{
                 Main.getGUI().setMainContent(takeTest);
                 break;
             case "UTEST":
-                CorrTest test = new CorrTest(Integer.parseInt(split[1]), split[2]);
-                Main.getGUI().setMainContent(test);
-                break;
-            case "UQUESTION":
-                CorrQuestion test1 = new CorrQuestion(Integer.parseInt(split[1]), split[2], Integer.parseInt(split[3]));
-                Main.getGUI().setMainContent(test1);
-                break;
-            case "UANSWER":
-                CorrAnswer test2 = new CorrAnswer(split[1], Boolean.parseBoolean(split[2]), Boolean.parseBoolean(split[3]));
-                Main.getGUI().setMainContent(test2);
+                    test = new CorrTest(Integer.parseInt(split[1]), split[2]);
+                    correctTest = new CorrectTest(Integer.parseInt(split[1]), split[2]);
+                    //Main.getGUI().setMainContent(test);
+
+                    for(int i = 3; i < split.length;){
+                        if(split[i++].equals("UQUESTION")){
+                            CorrQuestion c = new CorrQuestion(Integer.parseInt(split[i++]), split[i++], Integer.parseInt(split[i++]));
+                            test.addCorrQuestion(c);
+                            while(i < split.length && split[i++] != "UQUESTION"){
+                                CorrAnswer a = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
+                                c.addAnswer(a);
+                            }
+                        }
+                    }
+                    System.out.println(input);
+
                 break;
         }
     }

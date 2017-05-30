@@ -26,6 +26,7 @@ public class CorrectTest {
   private Button grade;
 
     private int id;
+    private String testname;
     private String uname;
 
   public CorrectTest(){
@@ -37,6 +38,12 @@ public class CorrectTest {
       createFooter();
 
   }
+
+    public CorrectTest(int i, String s) {
+        this.id = i;
+        this.testname = s;
+        System.out.println(testname+"been here");
+    }
     
   private void createHeader(){
 
