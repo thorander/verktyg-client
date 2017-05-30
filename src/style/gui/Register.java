@@ -54,7 +54,7 @@ public class Register {
         lastName = CreateNodes.createText();
         lastName.setPromptText("Lastname");
         userName = CreateNodes.createText();
-        userName.setPromptText("Username");
+        userName.setPromptText("Email");
         password = new PasswordField();
         password.setId("input");
 

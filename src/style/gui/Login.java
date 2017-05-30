@@ -32,7 +32,7 @@ public class Login {
         grid = new GridPane();
         logIn = CreateNodes.createHeader("Log in");
         welcome = CreateNodes.createLabel("Welcome");
-        userName = CreateNodes.createLabel("Username:");
+        userName = CreateNodes.createLabel("Email:");
         password= CreateNodes.createLabel("Password:");
         signUp = CreateNodes.createLabel("Register");
         user = CreateNodes.createText();

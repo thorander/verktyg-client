@@ -41,7 +41,7 @@ public class CTest {
         createButton.setId("button");
         addQuestion.setId("button");
         selfCorrecting = new CheckBox("Self-Correcting");
-        showResult = new CheckBox("show result");
+        showResult = new CheckBox("Show result");
 
         HBox testHeader = new HBox();
         EditableLabel testTitle = new EditableLabel("New test");
@@ -54,9 +54,8 @@ public class CTest {
         Region spacingRegion = new Region();
         HBox.setHgrow(spacingRegion, Priority.ALWAYS);
         titleBox.setMaxWidth(300);
-        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker, selfCorrecting,showResult);
+        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker, new VBox(selfCorrecting,showResult));
         testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 5px;");
-        root.setTop(testHeader);
         root.setAlignment(testTitle, Pos.BASELINE_CENTER);
         buttonBox = new HBox();
         buttonBox.getChildren().addAll(addQuestion, createButton);
@@ -66,7 +65,7 @@ public class CTest {
 
         qBox = new VBox();
         ScrollPane sp = new ScrollPane();
-        sp.setContent(qBox);
+        sp.setContent(new VBox(testHeader, qBox));
         root.setCenter(sp);
         root.setMaxWidth(WIDTH);
         root.setMinWidth(WIDTH);
