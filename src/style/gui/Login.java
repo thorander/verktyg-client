@@ -63,7 +63,7 @@ public class Login {
         grid.add(password,0,4);
         grid.add(pass,0,5);
         grid.add(login,0,6);
-/*        grid.add(signUp,0,7);*/
+        grid.add(signUp,0,7);
         grid.setId("loginStyle");
         grid.setMaxWidth(300);
         grid.setMaxHeight(300);

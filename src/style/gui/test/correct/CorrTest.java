@@ -16,12 +16,14 @@ import style.gui.components.EditableLabel;
 import style.gui.test.create.CQuestion;
 import style.gui.test.create.CreateNodes;
 
+import java.util.List;
+
 /**
  * Created by Markus on 2017-05-28.
  */
 public class CorrTest extends BorderPane {
 
-    private int id;
+        private int id;
         private Label testName;
         private Button doneCorrecting;
         private HBox buttonBox;

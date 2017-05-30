@@ -144,8 +144,7 @@ public class Connection extends Thread{
                 break;
             case "UTEST":
                     test = new CorrTest(Integer.parseInt(split[1]), split[2]);
-                    correctTest = new CorrectTest(Integer.parseInt(split[1]), split[2]);
-                    //Main.getGUI().setMainContent(test);
+                    Main.getGUI().setMainContent(test);
 
                     for(int i = 3; i < split.length;){
                         if(split[i++].equals("UQUESTION")){
@@ -159,6 +158,12 @@ public class Connection extends Thread{
                     }
                     System.out.println(input);
 
+                break;
+            case "GETTESTLIST":
+                System.out.println(input);
+                for(int i = 2; i < split.length;) {
+                    correctTest = new CorrectTest(split[i++]);
+                }
                 break;
             case "ADDTESTS":
                     System.out.println(input);

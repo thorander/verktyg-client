@@ -14,6 +14,10 @@ import style.gui.test.correct.CorrQuestion;
 import style.gui.test.correct.CorrTest;
 import style.gui.test.create.CreateNodes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Sofia on 2017-05-24.
  */
@@ -27,7 +31,7 @@ public class CorrectTest {
 
     private int id;
     private String testname;
-    private String uname;
+    private List<String> testList;
 
   public CorrectTest(){
       root = CreateNodes.createBorderPane();
@@ -39,10 +43,10 @@ public class CorrectTest {
 
   }
 
-    public CorrectTest(int i, String s) {
-        this.id = i;
-        this.testname = s;
-        System.out.println(testname+"been here");
+    public CorrectTest(String s) {
+        testname = s;
+        testList = Arrays.asList(testname);
+        System.out.println(testList +" been here");
     }
     
   private void createHeader(){
@@ -50,6 +54,9 @@ public class CorrectTest {
       headline = CreateNodes.createHeader("Correct test");
       test = CreateNodes.createComboBox("Select test");
       user = CreateNodes.createComboBox("Select student");
+
+
+      test.getItems().add(testList+"");
 
       top = new HBox(20);
       top.getChildren().addAll(headline, test,user);
@@ -62,6 +69,7 @@ public class CorrectTest {
       grade = CreateNodes.createButton("Grade");
       root.setBottom(grade);
       grade.setOnAction(e -> {
+            //Main.getConnection().write("GETTEST#");
             CorrTest test = new CorrTest(1, "How to do shit.");
             CorrQuestion question = new CorrQuestion(2, "How to peel banana?", 3);
             CorrQuestion question2 = new CorrQuestion(3, "Why in the world??", 5);
