@@ -234,6 +234,10 @@ public class GUI {
         shareTest.addStudents(string);
 
     }
+    public void addStudentsToPDF(String string){
+        createPDF.getStudentPDF(string);
+
+    }
     public void addUTestToPDF(String string){
         createPDF.getUTest(string);
     }

@@ -84,6 +84,10 @@ public class Connection extends Thread{
             case "ALLTESTS":
               Main.getGUI().addTestsToShare(split[1]);
               break;
+            case "GETUSERSFORPDF":
+                System.out.println("test connection");
+                Main.getGUI().addStudentsToPDF(split[1]);
+                break;
 
             case "GETSTUDENTS":
                 Main.getGUI().addStudentsToShare(split[1]);

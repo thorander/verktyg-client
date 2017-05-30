@@ -49,6 +49,7 @@ public class CreatePDF {
                  i++;
                  selectedTestId = testList.get(i);
                  Main.getConnection().write("GETUSERSFORPDF#" + selectedTestId);
+                 System.out.println("test setonaction");
                  break;
              }
             }
@@ -61,6 +62,15 @@ public class CreatePDF {
             test.getItems().add(testList.get(i));
             i++;
         }}
+        public void getStudentPDF(String studentData){
+            System.out.println("test user");
+            userList = new ArrayList<String>(Arrays.asList(studentData.split("@")));
+            for(int i = 0; i < userList.size(); i++) {
+                student.getItems().add(userList.get(i));
+                System.out.println(userList.get(i));
+                i++;
+            }
+        }
 
     public GridPane getCreatePDF() {
         return grid;
