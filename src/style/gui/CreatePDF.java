@@ -1,14 +1,12 @@
 package style.gui;
 
+import core.Main;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import style.gui.test.create.CreateNodes;
-import style.gui.test.take.TTest;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +20,7 @@ public class CreatePDF {
     private Button button;
     private Label headline;
     private String selectedTest, selectedTestId;
-    private List<String> myList;
+    private List<String> testList, userList;
 
     public CreatePDF() {
         grid = CreateNodes.createGrid();
@@ -46,10 +44,11 @@ public class CreatePDF {
         test.setOnAction(e->{
             selectedTest = test.getSelectionModel().getSelectedItem().toString();
 
-            for(int i = 0; i < myList.size(); i++){
-             if(myList.get(i).equals(selectedTest)){
+            for(int i = 0; i < testList.size(); i++){
+             if(testList.get(i).equals(selectedTest)){
                  i++;
-                 selectedTestId = myList.get(i);
+                 selectedTestId = testList.get(i);
+                 Main.getConnection().write("GETUSERSFORPDF#" + selectedTestId);
                  break;
              }
             }
@@ -57,13 +56,21 @@ public class CreatePDF {
 
     }
     public void getUTest(String testData){
-        myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
-        for(int i = 0; i < myList.size(); i++){
-            test.getItems().add(myList.get(i));
+        testList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        for(int i = 0; i < testList.size(); i++){
+            test.getItems().add(testList.get(i));
             i++;
         }}
 
     public GridPane getCreatePDF() {
         return grid;
+    }
+
+    public void addUser(String persons){
+        userList = new ArrayList<String>(Arrays.asList(persons.split("@")));
+        for(int i = 0; i < userList.size(); i++){
+            student.getItems().add(userList.get(i));
+            i++;
+        }
     }
 }

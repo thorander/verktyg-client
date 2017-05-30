@@ -49,10 +49,9 @@ public class Login {
            String uName = user.getText();
            String uPass = pass.getText();
            Main.getConnection().write("LOGIN#" + uName + "#" + uPass);
-
         });
 
-        user.setText("mackan");
+        user.setText("mackan@bbb.se");
         pass.setText("1234");
 
         grid.setHgap(10);
