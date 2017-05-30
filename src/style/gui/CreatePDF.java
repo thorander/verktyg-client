@@ -21,6 +21,8 @@ public class CreatePDF {
     private ComboBox student, test;
     private Button button;
     private Label headline;
+    private String selectedTest, selectedTestId;
+    private List<String> myList;
 
     public CreatePDF() {
         grid = CreateNodes.createGrid();
@@ -33,7 +35,6 @@ public class CreatePDF {
         student = CreateNodes.createComboBox("Select student");
         button = CreateNodes.createButton("Create");
 
-
         grid.add(headline, 1, 1);
         grid.add(test, 1, 2);
         grid.add(student, 1, 3);
@@ -42,9 +43,21 @@ public class CreatePDF {
         grid.setMaxHeight(300);
         grid.setMaxWidth(400);
 
+        test.setOnAction(e->{
+            selectedTest = test.getSelectionModel().getSelectedItem().toString();
+
+            for(int i = 0; i < myList.size(); i++){
+             if(myList.get(i).equals(selectedTest)){
+                 i++;
+                 selectedTestId = myList.get(i);
+                 break;
+             }
+            }
+        });
+
     }
     public void getUTest(String testData){
-        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
         for(int i = 0; i < myList.size(); i++){
             test.getItems().add(myList.get(i));
             i++;
