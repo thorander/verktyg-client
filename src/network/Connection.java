@@ -101,7 +101,7 @@ public class Connection extends Thread{
                 Main.getGUI().addStudentsToShare(split[1]);
                 break;
             case "GETGROUPSTOSHARE":
-                Main.getGUI().addGroupsToShare(split[1]);
+                Main.getGUI().addGroupsToShare(input);
                 break;
             case "GETUTEST":
                Main.getGUI().addUTestToPDF(split[1]);

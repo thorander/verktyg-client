@@ -61,13 +61,20 @@ public class ShareTest {
 
 
         groups.setOnAction(e -> {
-            studentBox.setPromptText("Select group");
+            grid.getChildren().remove(studentBox);
+            grid.add(group, 1, 5);
+            group.clear();
+            Main.getConnection().write("GETGROUPSFORSHARE#");
             studentOrGroup = true;
         });
+
         students.setOnAction(e -> {
+            grid.getChildren().remove(group);
+            grid.add(studentBox, 1, 5);
             studentBox.clear();
             studentBox.setPromptText("Select student");
             Main.getConnection().write("GETSTUDENTS#");
+            studentOrGroup = false;
         });
 
         grid.add(label, 1, 1);
@@ -78,6 +85,7 @@ public class ShareTest {
         GridPane.setColumnSpan(test, 2);
         grid.add(studentBox, 1, 5);
         GridPane.setColumnSpan(studentBox, 2);
+        GridPane.setColumnSpan(group, 2);
         grid.add(button, 1, 6);
         GridPane.setColumnSpan(button, 2);
 
@@ -85,7 +93,11 @@ public class ShareTest {
         grid.setMaxHeight(400);
 
         button.setOnAction(e -> {
-           Main.getConnection().write("SHARETOSTUDENT#" + test.getSelectedId() + "#" + studentBox.getSelectedId());
+            if(studentOrGroup){
+                Main.getConnection().write("SHARETOGROUP#" + test.getSelectedId() + "#" + group.getSelectedId());
+            } else {
+               Main.getConnection().write("SHARETOSTUDENT#" + test.getSelectedId() + "#" + studentBox.getSelectedId());
+            }
         });
 
     }
@@ -110,9 +122,9 @@ public class ShareTest {
     }
 
     public void addGroups(String testData) {
-        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("@")));
+        List<String> myList = new ArrayList<String>(Arrays.asList(testData.split("#")));
         System.out.println("" + myList.size());
-        for (int i = 0; i < myList.size(); i++) {
+        for (int i = 1; i < myList.size(); i++) {
             group.addItem(myList.get(i++), Integer.parseInt(myList.get(i)));
             System.out.println(testData);
         }
