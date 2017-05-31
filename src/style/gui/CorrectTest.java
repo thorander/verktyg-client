@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import style.gui.components.CustomComboBox;
 import style.gui.test.correct.CorrAnswer;
 import style.gui.test.correct.CorrQuestion;
 import style.gui.test.correct.CorrTest;
@@ -23,7 +24,8 @@ import java.util.List;
  */
 public class CorrectTest {
   private BorderPane root;
-  private ComboBox test, user;
+  private ComboBox test;
+  private CustomComboBox user;
   private GridPane grid;
   private HBox top,bottom;
   private Label headline;
@@ -35,6 +37,7 @@ public class CorrectTest {
     private List<String> testList;
     private List<Integer> idList;
     private List<String> userList;
+    private List<String> list = new ArrayList<>();
 
   public CorrectTest(){
       root = CreateNodes.createBorderPane();
@@ -46,23 +49,33 @@ public class CorrectTest {
 
   }
 
-    public CorrectTest(int i, String s) {
+   /* public CorrectTest(int i, String s) {
         this.id = i;
         this.testname = s;
-        //this.users = a;
+
         testList = Arrays.asList(testname);
         idList = Arrays.asList(id);
-        //userList = Arrays.asList(users);
-        System.out.println(testList +" been here");
+        userList = Arrays.asList(users);
+        System.out.println("list: "+testList);
     }
+
+    public CorrectTest(String e) {
+        this.users = e;
+        userList = Arrays.asList(users);
+        System.out.println("user: " + userList);
+    }*/
     
   private void createHeader(){
 
       headline = CreateNodes.createHeader("Correct test");
       test = CreateNodes.createComboBox("Select test");
-      user = CreateNodes.createComboBox("Select student");
+      user = CreateNodes.createCustomComboBox("Select student");
 
-      test.getItems().add(testList+"");
+      test.setOnAction(e -> {
+          user.clear();
+          Main.getConnection().write("SENDTESTNAME#"+test.getValue());
+          Main.getConnection().write("GETUSERLIST#");
+      });
 
       top = new HBox(20);
       top.getChildren().addAll(headline, test,user);
@@ -75,20 +88,10 @@ public class CorrectTest {
       grade = CreateNodes.createButton("Grade");
       root.setBottom(grade);
       grade.setOnAction(e -> {
-            Main.getConnection().write("GETTEST#");
-            CorrTest test = new CorrTest(1, "How to do shit.");
-            CorrQuestion question = new CorrQuestion(2, "How to peel banana?", 3);
-            CorrQuestion question2 = new CorrQuestion(3, "Why in the world??", 5);
-            test.addCorrQuestion(question);
-            test.addCorrQuestion(question2);
-            question.addAnswer(new CorrAnswer("At top", true, true));
-            question.addAnswer(new CorrAnswer("At top", true, false));
-            question.addAnswer(new CorrAnswer("At bottom", false, false));
-            question.addAnswer(new CorrAnswer("At bottom", false, true));
-            question2.addAnswer(new CorrAnswer("Because", true, true));
-            question2.addAnswer(new CorrAnswer("Därför", true, true));
-            question2.addAnswer(new CorrAnswer("Therefore", true, false));
-            Main.getGUI().setMainContent(test);
+            //System.out.println(test.getValue());
+            Main.getConnection().write("SENDTESTNAME#"+test.getValue());
+            Main.getConnection().write("SENDUSERID#"+user.getSelectedId());
+
       });
       BorderPane.setAlignment(grade, Pos.BOTTOM_RIGHT);
      BorderPane.setMargin(grade, new Insets(15,20,15,15));
@@ -98,5 +101,20 @@ public class CorrectTest {
   public BorderPane getCorrectTestContent(){
       return root;
   }
+
+  public void setTestList(int i, String s) {
+      this.id = i;
+      this.testname = s;
+      test.getItems().add(testname);
+  }
+
+    public void setTestUser(String s) {
+        this.users = s;
+        user.getItems().add(users);
+    }
+
+    public void addUser(String username, int id){
+      user.addItem(username, id);
+    }
 
 }

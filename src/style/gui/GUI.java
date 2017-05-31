@@ -290,4 +290,8 @@ public class GUI {
     }
 
     public Statistic getStatistic() {return statistic;}
+
+    public CorrectTest getCorrectTest() {
+        return correctTest;
+    }
 }

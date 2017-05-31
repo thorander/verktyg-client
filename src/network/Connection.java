@@ -142,27 +142,42 @@ public class Connection extends Thread{
             case "SHOWTEST":
                 Main.getGUI().setMainContent(takeTest);
                 break;
+            case "GETTESTUSER":
+                for(int i = 1; i < split.length;){
+                    Main.getGUI().getCorrectTest().addUser(split[i++], Integer.parseInt(split[i++]));
+                }
+                break;
             case "UTEST":
                     test = new CorrTest(Integer.parseInt(split[1]), split[2]);
                     Main.getGUI().setMainContent(test);
 
+                    CorrQuestion c = null;
                     for(int i = 3; i < split.length;){
-                        if(split[i++].equals("UQUESTION")){
-                            CorrQuestion c = new CorrQuestion(Integer.parseInt(split[i++]), split[i++], Integer.parseInt(split[i++]));
-                            test.addCorrQuestion(c);
-                            while(i < split.length && split[i++] != "UQUESTION"){
-                                CorrAnswer a = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
-                                c.addAnswer(a);
+                        if(split[i++].equals("UQUESTION")) {
+                            if (c != null) {
+                                test.addCorrQuestion(c);
                             }
+                            c = new CorrQuestion(Integer.parseInt(split[i++]), split[i++], Integer.parseInt(split[i++]));
+                        } else if (split[i++].equals("UANSWER")){
+                            CorrAnswer a = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
+                            c.addAnswer(a);
                         }
                     }
                     System.out.println(input);
 
                 break;
             case "GETTESTLIST":
-                System.out.println(input);
-                for(int i = 2; i < split.length;) {
-                    correctTest = new CorrectTest(Integer.parseInt(split[i++]), split[i++]);
+                //System.out.println(input);
+                correctTest = Main.getGUI().getCorrectTest();
+                for(int i = 1; i < split.length;) {
+                    correctTest.setTestList(Integer.parseInt(split[i++]), split[i++]);
+                }
+                break;
+            case "asdasd":
+                //System.out.println(input);
+                correctTest = Main.getGUI().getCorrectTest();
+                for(int i = 1; i < split.length;) {
+                    correctTest.setTestUser(split[i++]);
                 }
                 break;
             case "ADDTESTS":

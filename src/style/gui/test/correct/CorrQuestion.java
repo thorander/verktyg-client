@@ -1,5 +1,6 @@
 package style.gui.test.correct;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -57,6 +58,6 @@ public class CorrQuestion extends GridPane {
     }
 
     public void addAnswer(CorrAnswer answer){
-        answerBox.getChildren().add(answer);
+        Platform.runLater(() -> answerBox.getChildren().add(answer));
     }
 }
