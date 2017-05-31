@@ -162,7 +162,7 @@ public class Connection extends Thread{
             case "GETTESTLIST":
                 System.out.println(input);
                 for(int i = 2; i < split.length;) {
-                    correctTest = new CorrectTest(split[i++]);
+                    correctTest = new CorrectTest(Integer.parseInt(split[i++]), split[i++]);
                 }
                 break;
             case "ADDTESTS":

@@ -31,7 +31,10 @@ public class CorrectTest {
 
     private int id;
     private String testname;
+    private String users;
     private List<String> testList;
+    private List<Integer> idList;
+    private List<String> userList;
 
   public CorrectTest(){
       root = CreateNodes.createBorderPane();
@@ -43,9 +46,13 @@ public class CorrectTest {
 
   }
 
-    public CorrectTest(String s) {
-        testname = s;
+    public CorrectTest(int i, String s) {
+        this.id = i;
+        this.testname = s;
+        //this.users = a;
         testList = Arrays.asList(testname);
+        idList = Arrays.asList(id);
+        //userList = Arrays.asList(users);
         System.out.println(testList +" been here");
     }
     
@@ -54,7 +61,6 @@ public class CorrectTest {
       headline = CreateNodes.createHeader("Correct test");
       test = CreateNodes.createComboBox("Select test");
       user = CreateNodes.createComboBox("Select student");
-
 
       test.getItems().add(testList+"");
 
@@ -69,7 +75,7 @@ public class CorrectTest {
       grade = CreateNodes.createButton("Grade");
       root.setBottom(grade);
       grade.setOnAction(e -> {
-            //Main.getConnection().write("GETTEST#");
+            Main.getConnection().write("GETTEST#");
             CorrTest test = new CorrTest(1, "How to do shit.");
             CorrQuestion question = new CorrQuestion(2, "How to peel banana?", 3);
             CorrQuestion question2 = new CorrQuestion(3, "Why in the world??", 5);
