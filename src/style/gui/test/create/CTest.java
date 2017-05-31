@@ -22,15 +22,17 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Markus on 2017-05-11.
+ * A class which represents a test
+ * while creating a test.
  */
 public class CTest {
 
     private BorderPane root;
-    public Button addQuestion,createButton;
-    private HBox buttonBox;
+    private Button addQuestion,createButton;
+    private HBox buttonBox, testHeader;
     private VBox qBox;
     private CheckBox selfCorrecting, showResult;
+    private EditableLabel testTitle, testDescription;
     private final int HEIGHT = 500, WIDTH = 800;
 
     public BorderPane getCreateTest(){
@@ -43,10 +45,10 @@ public class CTest {
         selfCorrecting = new CheckBox("Self-Correcting");
         showResult = new CheckBox("Show result");
 
-        HBox testHeader = new HBox();
-        EditableLabel testTitle = new EditableLabel("New test");
+        testHeader = new HBox();
+        testTitle = new EditableLabel("New test");
         testTitle.setId("headline");
-        EditableLabel testDescription = new EditableLabel("Description");
+        testDescription = new EditableLabel("Description");
         testDescription.setWrapText(true);
         testDescription.setId("description");
         DateTimePicker timePicker = new DateTimePicker();
@@ -103,6 +105,15 @@ public class CTest {
         return root;
     }
 
+    //Group together all styling code
+    private void style(){
+
+    }
+
+    private void actions(){
+
+    }
+
     public void removeQuestion(Node n){
         qBox.getChildren().remove(n);
     }
@@ -113,6 +124,10 @@ public class CTest {
             sum += ((CQuestion)n).getPoints();
         }
         return sum;
+    }
+
+    public Button getCreateButton(){
+        return createButton;
     }
 
 }

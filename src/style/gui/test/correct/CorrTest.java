@@ -1,6 +1,7 @@
 package style.gui.test.correct;
 
 import core.Main;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ import style.gui.test.create.CreateNodes;
 import java.util.List;
 
 /**
- * Created by Markus on 2017-05-28.
+ * The component which holds data about a test while correcting it.
  */
 public class CorrTest extends BorderPane {
 
@@ -62,7 +63,10 @@ public class CorrTest extends BorderPane {
         }
 
         public void addCorrQuestion(CorrQuestion q){
-            qBox.setMargin(q, new Insets(25, 0, 0, 0));
-            qBox.getChildren().add(q);
+            Platform.runLater(() -> {
+                qBox.setMargin(q, new Insets(25, 0, 0, 0));
+                qBox.getChildren().add(q);
+
+            });
         }
 }

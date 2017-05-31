@@ -86,20 +86,20 @@ public class DateTimePicker extends HBox {
             String myDate = openDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
-                Main.getGUI().getCreateTest().createButton.setDisable(false);
+                Main.getGUI().getCreateTest().getCreateButton().setDisable(false);
                 setOpenDate(myDate);
             } else if (currentDate.compareTo(myDate)>-1)
-                Main.getGUI().getCreateTest().createButton.setDisable(true);
+                Main.getGUI().getCreateTest().getCreateButton().setDisable(true);
         });
 
         closeDate.setOnAction(event -> {
             String myDate = closeDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
-                Main.getGUI().getCreateTest().createButton.setDisable(false);
+                Main.getGUI().getCreateTest().getCreateButton().setDisable(false);
                 setCloseDate(myDate);
             } else if (currentDate.compareTo(myDate)>-1)
-                Main.getGUI().getCreateTest().createButton.setDisable(true);
+                Main.getGUI().getCreateTest().getCreateButton().setDisable(true);
         });
 
     }

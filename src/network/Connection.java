@@ -152,19 +152,18 @@ public class Connection extends Thread{
                     Main.getGUI().setMainContent(test);
 
                     CorrQuestion c = null;
-                    for(int i = 3; i < split.length;){
-                        if(split[i++].equals("UQUESTION")) {
-                            if (c != null) {
-                                test.addCorrQuestion(c);
-                            }
+                    for(int i = 3; i < split.length;) {
+                        if (split[i].equals("UQUESTION")) {
+                            i++;
                             c = new CorrQuestion(Integer.parseInt(split[i++]), split[i++], Integer.parseInt(split[i++]));
-                        } else if (split[i++].equals("UANSWER")){
-                            CorrAnswer a = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
-                            c.addAnswer(a);
+                            test.addCorrQuestion(c);
+                        } else if (split[i].equals("ANSWER")) {
+                            i++;
+                            CorrAnswer canswer = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
+                            c.addAnswer(canswer);
                         }
                     }
-                    System.out.println(input);
-
+                System.out.println(input);
                 break;
             case "GETTESTLIST":
                 //System.out.println(input);
