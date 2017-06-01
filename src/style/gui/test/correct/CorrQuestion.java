@@ -10,6 +10,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import style.gui.test.create.CreateNodes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Markus on 2017-05-28.
  */
@@ -20,6 +24,10 @@ public class CorrQuestion extends GridPane {
     private TextField givenPoints;
     private Label maxPointsLabel, questionLabel, addCommentLabel;
     private TextArea commentArea;
+
+    private static String write;
+    private static String commentText = "";
+    private static List<String> list;
 
     public CorrQuestion(int id, String questionText, int maxPoints){
         this.id = id;
@@ -47,9 +55,15 @@ public class CorrQuestion extends GridPane {
         add(answerBox, 0, 1);
         add(addCommentLabel, 0, 2);
 
+        commentArea.textProperty().addListener((obs,old,niu)->{
+            commentText = "#"+niu;
+        });
+
         addCommentLabel.setOnMouseClicked(e -> {
             getChildren().remove(addCommentLabel);
             add(commentArea, 0, 2);
+            list = new ArrayList<>();
+            list.add(commentText);
         });
 
         questionLabel.setMinWidth(300);
@@ -60,4 +74,22 @@ public class CorrQuestion extends GridPane {
     public void addAnswer(CorrAnswer answer){
         Platform.runLater(() -> answerBox.getChildren().add(answer));
     }
+
+    public static String sendCorrecting(String s) {
+        list.add(commentText);
+
+        StringBuilder builder = new StringBuilder();
+        for (String value : list) {
+            builder.append(value);
+        }
+        String newCommentText = builder.toString();
+        String send = s+newCommentText;
+        try {
+            write = CreateNodes.sendCorrecting(send);
+        } catch(Exception ex) {
+            System.out.println(ex);
+        }
+        return "nothing";
+    }
+
 }

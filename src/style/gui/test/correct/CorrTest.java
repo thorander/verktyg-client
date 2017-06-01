@@ -29,6 +29,7 @@ public class CorrTest extends BorderPane {
         private final int HEIGHT = 600, WIDTH = 500;
 
         private Alert alert;
+        private String write;
 
         public CorrTest(int id, String testName){
             this.id = id;
@@ -46,10 +47,9 @@ public class CorrTest extends BorderPane {
                 alert.setContentText("Matilda jobbar på det! (y)");
                 alert.showAndWait();
 
-
-
                 try {
-
+                    String send = "CORRECTING";
+                    write = CorrQuestion.sendCorrecting(send);
                 } catch(Exception ex) {
                     System.out.println(ex);
                 }

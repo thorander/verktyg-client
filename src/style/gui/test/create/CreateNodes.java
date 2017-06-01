@@ -1,7 +1,9 @@
 package style.gui.test.create;
 
+import core.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Border;
@@ -12,10 +14,16 @@ import javafx.util.converter.NumberStringConverter;
 import style.gui.components.CustomComboBox;
 import style.gui.test.take.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Sofia on 2017-05-17.
  */
 public class CreateNodes {
+
+    private static List<String> pointNumber;
+    private static String number;
 
     //Gives the label an id and title
     public static Label createLabel(String title) {
@@ -85,6 +93,7 @@ public class CreateNodes {
         TextField numberField = createText();
         numberField.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
         numberField.setMaxWidth(32);
+        pointNumber = new ArrayList<>();
         numberField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -93,6 +102,9 @@ public class CreateNodes {
                 }
                 if(!numberField.getText().equals("") && Integer.parseInt(numberField.getText()) > maxPoints){
                     numberField.setText(maxPoints + "");
+                } if(numberField.getText() != null) {
+                    number = "#"+numberField.getText();
+                    pointNumber.add(number);
                 }
             }
         });
@@ -131,5 +143,19 @@ public class CreateNodes {
         cb.setPromptText(s);
         cb.setId("combobox");
         return cb;
+    }
+
+    public static String sendCorrecting(String s) {
+
+        StringBuilder builder = new StringBuilder();
+        for (String value : pointNumber) {
+            builder.append(value);
+        }
+        String newPointNumber = builder.toString();
+        String send = s+newPointNumber;
+        //System.out.println(send);
+        Main.getConnection().write(send);
+
+        return "nothing";
     }
 }
