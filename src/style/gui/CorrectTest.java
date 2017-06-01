@@ -48,22 +48,6 @@ public class CorrectTest {
       createFooter();
 
   }
-
-   /* public CorrectTest(int i, String s) {
-        this.id = i;
-        this.testname = s;
-
-        testList = Arrays.asList(testname);
-        idList = Arrays.asList(id);
-        userList = Arrays.asList(users);
-        System.out.println("list: "+testList);
-    }
-
-    public CorrectTest(String e) {
-        this.users = e;
-        userList = Arrays.asList(users);
-        System.out.println("user: " + userList);
-    }*/
     
   private void createHeader(){
 

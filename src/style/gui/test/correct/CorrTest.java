@@ -5,10 +5,7 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -31,6 +28,8 @@ public class CorrTest extends BorderPane {
         private VBox qBox;
         private final int HEIGHT = 600, WIDTH = 500;
 
+        private Alert alert;
+
         public CorrTest(int id, String testName){
             this.id = id;
             this.testName = CreateNodes.createHeader(testName);
@@ -39,6 +38,23 @@ public class CorrTest extends BorderPane {
             System.out.println(testName+"");
 
             doneCorrecting = CreateNodes.createButton("Submit");
+
+            doneCorrecting.setOnAction(e -> {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText(null);
+                alert.setContentText("Matilda jobbar på det! (y)");
+                alert.showAndWait();
+
+
+
+                try {
+
+                } catch(Exception ex) {
+                    System.out.println(ex);
+                }
+
+            });
 
             buttonBox = new HBox();
             buttonBox.getChildren().addAll(doneCorrecting);
