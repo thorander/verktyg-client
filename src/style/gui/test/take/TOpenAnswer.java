@@ -12,5 +12,9 @@ public class TOpenAnswer extends TAnswer {
         getChildren().add(answerBox);
     }
 
+    public String getOpenWriting(){
+        return answerBox.getText();
+    }
+
 
 }

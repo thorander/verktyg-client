@@ -159,7 +159,7 @@ public class Connection extends Thread{
                             test.addCorrQuestion(c);
                         } else if (split[i].equals("ANSWER")) {
                             i++;
-                            CorrAnswer canswer = new CorrAnswer(split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]));
+                            CorrAnswer canswer = new CorrAnswer(split[i++], split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]), split[i++]);
                             c.addAnswer(canswer);
                         }
                     }

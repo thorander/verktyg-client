@@ -207,7 +207,7 @@ public class TTest extends BorderPane {
                         break;
                     case "Open question":
                         TOpenAnswer openAnswer = ((TOpenAnswer)n);
-                        question += "#" + openAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + openAnswer.getText() + "#false";
+                        question += "#" + openAnswer.getAnswerId() + "#" + (e.getAnswerBox().getChildren().indexOf(n) + 1) + "#" + openAnswer.getOpenWriting() + "#false";
                         break;
                 }
             }

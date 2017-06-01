@@ -69,7 +69,7 @@ public class ShareTest {
         });
 
         students.setOnAction(e -> {
-            grid.getChildren().remove(group);
+            grid.getChildren().removeAll(group, studentBox);
             grid.add(studentBox, 1, 5);
             studentBox.clear();
             studentBox.setPromptText("Select student");
