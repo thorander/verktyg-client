@@ -102,10 +102,11 @@ public class CreateNodes {
                 }
                 if(!numberField.getText().equals("") && Integer.parseInt(numberField.getText()) > maxPoints){
                     numberField.setText(maxPoints + "");
-                } if(numberField.getText() != null) {
-                    number = "#"+numberField.getText();
-                    pointNumber.add(number);
                 }
+
+                number = "#"+numberField.getText();
+                pointNumber.add(number);
+                numberField.setDisable(true);
             }
         });
         return numberField;
@@ -153,7 +154,7 @@ public class CreateNodes {
         }
         String newPointNumber = builder.toString();
         String send = s+newPointNumber;
-        //System.out.println(send);
+        System.out.println(send);
         Main.getConnection().write(send);
 
         return "nothing";

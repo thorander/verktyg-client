@@ -28,6 +28,7 @@ public class CorrQuestion extends GridPane {
     private static String write;
     private static String commentText = "";
     private static List<String> list;
+    private static String newCommentText;
 
     public CorrQuestion(int id, String questionText, int maxPoints){
         this.id = id;
@@ -59,10 +60,11 @@ public class CorrQuestion extends GridPane {
             commentText = "#"+niu;
         });
 
+        list = new ArrayList<>();
+
         addCommentLabel.setOnMouseClicked(e -> {
             getChildren().remove(addCommentLabel);
             add(commentArea, 0, 2);
-            list = new ArrayList<>();
             list.add(commentText);
         });
 
@@ -75,6 +77,11 @@ public class CorrQuestion extends GridPane {
         Platform.runLater(() -> answerBox.getChildren().add(answer));
     }
 
+    public static String sendId(String s) {
+        System.out.println(s);
+        return "nothing";
+    }
+
     public static String sendCorrecting(String s) {
         list.add(commentText);
 
@@ -82,13 +89,10 @@ public class CorrQuestion extends GridPane {
         for (String value : list) {
             builder.append(value);
         }
-        String newCommentText = builder.toString();
+        newCommentText = builder.toString();
         String send = s+newCommentText;
-        try {
-            write = CreateNodes.sendCorrecting(send);
-        } catch(Exception ex) {
-            System.out.println(ex);
-        }
+        write = CreateNodes.sendCorrecting(send);
+
         return "nothing";
     }
 

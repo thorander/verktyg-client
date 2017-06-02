@@ -184,7 +184,6 @@ public class Connection extends Thread{
                 for(int i = 1; i < split.length;){
                     Main.getGUI().getStatistic().addTest(split[i++], split[i++]);
                 }
-                break;
             case "ADDGROUPS":
                 for(int i = 1; i < split.length;){
                     Main.getGUI().getStatistic().addGroup(split[i++], split[i++]);
