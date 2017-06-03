@@ -153,7 +153,7 @@ public class CreateNodes {
             builder.append(value);
         }
         String newPointNumber = builder.toString();
-        String send = s+newPointNumber;
+        String send = s+"#SCORE"+newPointNumber;
         System.out.println(send);
         Main.getConnection().write(send);
 
