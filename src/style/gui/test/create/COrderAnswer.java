@@ -7,6 +7,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.text.TextAlignment;
 import style.gui.components.CustomToolTip;
 
+/**
+ * Order answer on creation page
+ */
 public class COrderAnswer extends CAnswer {
 
     private Label moveLabel;

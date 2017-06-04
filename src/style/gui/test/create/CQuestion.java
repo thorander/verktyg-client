@@ -20,7 +20,7 @@ import style.gui.components.EditableLabel;
 import java.util.ArrayList;
 
 /**
- * Created by Markus on 2017-05-11.
+ * Represents a question on the creation-page.
  */
 public class CQuestion extends HBox {
 

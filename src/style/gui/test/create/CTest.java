@@ -30,55 +30,70 @@ public class CTest {
     private BorderPane root;
     private Button addQuestion,createButton;
     private HBox buttonBox, testHeader;
-    private VBox qBox;
+    private VBox qBox, titleBox;
     private CheckBox selfCorrecting, showResult;
     private EditableLabel testTitle, testDescription;
+    private ScrollPane sp;
+    private DateTimePicker timePicker;
     private final int HEIGHT = 500, WIDTH = 800;
 
     public BorderPane getCreateTest(){
-        root = new BorderPane();
-        root.setId("loginStyle");
-        addQuestion = new Button("Add question");
-        createButton = new Button("Create");
-        createButton.setId("button");
-        addQuestion.setId("button");
+        root = CreateNodes.createBorderPane();
+        addQuestion = CreateNodes.createButton("Add question");
+        createButton = CreateNodes.createButton("Create");
         selfCorrecting = new CheckBox("Self-Correcting");
         showResult = new CheckBox("Show result");
-
         testHeader = new HBox();
         testTitle = new EditableLabel("New test");
-        testTitle.setId("headline");
         testDescription = new EditableLabel("Description");
-        testDescription.setWrapText(true);
-        testDescription.setId("description");
-        DateTimePicker timePicker = new DateTimePicker();
-        VBox titleBox = new VBox(testTitle, testDescription);
-        Region spacingRegion = new Region();
-        HBox.setHgrow(spacingRegion, Priority.ALWAYS);
-        titleBox.setMaxWidth(300);
-        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker, new VBox(selfCorrecting,showResult));
-        testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 5px;");
-        root.setAlignment(testTitle, Pos.BASELINE_CENTER);
-        buttonBox = new HBox();
-        buttonBox.getChildren().addAll(addQuestion, createButton);
-        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
-        buttonBox.setMargin(createButton, new Insets(15, 0, 0, 50));
-        root.setBottom(buttonBox);
-
+        timePicker = new DateTimePicker();
+        titleBox = new VBox(testTitle, testDescription);
         qBox = new VBox();
-        ScrollPane sp = new ScrollPane();
+        sp = new ScrollPane();
+
+        style();
+        actions();
+
         sp.setContent(new VBox(testHeader, qBox));
-        root.setCenter(sp);
+        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        root.setPadding(new Insets(50, 50, 50, 50));
         root.setMaxWidth(WIDTH);
         root.setMinWidth(WIDTH);
         root.setMinHeight(HEIGHT);
         root.setMaxHeight(HEIGHT);
-        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        DropShadow drop = new DropShadow(50, Color.GRAY);
-        root.setEffect(drop);
-        root.setPadding(new Insets(50, 50, 50, 50));
+        root.setAlignment(testTitle, Pos.BASELINE_CENTER);
 
+        root.setCenter(sp);
+        root.setBottom(buttonBox);
+
+        return root;
+    }
+
+    //Group together all styling code
+    private void style(){
+        testTitle.setId("headline");
+        testDescription.setWrapText(true);
+        testDescription.setId("description");
+
+        Region spacingRegion = new Region();
+        HBox.setHgrow(spacingRegion, Priority.ALWAYS);
+
+        titleBox.setMaxWidth(300);
+
+        testHeader.getChildren().addAll(titleBox, spacingRegion, timePicker, new VBox(selfCorrecting,showResult));
+        testHeader.setStyle("-fx-border-color: gray; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 5px;");
+
+        buttonBox = new HBox();
+        buttonBox.getChildren().addAll(addQuestion, createButton);
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        HBox.setMargin(createButton, new Insets(15, 0, 0, 50));
+
+    }
+
+    private void actions(){
         addQuestion.setOnAction(e -> {
             qBox.getChildren().add(new CQuestion());
             sp.setVvalue(qBox.getHeight());
@@ -95,23 +110,13 @@ public class CTest {
                     + "#" + getMaxPoints();
             Main.getConnection().write(command);
             qBox.getChildren().forEach(q -> {
-               if(q instanceof CQuestion){
-                   Main.getConnection().write(((CQuestion)q).getRepresentation());
-               }
+                if(q instanceof CQuestion){
+                    Main.getConnection().write(((CQuestion)q).getRepresentation());
+                }
             });
             Main.getConnection().write("PERSISTTEST#");
             Main.getGUI().FrontPageScreen();
         });
-        return root;
-    }
-
-    //Group together all styling code
-    private void style(){
-
-    }
-
-    private void actions(){
-
     }
 
     public void removeQuestion(Node n){

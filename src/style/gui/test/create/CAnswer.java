@@ -6,6 +6,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import style.gui.icons.RemoveIcon;
 
+/**
+ * A superclass representing an answer on the creation-page
+ */
 public abstract class CAnswer extends HBox {
 
     protected TextField answer;

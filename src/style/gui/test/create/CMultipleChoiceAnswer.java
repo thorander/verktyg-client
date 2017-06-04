@@ -6,7 +6,7 @@ import javafx.scene.control.Tooltip;
 import style.gui.components.CustomToolTip;
 
 /**
- * Created by Markus on 2017-05-16.
+ * Multiple choice answer on creation page
  */
 public class CMultipleChoiceAnswer extends CAnswer {
 

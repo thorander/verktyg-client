@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sofia on 2017-05-17.
+ * A factory class for creating nodes and test data
  */
 public class CreateNodes {
 

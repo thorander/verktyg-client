@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents the page Statistics
+ */
 public class Statistic{
     private GridPane grid;
     private CustomComboBox test,group;

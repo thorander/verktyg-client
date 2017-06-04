@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 /**
- * Created by Markus on 2017-05-16.
+ * Open answer on creation page
  */
 public class COpenAnswer extends CAnswer {
 

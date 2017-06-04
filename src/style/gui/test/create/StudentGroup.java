@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sofia on 2017-05-16.
+ * Represents the page where you create user groups
  */
 public  class StudentGroup {
     private GridPane grid;

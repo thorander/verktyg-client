@@ -8,7 +8,7 @@ import javafx.scene.control.Tooltip;
 import style.gui.components.CustomToolTip;
 
 /**
- * Created by Markus on 2017-05-16.
+ * One choice answer on creation page
  */
 public class COneChoiceAnswer extends CAnswer {
 
