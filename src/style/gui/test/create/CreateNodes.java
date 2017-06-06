@@ -146,7 +146,7 @@ public class CreateNodes {
         return cb;
     }
 
-    public static String sendCorrecting(String s) {
+    public static String sendCorrect(String s) {
 
         StringBuilder builder = new StringBuilder();
         for (String value : pointNumber) {

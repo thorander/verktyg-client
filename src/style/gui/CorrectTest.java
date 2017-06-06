@@ -76,7 +76,6 @@ public class CorrectTest {
             //System.out.println(test.getValue());
             Main.getConnection().write("SENDTESTNAME#"+test.getValue());
             Main.getConnection().write("SENDUSERID#"+user.getSelectedId());
-            CorrQuestion.sendId("hej");
 
       });
       BorderPane.setAlignment(grade, Pos.BOTTOM_RIGHT);

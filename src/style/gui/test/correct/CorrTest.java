@@ -44,12 +44,12 @@ public class CorrTest extends BorderPane {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Rättningen är nu sparad!\nRätta om på nytt om du vill göra ändringar.");
+                alert.setContentText("Rättningen är nu sparad!\nRätta om på nytt om du vill göra ändringar");
                 alert.showAndWait();
 
                 try {
-                    String send = "CORRECTING";
-                    write = CorrQuestion.sendCorrecting(send);
+                    String send = "CORRECT";
+                    write = CorrQuestion.sendCorrect(send);
                     doneCorrecting.setDisable(true);
                 } catch(Exception ex) {
                     System.out.println(ex);

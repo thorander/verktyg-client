@@ -82,7 +82,7 @@ public class CorrQuestion extends GridPane {
         return "nothing";
     }
 
-    public static String sendCorrecting(String s) {
+    public static String sendCorrect(String s) {
         list.add(commentText);
 
         StringBuilder builder = new StringBuilder();
@@ -91,7 +91,7 @@ public class CorrQuestion extends GridPane {
         }
         newCommentText = builder.toString();
         String send = s+newCommentText;
-        write = CreateNodes.sendCorrecting(send);
+        write = CreateNodes.sendCorrect(send);
 
         return "nothing";
     }
