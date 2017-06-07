@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import style.gui.GUI;
 
+/**
+ * The class which represents the Navbar
+ */
 public class NavigationBar {
 
     private static Label role,takeTest,edit,logout, create, statistics,gradeTest, register, login, result,
@@ -42,7 +45,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(create, statistics, gradeTest, register, group, shareTest, takeTest, logout);
+        header.getChildren().addAll(create, statistics, gradeTest, register, group, shareTest, takeTest, result, logout);
 
         return header;
     }
@@ -102,7 +105,10 @@ public class NavigationBar {
         });
         copyTest.setOnMouseClicked(e->Main.getGUI().copyTestContent());
         createPDF.setOnMouseClicked(e-> Main.getGUI().createPDFContent());
-        result.setOnMouseClicked(e->Main.getGUI().resultScreen());
+        result.setOnMouseClicked(e->{
+            Main.getGUI().result();
+            Main.getConnection().write("UTESTSFORRESULTPAGE#");
+        });
 
     }
 

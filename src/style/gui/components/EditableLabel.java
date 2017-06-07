@@ -10,6 +10,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import style.gui.test.create.CreateNodes;
 
+/**
+ * Custom Label which has a text field as well.
+ * When label is clicked, switch it out for the text field to edit the content.
+ * When it loses focus we switch back to the label with the new content.
+ */
+
 public class EditableLabel extends VBox {
 
     private Label label;

@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import java.util.ArrayList;
 
 /**
- * Created by Markus on 2017-05-30.
+ * Custom component which also stores the database id of something put in this combobox
  */
 public class CustomComboBox<T> extends ComboBox<T> {
 

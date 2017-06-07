@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Matilda on 2017-05-16.
+ * Custom component for CTest where you choose date and time
  */
 public class DateTimePicker extends HBox {
 

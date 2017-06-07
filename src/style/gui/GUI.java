@@ -21,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import style.gui.components.NavigationBar;
-import style.gui.test.Results;
+import style.gui.test.correct.CorrAnswer;
 import style.gui.test.create.CTest;
 import style.gui.test.create.Statistic;
 import style.gui.test.create.StudentGroup;
@@ -54,10 +54,8 @@ public class GUI {
     private CorrectTest correctTest;
     private CopyTest copyTest;
     private CreatePDF createPDF;
-    private Results results;
+    private Result result;
     private StudentGroup sg;
-
-
 
     public GUI(Stage primaryStage){
         stage = primaryStage;
@@ -75,8 +73,6 @@ public class GUI {
         userView = new StackPane();
         copyTest = new CopyTest();
         createPDF = new CreatePDF();
-        results = new Results();
-
 
         backgroundImage = NavigationBar.navBackgroundImage();
         userView.getChildren().addAll( backgroundImage,borderPane);
@@ -93,12 +89,9 @@ public class GUI {
         shareTest = new ShareTest();
         correctTest = new CorrectTest();
         sg = new StudentGroup();
-
-
+        result = new Result();
 
         loginScreen();
-
-
 
         scene = new Scene(borderPaneBase, 1000,700);
         scene.getStylesheets().add(getClass().getResource("../Stylesheet.css").toExternalForm());
@@ -134,7 +127,6 @@ public class GUI {
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         Main.getConnection().write("GETUTEST#");
         setMainContent(mainContent);
-
     }
 
     public void correctTestContent(){
@@ -144,7 +136,6 @@ public class GUI {
         setMainContent(g);}
 
     public void shareTestContent(){
-
         mainContent = shareTest.getShareTest();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
@@ -161,11 +152,6 @@ public class GUI {
         BorderPane.setMargin(p, new Insets(0, 0, 100, 0));
         setMainContent(p);
     }
-    public void resultScreen(){
-        BorderPane p = (BorderPane)results.getResults();
-        mainContent.setAlignment(Pos.CENTER);
-        BorderPane.setMargin(p, new Insets(0, 0, 100, 0));
-        setMainContent(p);}
 
     public void FrontPageScreen(){
         fp = new FrontPage();
@@ -178,6 +164,11 @@ public class GUI {
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
         setMainContent(mainContent);
+    }
+
+    public void result(){
+        result.clearBox();
+        setMainContent(result);
     }
 
     public void createTestScreen(){
@@ -293,5 +284,21 @@ public class GUI {
 
     public CorrectTest getCorrectTest() {
         return correctTest;
+    }
+
+    public void newResultTest(String title, String points, String maxPoints, String grade, String comment){
+        Platform.runLater(() -> result.newTest(title, points, maxPoints, grade, comment));
+    }
+
+    public void addQuestionToResult(String title, String points, String maxPoints){
+        Platform.runLater(() -> result.addQuestion(title, points, maxPoints));
+    }
+
+    public void addAnswerToResult(CorrAnswer a){
+        Platform.runLater(() -> result.addAnswer(a));
+    }
+
+    public void addTestToResult(String title, int id){
+        result.addTestToPick(title, id);
     }
 }
