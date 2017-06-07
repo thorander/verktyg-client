@@ -22,8 +22,6 @@ import java.util.List;
  */
 public class CreateNodes {
 
-    private static List<String> pointNumber;
-    private static String number;
 
     //Gives the label an id and title
     public static Label createLabel(String title) {
@@ -93,7 +91,6 @@ public class CreateNodes {
         TextField numberField = createText();
         numberField.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
         numberField.setMaxWidth(32);
-        pointNumber = new ArrayList<>();
         numberField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -103,10 +100,6 @@ public class CreateNodes {
                 if(!numberField.getText().equals("") && Integer.parseInt(numberField.getText()) > maxPoints){
                     numberField.setText(maxPoints + "");
                 }
-
-                number = "#"+numberField.getText();
-                pointNumber.add(number);
-                numberField.setDisable(true);
             }
         });
         return numberField;
@@ -146,17 +139,4 @@ public class CreateNodes {
         return cb;
     }
 
-    public static String sendCorrect(String s) {
-
-        StringBuilder builder = new StringBuilder();
-        for (String value : pointNumber) {
-            builder.append(value);
-        }
-        String newPointNumber = builder.toString();
-        String send = s+"#SCORE"+newPointNumber;
-        System.out.println(send);
-        Main.getConnection().write(send);
-
-        return "nothing";
-    }
 }

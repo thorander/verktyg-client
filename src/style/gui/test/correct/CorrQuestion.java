@@ -27,10 +27,6 @@ public class CorrQuestion extends GridPane {
     private Label maxPointsLabel, questionLabel, addCommentLabel;
     private TextArea commentArea;
 
-    private static String write;
-    private static String commentText = "";
-    private static List<String> list;
-    private static String newCommentText;
 
     public CorrQuestion(int id, String questionText, int maxPoints){
         this.id = id;
@@ -58,16 +54,9 @@ public class CorrQuestion extends GridPane {
         add(answerBox, 0, 1);
         add(addCommentLabel, 0, 2);
 
-        commentArea.textProperty().addListener((obs,old,niu)->{
-            commentText = "#"+niu;
-        });
-
-        list = new ArrayList<>();
-
         addCommentLabel.setOnMouseClicked(e -> {
             getChildren().remove(addCommentLabel);
             add(commentArea, 0, 2);
-            list.add(commentText);
         });
 
         questionLabel.setMinWidth(300);
@@ -79,23 +68,16 @@ public class CorrQuestion extends GridPane {
         Platform.runLater(() -> answerBox.getChildren().add(answer));
     }
 
-    public static String sendId(String s) {
-        System.out.println(s);
-        return "nothing";
-    }
-
-    public static String sendCorrect(String s) { // Sending all comments in a string to the CreateNodes-class
-        list.add(commentText);
-
-        StringBuilder builder = new StringBuilder();
-        for (String value : list) {
-            builder.append(value);
+    public String getUpdateQuestion() {
+        System.out.println("Comment area text: " + commentArea.getText());
+        String s = "";
+        if(commentArea.getText().equals("")){
+            s = "nocomment";
+        } else {
+            s = commentArea.getText();
         }
-        newCommentText = builder.toString();
-        String send = s+newCommentText;
-        write = CreateNodes.sendCorrect(send);
-
-        return "nothing";
+        System.out.println(s);
+        return "UPDATEQUESTION#" + id + "#" + givenPoints.getText() + "#" + s + "#";
     }
 
 }

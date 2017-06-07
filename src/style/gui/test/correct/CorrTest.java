@@ -29,7 +29,6 @@ public class CorrTest extends BorderPane {
         private final int HEIGHT = 600, WIDTH = 500;
 
         private Alert alert;
-        private String write;
 
         public CorrTest(int id, String testName){
             this.id = id;
@@ -38,23 +37,22 @@ public class CorrTest extends BorderPane {
             System.out.println(id);
             System.out.println(testName+"");
 
-            doneCorrecting = CreateNodes.createButton("Submit");
+            doneCorrecting = CreateNodes.createButton("Save");
 
             doneCorrecting.setOnAction(e -> {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Rättningen är nu sparad!\nRätta om på nytt om du vill göra ändringar");
+                alert.setContentText("Rättningen är nu sparad!");
                 alert.showAndWait();
 
-                try { // Save the correcting
-                    String send = "CORRECT";
-                    write = CorrQuestion.sendCorrect(send);
-                    doneCorrecting.setDisable(true);
-                } catch(Exception ex) {
-                    System.out.println(ex);
+                String send = "CORRECT#" + id + "#";
+                for(Node o : qBox.getChildren()){
+                    CorrQuestion temp = ((CorrQuestion)o);
+                    send += temp.getUpdateQuestion();
                 }
 
+                Main.getConnection().write(send);
             });
 
             buttonBox = new HBox();

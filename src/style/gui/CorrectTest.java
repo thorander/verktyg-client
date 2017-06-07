@@ -24,8 +24,7 @@ import java.util.List;
  */
 public class CorrectTest {
   private BorderPane root;
-  private ComboBox test;
-  private CustomComboBox user;
+  private CustomComboBox user, test;
   private GridPane grid;
   private HBox top,bottom;
   private Label headline;
@@ -52,7 +51,7 @@ public class CorrectTest {
   private void createHeader(){
 
       headline = CreateNodes.createHeader("Correct test");
-      test = CreateNodes.createComboBox("Select test");
+      test = CreateNodes.createCustomComboBox("Select test");
       user = CreateNodes.createCustomComboBox("Select student");
 
       test.setOnAction(e -> { // Sending test name and get all user to user-list
@@ -100,6 +99,11 @@ public class CorrectTest {
 
     public void addUser(String username, int id){
       user.addItem(username, id);
+    }
+
+    public void clear(){
+        test.getItems().clear();
+        user.clear();
     }
 
 }

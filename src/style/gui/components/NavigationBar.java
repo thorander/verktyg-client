@@ -98,6 +98,7 @@ public class NavigationBar {
 
         gradeTest.setOnMouseClicked(e-> { //Hämtar alla prover som ska listas när man vill rätta något prov som studenten gjort
             Main.getGUI().correctTestContent();
+            Main.getGUI().getCorrectTest().clear();
             Main.getConnection().write("GETTESTLIST#");
         });
         logout.setOnMouseClicked(e->{
