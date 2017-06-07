@@ -21,11 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Matilda on 2017-05-16.
- *
- * In this class you can find dates and time components, which you can control when different test will be available
- * for students and also set closedate and timelimit.
- *
+ * Custom component for CTest where you choose date and time
  */
 public class DateTimePicker extends HBox {
 
@@ -86,7 +82,7 @@ public class DateTimePicker extends HBox {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         currentDate = format1.format(date);
 
-        openDate.setOnAction(event -> { // Which day/date the test will be open/available
+        openDate.setOnAction(event -> {
             String myDate = openDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
@@ -96,7 +92,7 @@ public class DateTimePicker extends HBox {
                 Main.getGUI().getCreateTest().getCreateButton().setDisable(true);
         });
 
-        closeDate.setOnAction(event -> { // Which day the test will be unavailable
+        closeDate.setOnAction(event -> {
             String myDate = closeDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
@@ -108,7 +104,7 @@ public class DateTimePicker extends HBox {
 
     }
 
-    private void Time() { // How many minutes/hours one test will have
+    private void Time() {
 
         slider.valueProperty().addListener(
                 (observable, oldvalue, newvalue) ->

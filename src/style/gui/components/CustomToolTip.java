@@ -9,7 +9,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
 /**
- * Created by Markus on 2017-05-16.
+ * Custom tooltip class. Changes the style and also speed of popping up and disappearing
  */
 public class CustomToolTip extends Tooltip {
 

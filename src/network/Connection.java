@@ -20,6 +20,9 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Connection class - represents the connection with the server.
+ */
 public class Connection extends Thread{
 
     private Socket socket;
@@ -32,11 +35,7 @@ public class Connection extends Thread{
     private TTest takeTest;
 
     private CorrTest test;
-    private CorrQuestion question;
-    private CorrAnswer answer;
     private CorrectTest correctTest;
-
-    private StudentGroup studentGroup;
 
     public Connection(String ipadress, int port){
         this.ipadress = ipadress;
@@ -189,6 +188,26 @@ public class Connection extends Thread{
                 break;
             case "UPDATESTATS":
                 Main.getGUI().getStatistic().updateStats(split[1],split[2],split[3],split[4],split[5],split[6]);
+                break;
+            case "UTESTSFORRESULTPAGE":
+                System.out.println("UTESTS FOR RESULT PAGE");
+                for(int i = 1; i < split.length;){
+                    Main.getGUI().addTestToResult(split[i++], Integer.parseInt(split[i++]));
+                }
+                break;
+            case "UTESTFORRESULTPAGE":
+                Main.getGUI().newResultTest(split[1], split[2], split[3], split[4], split[5]);
+                System.out.println(input);
+                for(int i = 6; i < split.length;) {
+                    if (split[i].equals("UQUESTION")) {
+                        i++;
+                        Main.getGUI().addQuestionToResult(split[i++], split[i++], split[i++]);
+                    } else if (split[i].equals("ANSWER")) {
+                        i++;
+                        CorrAnswer canswer = new CorrAnswer(split[i++], split[i++], Boolean.parseBoolean(split[i++]), Boolean.parseBoolean(split[i++]), split[i++]);
+                        Main.getGUI().addAnswerToResult(canswer);
+                    }
+                }
                 break;
         }
     }

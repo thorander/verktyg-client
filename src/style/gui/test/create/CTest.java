@@ -123,6 +123,7 @@ public class CTest {
         qBox.getChildren().remove(n);
     }
 
+    //Loops through all questions and sums up the max points which is then returned
     private int getMaxPoints(){
         int sum = 0;
         for(Node n : qBox.getChildren()){
