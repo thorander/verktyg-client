@@ -41,44 +41,56 @@ public class CreatePDF {
         grid.setMaxHeight(300);
         grid.setMaxWidth(400);
 
-        test.setOnAction(e->{
+        test.setOnAction(e -> {
             selectedTest = test.getSelectionModel().getSelectedItem().toString();
 
-            for(int i = 0; i < testList.size(); i++){
-             if(testList.get(i).equals(selectedTest)){
-                 i++;
-                 selectedTestId = testList.get(i);
-                 Main.getConnection().write("GETUSERSFORPDF#" + selectedTestId);
-                 System.out.println("test setonaction");
-                 break;
-             }
+            for (int i = 0; i < testList.size(); i++) {
+                if (testList.get(i).equals(selectedTest)) {
+                    i++;
+                    selectedTestId = testList.get(i);
+                    Main.getConnection().write("GETUSERSFORPDF#" + selectedTestId);
+                    System.out.println("test setonaction");
+                    break;
+                }
             }
+        });
+        button.setOnAction(e -> {
+            Main.getConnection().write("PDF#");
+
         });
 
     }
-    public void getUTest(String testData){
+
+    public ComboBox getCombo() {
+        test.getItems();
+        return test;
+    }
+
+    public void getUTest(String testData) {
         testList = new ArrayList<String>(Arrays.asList(testData.split("@")));
-        for(int i = 0; i < testList.size(); i++){
+        for (int i = 0; i < testList.size(); i++) {
             test.getItems().add(testList.get(i));
             i++;
-        }}
-        public void getStudentPDF(String studentData){
-            System.out.println("test user");
-            userList = new ArrayList<String>(Arrays.asList(studentData.split("@")));
-            for(int i = 0; i < userList.size(); i++) {
-                student.getItems().add(userList.get(i));
-                System.out.println(userList.get(i));
-                i++;
-            }
         }
+    }
+
+    public void getStudentPDF(String studentData) {
+        System.out.println("test user");
+        userList = new ArrayList<String>(Arrays.asList(studentData.split("@")));
+        for (int i = 0; i < userList.size(); i++) {
+            student.getItems().add(userList.get(i));
+            System.out.println(userList.get(i));
+            i++;
+        }
+    }
 
     public GridPane getCreatePDF() {
         return grid;
     }
 
-    public void addUser(String persons){
+    public void addUser(String persons) {
         userList = new ArrayList<String>(Arrays.asList(persons.split("@")));
-        for(int i = 0; i < userList.size(); i++){
+        for (int i = 0; i < userList.size(); i++) {
             student.getItems().add(userList.get(i));
             i++;
         }

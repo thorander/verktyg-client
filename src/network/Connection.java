@@ -191,6 +191,11 @@ public class Connection extends Thread{
             case "UPDATESTATS":
                 Main.getGUI().getStatistic().updateStats(split[1],split[2],split[3],split[4],split[5],split[6]);
                 break;
+            case "COMBOBOX":
+                Main.getGUI().getCombo();
+
+
+                break;
             case "UTESTSFORRESULTPAGE":
                 System.out.println("UTESTS FOR RESULT PAGE");
                 for(int i = 1; i < split.length;){

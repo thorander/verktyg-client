@@ -4,6 +4,7 @@ import core.Main;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
@@ -142,7 +143,11 @@ public class GUI {
         setMainContent(mainContent);
         Main.getConnection().write("ALLTESTS#");
     }
-
+    public ComboBox getCombo() {
+        CreatePDF pdf = new CreatePDF();
+        pdf.getCombo().getItems();
+        return getCombo();
+    }
 
 
     public void registerScreen(){
