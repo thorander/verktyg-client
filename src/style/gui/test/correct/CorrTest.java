@@ -43,7 +43,7 @@ public class CorrTest extends BorderPane {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Rättningen är nu sparad!");
+                alert.setContentText("Din rättning är nu sparad!");
                 alert.showAndWait();
 
                 String send = "CORRECT#" + id + "#";
