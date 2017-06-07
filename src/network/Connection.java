@@ -103,7 +103,7 @@ public class Connection extends Thread{
             case "GETGROUPSTOSHARE":
                 Main.getGUI().addGroupsToShare(input);
                 break;
-            case "GETUTEST":
+            case "GETUTEST": // Hämtar test
                Main.getGUI().addUTestToPDF(split[1]);
                 break;
             case "ERROR":
@@ -119,7 +119,7 @@ public class Connection extends Thread{
                     Main.getGUI().getTestSelectScreen().selectFirst();
                 });
                 break;
-            case "STUDENTSFORGROUP":
+            case "STUDENTSFORGROUP": // Get/set students in the group-class
                 String[] users = split[1].split("@");
                 System.out.println(input);
                 for(int i = 0; i < users.length; ){
@@ -147,7 +147,7 @@ public class Connection extends Thread{
                     Main.getGUI().getCorrectTest().addUser(split[i++], Integer.parseInt(split[i++]));
                 }
                 break;
-            case "UTEST":
+            case "UTEST": // Saves all questions, several optitions questions etc. so they show up while you correct the tests
                     test = new CorrTest(Integer.parseInt(split[1]), split[2]);
                     Main.getGUI().setMainContent(test);
 
@@ -165,15 +165,13 @@ public class Connection extends Thread{
                     }
                 System.out.println(input);
                 break;
-            case "GETTESTLIST":
-                //System.out.println(input);
+            case "GETTESTLIST": // Get all tests
                 correctTest = Main.getGUI().getCorrectTest();
                 for(int i = 1; i < split.length;) {
                     correctTest.setTestList(Integer.parseInt(split[i++]), split[i++]);
                 }
                 break;
             case "asdasd":
-                //System.out.println(input);
                 correctTest = Main.getGUI().getCorrectTest();
                 for(int i = 1; i < split.length;) {
                     correctTest.setTestUser(split[i++]);

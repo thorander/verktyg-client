@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Created by Markus on 2017-05-28.
+ *
+ * This component holds all questions which will show up while you correcting, points and comments
  */
 public class CorrQuestion extends GridPane {
 
@@ -82,7 +84,7 @@ public class CorrQuestion extends GridPane {
         return "nothing";
     }
 
-    public static String sendCorrect(String s) {
+    public static String sendCorrect(String s) { // Sending all comments in a string to the CreateNodes-class
         list.add(commentText);
 
         StringBuilder builder = new StringBuilder();

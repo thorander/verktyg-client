@@ -70,7 +70,7 @@ public  class StudentGroup {
         userView.setMaxWidth(200);
         groupView.setMaxWidth(200);
 
-        createGroup.setOnAction(e -> {
+        createGroup.setOnAction(e -> { // Create groupname
 
             String s = "CREATEGROUP#" + groupname.getText();
             for(User u : groupView.getItems()){
@@ -114,7 +114,7 @@ public  class StudentGroup {
 
     }
 
-    public void addUser(String name, String id){
+    public void addUser(String name, String id){ // Get all user/students to show in user-list
         try{
             User user = new User(name, Integer.parseInt(id));
             userView.getItems().add(user);

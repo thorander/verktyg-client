@@ -22,6 +22,10 @@ import java.util.Date;
 
 /**
  * Created by Matilda on 2017-05-16.
+ *
+ * In this class you can find dates and time components, which you can control when different test will be available
+ * for students and also set closedate and timelimit.
+ *
  */
 public class DateTimePicker extends HBox {
 
@@ -82,7 +86,7 @@ public class DateTimePicker extends HBox {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         currentDate = format1.format(date);
 
-        openDate.setOnAction(event -> {
+        openDate.setOnAction(event -> { // Which day/date the test will be open/available
             String myDate = openDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
@@ -92,7 +96,7 @@ public class DateTimePicker extends HBox {
                 Main.getGUI().getCreateTest().getCreateButton().setDisable(true);
         });
 
-        closeDate.setOnAction(event -> {
+        closeDate.setOnAction(event -> { // Which day the test will be unavailable
             String myDate = closeDate.getValue().toString();
 
             if (currentDate.compareTo(myDate)<1) {
@@ -104,7 +108,7 @@ public class DateTimePicker extends HBox {
 
     }
 
-    private void Time() {
+    private void Time() { // How many minutes/hours one test will have
 
         slider.valueProperty().addListener(
                 (observable, oldvalue, newvalue) ->

@@ -47,7 +47,7 @@ public class CorrTest extends BorderPane {
                 alert.setContentText("Rättningen är nu sparad!\nRätta om på nytt om du vill göra ändringar");
                 alert.showAndWait();
 
-                try {
+                try { // Save the correcting
                     String send = "CORRECT";
                     write = CorrQuestion.sendCorrect(send);
                     doneCorrecting.setDisable(true);

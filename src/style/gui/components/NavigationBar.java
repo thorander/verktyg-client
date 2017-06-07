@@ -85,14 +85,15 @@ public class NavigationBar {
         register.setOnMouseClicked(e -> Main.getGUI().registerScreen());
         create.setOnMouseClicked(e -> Main.getGUI().createTestScreen());
 
-        group.setOnMouseClicked(e-> {
+        group.setOnMouseClicked(e-> { //Hämtar alla användare som ska listas i group-klassen
             Main.getGUI().groupScreen();
             Main.getConnection().write("GETUSERSFORGROUP#");
         });
         statistics.setOnMouseClicked(e-> Main.getGUI().stastisticContent());
         takeTest.setOnMouseClicked(e -> Main.getGUI().takeTest());
         shareTest.setOnMouseClicked(e -> Main.getGUI().shareTestContent());
-        gradeTest.setOnMouseClicked(e-> {
+
+        gradeTest.setOnMouseClicked(e-> { //Hämtar alla prover som ska listas när man vill rätta något prov som studenten gjort
             Main.getGUI().correctTestContent();
             Main.getConnection().write("GETTESTLIST#");
         });

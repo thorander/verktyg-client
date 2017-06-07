@@ -55,7 +55,7 @@ public class CorrectTest {
       test = CreateNodes.createComboBox("Select test");
       user = CreateNodes.createCustomComboBox("Select student");
 
-      test.setOnAction(e -> {
+      test.setOnAction(e -> { // Sending test name and get all user to user-list
           user.clear();
           Main.getConnection().write("SENDTESTNAME#"+test.getValue());
           Main.getConnection().write("GETUSERLIST#");
@@ -72,7 +72,7 @@ public class CorrectTest {
       grade = CreateNodes.createButton("Grade");
       root.setBottom(grade);
 
-      grade.setOnAction(e -> {
+      grade.setOnAction(e -> { // Save testname and user id
             //System.out.println(test.getValue());
             Main.getConnection().write("SENDTESTNAME#"+test.getValue());
             Main.getConnection().write("SENDUSERID#"+user.getSelectedId());
