@@ -126,7 +126,7 @@ public class GUI {
         mainContent = createPDF.getCreatePDF();
         mainContent.setAlignment(Pos.CENTER);
         BorderPane.setMargin(mainContent, new Insets(0, 0, 100, 0));
-        Main.getConnection().write("GETUTEST#");
+        Main.getConnection().write("GETTEST#");
         setMainContent(mainContent);
     }
 

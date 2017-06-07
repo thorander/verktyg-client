@@ -45,7 +45,7 @@ public class NavigationBar {
         HBox header = new HBox();
         header.setId("navHeader");
         header.setAlignment(Pos.CENTER);
-        header.getChildren().addAll(create, statistics, gradeTest, register, group, shareTest, takeTest, result, logout);
+        header.getChildren().addAll(create, statistics, gradeTest, register, createPDF, group, shareTest, takeTest, result, logout);
 
         return header;
     }
