@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import style.gui.test.create.CreateNodes;
 
 /**
  * Created by Sofia on 2017-05-26.

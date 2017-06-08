@@ -24,10 +24,9 @@ import javafx.stage.Stage;
 import style.gui.components.NavigationBar;
 import style.gui.test.correct.CorrAnswer;
 import style.gui.test.create.CTest;
-import style.gui.test.create.Statistic;
-import style.gui.test.create.StudentGroup;
-import style.gui.test.take.ShareTest;
-import style.gui.test.take.ShareTest;
+import style.gui.Statistic;
+import style.gui.StudentGroup;
+import style.gui.ShareTest;
 import style.gui.test.take.TTestSelect;
 
 public class GUI {

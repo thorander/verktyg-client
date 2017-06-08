@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import style.gui.components.CustomComboBox;
 import style.gui.test.correct.CorrAnswer;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 /**
  * Created by Markus on 2017-06-07.

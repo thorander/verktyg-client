@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
+import style.gui.CreateNodes;
 import style.gui.components.CustomToolTip;
 import style.gui.icons.RemoveIcon;
 import style.gui.components.EditableLabel;

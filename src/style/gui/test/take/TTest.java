@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.util.*;
 

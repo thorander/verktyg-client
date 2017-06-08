@@ -10,7 +10,7 @@ import style.gui.GUI;
 import style.gui.test.correct.CorrAnswer;
 import style.gui.test.correct.CorrQuestion;
 import style.gui.test.correct.CorrTest;
-import style.gui.test.create.StudentGroup;
+import style.gui.StudentGroup;
 import style.gui.test.take.TAnswer;
 import style.gui.test.take.TQuestion;
 import style.gui.test.take.TTest;
@@ -92,7 +92,6 @@ public class Connection extends Thread{
               Main.getGUI().addTestsToShare(split[1]);
               break;
             case "GETUSERSFORPDF":
-                System.out.println("test connection");
                 Main.getGUI().addStudentsToPDF(split[1]);
                 break;
 
@@ -120,7 +119,6 @@ public class Connection extends Thread{
                 break;
             case "STUDENTSFORGROUP": // Get/set students in the group-class
                 String[] users = split[1].split("@");
-                System.out.println(input);
                 for(int i = 0; i < users.length; ){
                     Main.getGUI().getStudentGroup().addUser(users[i++], users[i++]);
                 }
@@ -162,7 +160,6 @@ public class Connection extends Thread{
                             c.addAnswer(canswer);
                         }
                     }
-                System.out.println(input);
                 break;
             case "GETTESTLIST": // Get all tests
                 correctTest = Main.getGUI().getCorrectTest();
@@ -177,7 +174,6 @@ public class Connection extends Thread{
                 }
                 break;
             case "ADDTESTS":
-                    System.out.println(input);
                 for(int i = 1; i < split.length;){
                     Main.getGUI().getStatistic().addTest(split[i++], split[i++]);
                 }
@@ -195,14 +191,12 @@ public class Connection extends Thread{
 
                 break;
             case "UTESTSFORRESULTPAGE":
-                System.out.println("UTESTS FOR RESULT PAGE");
                 for(int i = 1; i < split.length;){
                     Main.getGUI().addTestToResult(split[i++], Integer.parseInt(split[i++]));
                 }
                 break;
             case "UTESTFORRESULTPAGE":
                 Main.getGUI().newResultTest(split[1], split[2], split[3], split[4], split[5], split[6]);
-                System.out.println(input);
                 for(int i = 7; i < split.length;) {
                     if (split[i].equals("UQUESTION")) {
                         i++;

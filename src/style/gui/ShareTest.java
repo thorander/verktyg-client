@@ -1,10 +1,10 @@
-package style.gui.test.take;
+package style.gui;
 
 import core.Main;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import style.gui.components.CustomComboBox;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;

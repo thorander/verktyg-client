@@ -1,13 +1,11 @@
 package style.gui.test.take;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 /**
  * Created by Markus on 2017-05-17.

@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import style.gui.components.CustomComboBox;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;

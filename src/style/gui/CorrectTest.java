@@ -13,7 +13,7 @@ import style.gui.components.CustomComboBox;
 import style.gui.test.correct.CorrAnswer;
 import style.gui.test.correct.CorrQuestion;
 import style.gui.test.correct.CorrTest;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;

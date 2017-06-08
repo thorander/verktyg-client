@@ -1,4 +1,4 @@
-package style.gui.test.create;
+package style.gui;
 
 import core.Main;
 import javafx.beans.value.ChangeListener;

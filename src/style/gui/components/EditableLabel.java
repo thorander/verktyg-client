@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 /**
  * Custom Label which has a text field as well.

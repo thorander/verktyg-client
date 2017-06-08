@@ -1,4 +1,4 @@
-package style.gui.test.create;
+package style.gui;
 
 import core.Main;
 import javafx.application.Application;
@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import style.gui.components.CustomComboBox;
+import style.gui.CreateNodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;

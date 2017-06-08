@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import style.gui.icons.CorrectIcon;
 import style.gui.icons.Icon;
 import style.gui.icons.IncorrectIcon;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 /**
  * Created by Markus on 2017-05-28.

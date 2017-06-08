@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import style.gui.test.create.CTest;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

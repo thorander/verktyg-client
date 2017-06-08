@@ -1,9 +1,9 @@
 package style.gui.test.create;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import style.gui.CreateNodes;
 import style.gui.icons.RemoveIcon;
 
 /**

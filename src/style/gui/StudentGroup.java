@@ -1,4 +1,4 @@
-package style.gui.test.create;
+package style.gui;
 
 import core.Main;
 import core.User;
@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
 import network.Connection;
+import style.gui.CreateNodes;
 import sun.util.resources.cldr.en.CalendarData_en_GY;
 
 import java.util.ArrayList;

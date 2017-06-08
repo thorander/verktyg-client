@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import style.gui.components.DateTimePicker;
 import style.gui.components.EditableLabel;
 import style.gui.test.create.CQuestion;
-import style.gui.test.create.CreateNodes;
+import style.gui.CreateNodes;
 
 import java.util.List;
 

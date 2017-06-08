@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Created by Markus on 2017-05-29.
+ * User class used in the page for creating groups
  */
 public class User {
 

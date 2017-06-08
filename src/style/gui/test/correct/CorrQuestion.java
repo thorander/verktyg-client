@@ -6,13 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import style.gui.test.create.CreateNodes;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import style.gui.CreateNodes;
 
 /**
  * Created by Markus on 2017-05-28.
