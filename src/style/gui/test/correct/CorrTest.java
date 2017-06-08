@@ -52,7 +52,7 @@ public class CorrTest extends BorderPane {
                 alert.setContentText("Din rättning är nu sparad!");
                 alert.showAndWait();
 
-                String send = "CORRECT#" + id + "#";
+                String send = "CORRECT#" + id + "#" + commentArea.getText() + "#";
                 for(Node o : qBox.getChildren()){
                     CorrQuestion temp = ((CorrQuestion)o);
                     send += temp.getUpdateQuestion();
