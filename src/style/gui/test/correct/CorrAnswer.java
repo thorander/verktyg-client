@@ -30,8 +30,7 @@ public class CorrAnswer extends HBox {
         switch(type){
             case "Open question":
                 setAnsweredText();
-                answered = true;
-                setStyle(getStyle() + "-fx-border-width: 2px; -fx-border-color: #d7d7d7;");
+                answered = false;
                 setAnsweredStyle();
                 break;
             case "Order":

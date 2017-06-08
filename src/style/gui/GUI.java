@@ -291,12 +291,12 @@ public class GUI {
         return correctTest;
     }
 
-    public void newResultTest(String title, String points, String maxPoints, String grade, String comment){
-        Platform.runLater(() -> result.newTest(title, points, maxPoints, grade, comment));
+    public void newResultTest(String title, String points, String maxPoints, String grade, String comment, String timeSpent){
+        Platform.runLater(() -> result.newTest(title, points, maxPoints, grade, comment, timeSpent));
     }
 
-    public void addQuestionToResult(String title, String points, String maxPoints){
-        Platform.runLater(() -> result.addQuestion(title, points, maxPoints));
+    public void addQuestionToResult(String title, String points, String maxPoints, String comment){
+        Platform.runLater(() -> result.addQuestion(title, points, maxPoints, comment));
     }
 
     public void addAnswerToResult(CorrAnswer a){

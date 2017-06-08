@@ -26,7 +26,7 @@ public class Result extends BorderPane {
 
     private CustomComboBox testBox;
 
-    private Label titleLabel, commentLabel, gradeLabel, pointsLabel, chooseTest;
+    private Label titleLabel, commentLabel, gradeLabel, pointsLabel, chooseTest, timeSpentLabel;
 
     public Result(){
         header = new GridPane();
@@ -49,13 +49,14 @@ public class Result extends BorderPane {
         setEffect(drop);
     }
 
-    public void newTest(String title, String points, String maxPoints, String grade, String comment){
+    public void newTest(String title, String points, String maxPoints, String grade, String comment, String timeSpent){
         header.getChildren().clear();
         questionBox.getChildren().clear();
         titleLabel = CreateNodes.createHeader(title);
-        commentLabel = CreateNodes.createLabel(comment);
-        gradeLabel = CreateNodes.createLabel2(grade);
-        pointsLabel = CreateNodes.createLabel2(points + "/" + maxPoints);
+        commentLabel = CreateNodes.createLabelTest(comment);
+        gradeLabel = CreateNodes.createLabel2("Grade: " + grade);
+        pointsLabel = CreateNodes.createLabel2("Points: " + points + "/" + maxPoints);
+        timeSpentLabel = CreateNodes.createLabel2("Time: " + Integer.parseInt(timeSpent)/60 + ":" + Integer.parseInt(timeSpent)%60);
 
         questionBox.setSpacing(25);
         placeNodes();
@@ -63,24 +64,28 @@ public class Result extends BorderPane {
 
     private void placeNodes() {
         header.add(titleLabel, 0, 0);
-        GridPane.setColumnSpan(titleLabel, 2);
+        GridPane.setColumnSpan(titleLabel, 3);
         header.add(gradeLabel, 0, 1);
         header.add(pointsLabel, 1, 1);
+        header.add(timeSpentLabel, 2, 1);
         header.add(commentLabel, 0, 2);
-        GridPane.setColumnSpan(commentLabel, 2);
+        GridPane.setColumnSpan(commentLabel, 3);
         GridPane.setMargin(commentLabel, new Insets(10, 0, 25, 0));
+        commentLabel.setMaxWidth(300);
+        commentLabel.setWrapText(true);
 
         scrollPane.setContent(new VBox(header, questionBox));
         setCenter(scrollPane);
     }
 
 
-    public void addQuestion(String qTitle, String qPoints, String qMaxPoints){
+    public void addQuestion(String qTitle, String qPoints, String qMaxPoints, String comment){
         VBox question = new VBox();
         Label qPointsLabel = CreateNodes.createLabel(qPoints + "/" + qMaxPoints);
         Label qTitleLabel = CreateNodes.createLabel2(qTitle);
+        Label commentLabel = CreateNodes.createLabel(comment);
         answerBox = new VBox();
-        question.getChildren().addAll(new HBox(qTitleLabel, qPointsLabel), answerBox);
+        question.getChildren().addAll(new HBox(qTitleLabel, qPointsLabel), answerBox, commentLabel);
         questionBox.getChildren().add(question);
     }
 
