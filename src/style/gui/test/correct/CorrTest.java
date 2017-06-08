@@ -24,9 +24,10 @@ public class CorrTest extends BorderPane {
         private int id;
         private Label testName;
         private Button doneCorrecting;
-        private HBox buttonBox;
+        private GridPane buttonBox;
         private VBox qBox;
         private final int HEIGHT = 600, WIDTH = 500;
+        private TextArea commentArea;
 
         private Alert alert;
 
@@ -36,6 +37,11 @@ public class CorrTest extends BorderPane {
             setId("loginStyle");
             System.out.println(id);
             System.out.println(testName+"");
+
+            commentArea = new TextArea();
+            commentArea.setMaxWidth(300);
+            commentArea.setMaxHeight(100);
+            commentArea.setWrapText(true);
 
             doneCorrecting = CreateNodes.createButton("Save");
 
@@ -55,8 +61,9 @@ public class CorrTest extends BorderPane {
                 Main.getConnection().write(send);
             });
 
-            buttonBox = new HBox();
-            buttonBox.getChildren().addAll(doneCorrecting);
+            buttonBox = new GridPane();
+            buttonBox.add(commentArea, 0, 0);
+            buttonBox.add(doneCorrecting, 0, 1);
             buttonBox.setAlignment(Pos.BOTTOM_CENTER);
             buttonBox.setMargin(doneCorrecting, new Insets(15, 0, 0, 50));
             setTop(this.testName);
